@@ -1,0 +1,108 @@
+My best wordpress plugins 28.03.2016
+
+1) Contact Form 7 - формы
+
+2) Polylang - мультиязычный сайт
+
+3) Theme Check - Простой и легкий способ протестировать вашу тему в соответствии с последними стандартами WordPress. Отличный инструмент в разработке тем!
+
+4) Wordfence Security - проверка безопасности сайта
+
+5) Cyr to Lat enhanced - чпу
+
+6) TinyMCE Advanced - добалвение таблиц и добалвение новых тэгов,стилей в визуальный редактор и отображение их в том же виде на сайте
+
+7) Platinum SEO Pack - ceo
+
+8) Customizer Export/Import - Adds settings export and import functionality to the WordPress customizer. Внешний вид/Насторить импорт/експорт настроек темы реализованная через стандартые возможности
+
+9) WP Super Cache - кэширование 
+
+10) BackWPup - бэкап с отправкой в различные сервисы,drppbox,почта и т д.
+
+11)CodeStyling Localization - перевод тем на англ яз в любой другой,через .po файл
+
+12)apache password protect - блокировка wp-login,2-x факторная авторизация
+
+13) Contact Form 7 honeypot - защита от спама при отправке писем (просто добавляет любое дополнительное поле)
+
+14) HyperComments - продвинутая система коментирования
+
+15) Externel links - добовление rel="nofollow" для внешних ссылок
+
+16) fancybox или litebox - увеличение изображения на той же странице в красиво оформленном виде
+
+17) Limit login attampts - ограничение количества попыток входа в админку
+
+18) WP-Polls или yop poll - функциональный плагин создания опросов
+
+19) Loco Translate - перевод темц/плагина на другой язык
+
+20) P3 (Plugin Performance Profiler) - плагин для измерения производительности wordpress
+
+21) WPS Hide Login - изменяет и скрывает url входа в админку. /wp-login, /wp-login.php перенаправлются на страницу 404.При обновлении двжика настройки не сбрасываются. Во всех браузерах срабатывает только на 2 попытке,выходит "ERROR: Cookies are blocked or not supported by your browser. You must enable cookies to use WordPress" - это связано с кэширующим плагином,надо добавть новую страницу авторизации в исключения .Если входить через виджет авторизацию или страницу входа сгенерированую плагином (например LearnLMS) то работает все с 1 попытки. Авторизацию админа/обычного пользователя,регистрацию не ломает.
+Добавить в исключения:
+lostpassword 
+resetpass
+login
+vhod
+иначе сброс пароля не будет работать
+
+новый адрес будет хранится в таблице _options в поле option_name=whl_page
+
+22) Next Scripts: Social Networks Auto Poster - отличный плагни для автоматического кроспотинга постов в соц сети.Автопостит если даже сайт не открыт во вкладке
+
+23) WordPress Social Login - лучший плагин для интеграции с соц сетями. Лично тестировал авторизацию с vk,facebook,twitter,google+,instagram c vk и facebook даже выдергивает дополнительные данные: города,пол,страна,дата рождения и т.д если они заполены
+
+24) WP SMUSH - плагин для сжатия изображений.Бесплатная версия сжимает в среднем на 5%, платная версия на 10%.Также может изменить размер оригинального изображения до нужного размера,тем самым сэкономив место на диске
+
+25) BJ Lazy Load c настройками или Lazy Load без настроек
+
+The plugin can now supporting all wordpress images even those from plugins, sidebars, theme featured images… Just make sure your images are standard img tag and are not dependent on some advanced JavaScript event like for Slider Plugins.
+Also make sure that your theme is not based on an advanced framework that use any image preload mechanism!
+
+26) WP-Optimize - оптимизация базы данных
+27) Autoptimize - обьединение,минификация html,css,js
+28) WordPress Charts and Graphs Lite (Visualizer: Charts and Graphs Lite) - простое и быстрое создание 9 видов диаграмм и графиков.Много настроек(смена цвета линий,фрагментов,названий осей и т д) В free версии нет редактора,можно загружать только .csv файлы с данными
+
+29) Data Tables Generator by Supsystic - генератор различных таблиц
+
+30) ShortPixel Image Optimizer - уменьшает размер оригинального изображения,до 150 изобр/месяц,также сжимает все размеры thumbs(только счетчик изображений увеличится). При необходимости можно восстановить оригиналы гланого и thumbs изображений. Не сжимает повторно загруженное изображение. 'Bulk' optimize all the existing images in Media Library or in any gallery with one click. Нет лимита на размер файла
+
+31) Debug Bar - позволяет просматривать информацию о запросе, потребляемую память, выполненные SQL запросы, их производительность, состояние объектного кэширования и многое другое. 
+Для включени добавить 
+define( 'WP_DEBUG', true );
+define( 'SAVEQUERIES', true );
+
+32) Query Monitor - тот же Debug Bar,но функций гораздо больше
+
+33) interconnect - php скрипт для смены домена wordpress сайта
+
+34) Regenerate Thumbnails - этот плагин позволяет создать новые размеры для каждого загруженного изображения отдельно по одному или массово за раз. Полезен когда вы изменили или добавили новые размеры миниатюр (через Настройки > Медиафайлы) во время когда в библиотеке уже есть загруженные изображения. Или когда вы изменили размеры "Избранного изображения" поста.
+Обязательно в Настройках изображений поставить макс размер,если там будет 0 0 то плагин не будет работать.Также работает с add_image_size
+
+function wpse_setup_theme() {
+   add_theme_support( 'post-thumbnails' );
+   add_image_size( 'small-alex', 70, 70, true );
+}
+
+add_action( 'after_setup_theme', 'wpse_setup_theme' );
+
+35) Broken Link Checker - ищет битые ссылки(urls) на все файлы (jpg,pdf,xlsx и т.д) имеющие 404 ошибку
+
+36) WordPress File Monitor - отслеживает изменение/добавление файлов(дата,размер,права).Весьма полезный плагин для улучшения безопасности
+
+37) WP Security Audit Log - плагин отслеживает активность всех зарегистрированных пользователей (вход в админку,изменение/удаление/добавление постов и многое другое) а также все запросы от незарегистриованных пользователей
+
+======== галлереи изображений ======================
+
+1)Gallery – Photo Gallery
+By Huge-IT
+demo https://huge-it.com/wordpress-gallery-demo-5-thumbnails/#plugin_demo_wrapper
+
+2) Gallery Bank – Responsive Photo Gallery for WordPress
+понравился
+все главные и важные настройки лайтбокса,thumbnails платные
+
+3) Photo Gallery by WD – Responsive Photo Gallery for WordPress
+годная галерея,можно создать много галерей и добавлять в них изображения с thumms,добавляется на страницу через шорткод

@@ -1,0 +1,81 @@
+# ColorHighlighter - https://packagecontrol.io/packages/Color%20Highlighter
+полезный плагин для подсветки html кодов цвета+colorpicker
+
+# Color​Scheme​Editor - https://packagecontrol.io/packages/ColorSchemeEditor
+удобный редактор цветовых схем (работает в паре с PackageResourceViewer)
+
+# PackageResourceViewer - https://packagecontrol.io/packages/PackageResourceViewer
+удобный и быстрый просмотр всех исходных кодов
+
+# Compare Side-By-Side - https://packagecontrol.io/packages/Compare%20Side-By-Side
+сравнивает код/текст 2 файлов и ищет в них все изменения
+
+--------------------------
+// переназначение горячих клавиш в linux (путь ~/.config/sublime-text-3/Packages/User/Default.syblime-keymap)
+[
+    { "keys": ["ctrl+shift+d"], "command": "duplicate_line" },
+    { "keys": ["ctrl+alt+up"], "command": "select_lines", "args": {"forward": false} },
+    { "keys": ["ctrl+alt+down"], "command": "select_lines", "args": {"forward": true} },
+	{
+		"keys": ["alt+1"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1]]
+		}
+	},
+	{
+		"keys": ["alt+2"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.5, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+		}
+	},
+	{
+		"keys": ["alt+3"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 1.0],
+			"rows": [0.0, 0.5, 1.0],
+			"cells": [[0, 0, 1, 1], [0, 1, 1, 2]]
+		}
+	},
+	{"keys": ["alt+m"], "command": "toggle_menu"},
+	{ "keys": ["alt+f"], "command": "reindent" },
+]
+--------------------------
+// настройки sublime-text3 linux (путь ~/.config/sublime-text-3/Packages/User/Preferences.syblime-settings)
+{
+	"color_scheme": "Packages/User/SublimeLinter/Monokai (SL).tmTheme",
+	"fallback_encoding": "Cyrillic (Windows 1251)",
+	"font_size": 9,
+	"ignored_packages":	["Vintage"],
+	"show_encoding": true,
+	"word_wrap": true,
+	"highlight_line": true,
+}
+
+###################
+ctrl+k+b - скрывает/показывает левый sidebar (folders)
+
+SublimeLinter - обнаружение ошибок js,css,php и др.языко прямо в Sublime Text (на linux работает у меня только с php)
+
+==========================
+/home/jetfire/.config/sublime-text-3/Packages/User/a21_debug.sublime-snippet
+
+<snippet>
+	<content><![CDATA[
+===debug a21=== url script: ${1:}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>deb</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
+

@@ -1,0 +1,73 @@
+<!-- волновая анимация кнопки http://fian.my.id/Waves/#start -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Waves example</title>
+        <!-- <link rel="stylesheet" type="text/css" href="js/waves.min.css" /> -->
+        <link rel="stylesheet" type="text/css" href="js/waves.css" />
+<style>
+    #colored-button .btn {margin:0 20px 20px 0; color: #fff; }
+    #colored-button a, 
+    #colored-button a:hover { background: #01BCFF; }
+    .float-button-light,
+    .float-button-light:hover {
+    	/* background: #1bb556;*/ 
+    	 /*background: #cc0000; */
+    	 /*background: #ff9999; */
+    	 /*background: #ff3300; */
+    	 background: #ff9900; 
+    	}
+    .float-button-light2,.float-button-light2:hover { background: #cc0000; }
+    .float-button-light3,.float-button-light3:hover { background: #ff3300; }
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+<p id="colored-button" class="text-center">
+    <button class="btn float-button-light">Заявка на установку ГБО</button>
+    <button class="btn float-button-light2">Заявка на установку ГБО</button>
+    <button class="btn float-button-light3">Заявка на установку ГБО</button>
+</p>
+
+<script type="text/javascript" src="js/waves.min.js"></script>
+<script type="text/javascript">
+var config = {
+    duration: 1500,
+    delay: 200
+};
+                
+// Initialise Waves with the config
+Waves.init(config);
+    // Waves.attach('.flat-buttons', ['waves-button']);
+    // Waves.attach('.float-buttons', ['waves-button', 'waves-float']);
+    // Waves.attach('.float-button-light', ['waves-button', 'waves-light' ]);
+    Waves.attach('.float-button-light', ['waves-button', 'waves-light' ]);
+    Waves.attach('.float-button-light2', ['waves-button', 'waves-light' ]);
+    Waves.attach('.float-button-light3', ['waves-button', 'waves-light' ]);
+    // Waves.attach('.float-button-light', ['waves-button',  'waves-ripple' ]);
+
+    // $( ".float-button-light" ).on( "click", function() {
+    $( ".float-button-light" ).load(function() {
+		 console.log( $( this ).text() );
+			 // Ripple with a 1s delay between starting
+			// and stopping the ripple, centred at 
+			var options = { wait: 500, //ms
+			   				 position: { x: 0, y: 0  } //px // This position relative to HTML element
+			};
+
+			function blink(){
+			  setInterval(function() {
+			  	 Waves.ripple('.float-button-light', options);
+			  	 Waves.ripple('.float-button-light2', options);
+			  	 Waves.ripple('.float-button-light3', options);
+			  	 // Waves.ripple('.float-button-light');
+			  }, 2000);			  
+			}
+
+			 blink();
+	});
+	$( ".float-button-light" ).trigger( "load" ); // искусственно вызвыаем событие load
+</script>
+ </body>
+</html>

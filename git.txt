@@ -1,0 +1,13 @@
+========= делать push без ввода пароля и логина LINUX ================
+ls -al ~/.ssh
+ssh-keygen -t rsa -b 4096 -C "freerun-2012@yandex.ru"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+# check urls
+git remote show origin
+Push  URL: https://github.com/jetfire21/bp-group-calendar.git
+
+# изменить url
+git remote set-url origin git+ssh://git@github.com/jetfire21/bp-group-calendar.git
+========= делать push без ввода пароля и логина ================

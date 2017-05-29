@@ -1,0 +1,12 @@
+directive = value
+error_log =	/opt/lampp/logs/php_error_log	 |  /opt/lampp/logs/php_error_log
+log_errors = On	On
+track_errors	On	On
+
+================
+запись php ошибок в указанный файл,в wordrpess надо сделать define('WP_DEBUG', false)
+полезен когда на хостинг-сервере не созадется wp-content/debug.php
+==============
+
+php_value log_errors "On"
+php_value error_log /home/l/l95202t8/l95202t8.beget.tech/public_html/php_errors.log

@@ -1,0 +1,328 @@
+установка debian_x64 со всеми графич средами (gnome,xfce,kde,etc) = 5,8gb
+полная установка заняла чуть больше 1 часа
+
+Хоткеи в терминале
+Фичи линуксов можно узнавать бесконечно.
+
+ctrl-k — При редактировании команды в командной строке эта комбинация удаляет все введенные символы от курсора до конца строки.
+ctrl-d — равносильно exit.
+ctrl-r — Используется для поиска команды в истории командной строки (набирается эта комбинация и затем начальные буквы искомой команды).
+ctrl-z — Останавливает текущее приложение. Последующий ввод bg переводит приложение в фоновый режим, fg — вывод из фонового режима. jobs — просмотр задач, запущенных в фоне.
+ctrl-c — «Убивает» программу. Используется в крайнем случае. Сначала попробуйте закрыть программу другими способами.
+ctrl-l — Очищает окно терминала, равносильно clear
+
+sudo chmod 777 -R mysite.dev
+
+#################  w
+
+Команда w показывает, кто на данный момент вошел в систему, наряду с другой полезной информацией такой, как время работы или нагрузкой процессора.
+
+
+#### добавление постоянных алиасов
+
+/home/jetfire/.bashrc
+alias xampp='sudo /opt/lampp/manager-linux-x64.run'
+
+##### Просмотреть список доступных устройств(дисков) #######
+
+lsblk
+или (если такой команды нет):
+blkid
+
+########## запись iso образа на usb flash ##########3
+
+pv alt.iso | dd oflag=direct of=/dev/sdX bs=1M;sync
+pv '/media/jetfire/0C7C05F67C05DB7A/linux/backups/debian8.6_xfce_amd64/systemback_live_2016-12-17.iso' | dd oflag=direct of=/dev/sdb bs=1M;sync
+
+Внимание! Не добавляйте номер раздела, образ пишется на флэшку с самого начала!
+Внимание! Не извлекайте флешку, пока образ не запишется до конца! Определить финал процесса можно по прекращению моргания индикатора флешки либо посредством виджета "Безопасное извлечение съемных устройств". В консоли можно подать команду
+eject /dev/sdX
+и дождаться ее успешного завершения.
+
+
+### правильное удаление пакетов
+
+apt-get remove doublecmd-qt
+apt-get autoremove
+
+# все полезные команды linux
+
+http://www.f-notes.info/linux:linux_command
+
+# отобразить используемую версию ядра 
+
+jetfire21@deb16:~$ uname -r
+3.16.0-4-amd64
+
+# вывести версию ядра 
+
+jetfire21@deb16:~$ cat /proc/version 
+
+Linux version 3.16.0-4-amd64 (debian-kernel@lists.debian.org) (gcc version 4.8.4 (Debian 4.8.4-1) ) #1 SMP Debian 3.16.36-1+deb8u2 (2016-10-19)
+
+# версия дистрибутива
+
+jetfire21@deb16:~$ lsb_release -a
+
+No LSB modules are available.
+Distributor ID:	Debian
+Description:	Debian GNU/Linux 8.6 (jessie)
+Release:	8.6
+Codename:	jessie
+
+#
+
+sudo modinfo nvidia
+
+#  To get the BusID prop, run `lspci | egrep 'VGA|3D'` and input the data
+
+jetfire21@deb16:~$ lspci | egrep 'VGA|3D'
+
+00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor Graphics Controller (rev 09)
+01:00.0 3D controller: NVIDIA Corporation GF117M [GeForce 610M/710M/820M / GT 620M/625M/630M/720M] (rev a1)
+
+Дальше правим конфиг. файл xorg.conf.nvidia
+sudo gedit /etc/bumblebee/xorg.conf.nvidia
+В конфиг. файле приведен закомментированный пример указания BusID, по данному примеру указываем строчкой ниже правильный BusID (если номер BusID примера является правильным, то можно просто данную строчку раскомментировать, убрав '#') В результате получится примерно следующее (в вашем случае номера могут быть другими):
+#   BusID "PCI:02:00:0"
+    BusID "PCI:01:00:0"
+Если же вы используете свободный драйвер, то вместо xorg.conf.nvidia надо править xorg.conf.nouveau
+sudo gedit /etc/bumblebee/xorg.conf.nouveau
+В заключение перезагружаем ноут.
+
+#
+
+jetfire21@deb16:~$ glxinfo | grep -i "direct rendering"
+direct rendering: Yes
+
+#
+lsmod | grep nvidia
+
+nvidia              10520178  37 
+drm                   249998  10 i915,drm_kms_helper,nvidia
+i2c_core               46012  8 drm,i915,i2c_i801,drm_kms_helper,i2c_algo_bit,nvidia,v4l2_common,videodev
+
+# если используется свободный видеодрайвер (не nvidia) то
+команда ничего не должна выводить
+
+lsmod | grep nouveau
+
+nouveau              1122508  1 
+ttm                    77862  1 nouveau
+drm_kms_helper         49210  2 i915,nouveau
+mxm_wmi                12515  1 nouveau
+drm                   249998  10 ttm,i915,drm_kms_helper,nouveau
+i2c_algo_bit           12751  2 i915,nouveau
+i2c_core               46012  8 drm,i915,i2c_i801,drm_kms_helper,i2c_algo_bit,v4l2_common,nouveau,videodev
+button                 12944  2 i915,nouveau
+video                  18096  3 i915,samsung_laptop,nouveau
+wmi                    17339  2 mxm_wmi,nouveau
+
+# 
+Для запуска приложения с помощью дискретного адаптера NVIDIA запустите в терминале:
+
+$ optirun [options] <application> [application-parameters]
+Пример:
+
+# jetfire21@deb16:~$ 
+optirun glxgears -info
+
+GL_RENDERER   = GeForce 710M/PCIe/SSE2
+GL_VERSION    = 4.4.0 NVIDIA 340.96
+GL_VENDOR     = NVIDIA Corporation
+302 frames in 5.0 seconds = 60.365 FPS
+300 frames in 5.0 seconds = 59.855 FPS
+300 frames in 5.0 seconds = 59.855 FPS
+300 frames in 5.0 seconds = 59.853 FPS
+300 frames in 5.0 seconds = 59.855 FPS
+300 frames in 5.0 seconds = 59.854 FPS
+300 frames in 5.0 seconds = 59.853 FPS
+300 frames in 5.0 seconds = 59.853 FPS
+
+
+Для получения списка опций для optirun откройте страницу руководства с помощью man optirun или запустите:
+
+$ optirun --help
+
+## если Не удалось подключить том! в формате NTFS 
+
+Error mounting /dev/sda5 at /media/jetfire/0C7C05F67C05DB7A: Command-line `mount -t "ntfs" -o "uhelper=udisks2,nodev,nosuid,uid=1000,gid=1000,dmask=0077,fmask=0177" "/dev/sda5" "/media/jetfire/0C7C05F67C05DB7A"' exited with non-zero exit status 14: The disk contains an unclean file system (0, 0).
+Metadata kept in Windows cache, refused to mount.
+Failed to mount '/dev/sda5': Операция не позволена
+The NTFS partition is in an unsafe state. Please resume and shutdown
+Windows fully (no hibernation or fast restarting), or mount the volume
+read-only with the 'ro' mount option.
+-------
+Команда: sudo ntfsfix /dev/ваш диск -сработало!
+
+
+# Информация о разделах/свободном месте на жёстких дисках
+
+jetfire21@deb16:~$ df -h
+Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
+/dev/sda6           20G         6,9G   12G           38% /
+udev                10M            0   10M            0% /dev
+tmpfs              770M         9,1M  761M            2% /run
+
+
+# вызвать системный монитор
+
+gnome-system-monitor
+
+# 1. Как определить какой драйвер сейчас установлен? 
+
+jetfire21@deb16:~$ glxinfo |grep OpenGL
+
+OpenGL vendor string: Intel Open Source Technology Center
+OpenGL renderer string: Mesa DRI Intel(R) Ivybridge Mobile 
+OpenGL core profile version string: 3.3 (Core Profile) Mesa 10.3.2
+OpenGL core profile shading language version string: 3.30
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 3.0 Mesa 10.3.2
+OpenGL shading language version string: 1.30
+OpenGL context flags: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.0 Mesa 10.3.2
+OpenGL ES profile shading language цзversion string: OpenGL ES GLSL ES 3.0
+OpenGL ES profile extensions:
+
+# Как удостовериться что приложения могут работать через дискретный адаптер с текущими настройками? 
+
+jetfire21@deb16:~$ primusrun glxinfo |grep OpenGL
+2016/12/06 04:07:05 socat[29373] E connect(5, AF=1 "/var/run/bumblebee.socket", 27): Permission denied
+primus: fatal: failed to connect to Bumblebee daemon: Permission denied
+
+
+################ данные о wi-fi адаптере ###########
+
+jetfire21@debmate91216:~$  lspci -nn | grep 0280 
+
+02:00.0 Network controller [0280]: Qualcomm Atheros AR9485 Wireless Network Adapter [168c:0032] (rev 01)
+
+############ Файловые ассоциации приложений ####
+
+~     /home/jetfire21
+
+/home/jetfire21/.local/share/applications/mimeapps.list
+~/.local/share/applications/mimeapps.list
+pluma .local/share/applications/mimeapps.list
+
+############ Как в Linux изменить текстовый редактор по умолчанию ##############
+
+jetfire21@debmate91216:~$ ls -l /etc/alternatives/editor
+lrwxrwxrwx 1 root root 9 дек  9 17:41 /etc/alternatives/editor -> /bin/nano
+
+jetfire21@debmate91216:~$ sudo update-alternatives --config editor
+Есть 2 варианта для альтернативы editor (предоставляет /usr/bin/editor).
+
+  Выбор   Путь           Приор Состояние
+------------------------------------------------------------
+* 0            /bin/nano           40        автоматический режим
+  1            /bin/nano           40        ручной режим
+  2            /usr/bin/vim.tiny   10        ручной режим
+
+Нажмите enter, чтобы сохранить текущий выбор[*], или введите выбранное число: 
+
+############
+
+Удалите программу и все ее файлы настроек. В терминале введите следующую команду, заменяя <programname> на имя программы, которую вы хотите удалить полностью:
+
+sudo apt-get --purge remove <programname>
+sudo apt-get --purge remove playonlinux
+
+Удаление одной лишь программы. Если вы хотите удалить программу, но оставить ее файлы настроек, введите следующую команду:
+
+sudo apt-get remove <programname>
+
+###########################
+# Получение списка последних установленных пакетов - 10
+
+ls -t  /var/lib/dpkg/info/ |grep '\.list$'|sed -e 's/\.list$//'|head -n 10
+######### показать все диски (даже несмонтированные) ##################
+
+root@debxfce131216:/# fdisk -l
+
+Disk /dev/sdb: 465,8 GiB, 500107862016 bytes, 976773168 sectors
+Единицы: sectors по 1 * 512 = 512 байт
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Тип метки диска: dos
+Идентификатор диска: 0x405320cc
+
+Device     Boot     Start       End   Sectors   Size Id Type
+/dev/sdb1  *         2048  96602111  96600064  46,1G  7 HPFS/NTFS/exFAT
+/dev/sdb2        96602112 178520063  81917952  39,1G  7 HPFS/NTFS/exFAT
+/dev/sdb3       178520065 976771071 798251007 380,7G  f W95 Ext'd (LBA)
+/dev/sdb5       178520128 935264255 756744128 360,9G  7 HPFS/NTFS/exFAT
+/dev/sdb6       935266304 976771071  41504768  19,8G 83 Linux
+###########################
+
+
+#  Горячие клавиши GNOME и Nautilus
+
+
+В статье собраны основные, а главное востребованные, горячие клавиши графического окружения GNOME и менеджера файлов Nautilus. Использование горячих клавиш повышает скорость и комфортность работы с операционной системой Linux.
+
+Все приведенные горячие клавиши разбиты по тематическим группам. Список HOT KEY постоянно модифицируется и дополняется. Пожелания прошу оставлять в комментариях.
+Управление рабочим столом в GNOME:
+
+    Ctrl+Alt+left — Двигает рабочий стол влево;
+    Ctrl+Alt+Right — Двигает рабочий стол вправо;
+    Alt+F1 — Открыть меню GNOME;
+    Alt+F2 — Открыть диалоговое окно «Запуск программы»;
+    PrintScr — Делает скриншот рабочего стола;
+    Alt+PrintScr — Делает скриншот активного окна;
+    Ctrl+Alt+L — Заблокировать рабочий стол;
+    Ctrl+Alt+Del — Вызвать окно выключения компьютера.
+d
+Управление окнами в Nautilus:
+
+    Alt-F9 — Минимизация (сворачивание) активного окна;
+    Ctrl+Alt+D — Минимизирует (сворачивает) все открытые окна. При повторном нажатии возвращает все в первоначальное положение;
+    F5 — Обновить окно;
+    Alt+F10 — Разворачивает активное окно на полный экран и наоборот;
+    Alt+Tab — Переключение между открытыми окнами;
+    Alt+F7 — Позволяет переместить окно;
+    Alt+F8 — Позволяет изменить размер окна;
+    Alt+F4 — Закрывает активное окно;
+    Ctrl+W — Закрывает активную вкладку;
+    F6 — При двухпанельном интерфейсе, переход между панелями;
+    Ctrl+Shift+W — Закрывает все активные окна.
+
+Навигация в Nautilus:
+
+    Alt+Up — Вверх;
+    Alt+Left — Назад;
+    Alt+Right — Вперед;
+    Alt+Home — Перейти в домашнюю папку.
+
+Управление файлами в Nautilus:
+
+    Shift+Ctrl+N — Создать новую директорию;
+    Ctrl+H — Показать/скрыть скрытые файлы;
+    Alt+ENTER — Вызвать окно свойств файла или директории;
+    F2 — Переименовать имя файла или директории;
+    Ctrl+A — Выделить все объекты окна;
+    Ctrl+1 — Отображать вид файлов и директорий в виде значков;
+    Ctrl+2 — Отображать вид файлов и директорий в виде списка;
+    Ctrl+3 — Отображать вид файлов и директорий в компактном виде;
+    Ctrl+Plus — Увеличение масштаба;
+    Ctrl+Minus — Уменьшение масштаба;
+    Ctrl+0(ноль) — Вернуть масштаб в первоначальное положение
+
+
+############## поиск и замена строки во всех файлах #################
+
+sed -i -- 's/dezmond21.ru\/orig/programms21.ru\/orig/g' *
+sed -i -- 's/iinameiinameiinameiiname/iiname/g' *
+sed -i -- 's/dezmond21.ru\/orig/programms21.ru\/orig/g' *.html
+
+##################
+Bleachbit - Утилита для очистки системного мусора
+
+##################
+
+из этого файла можно узнать во сколько включен компьютер
+/home/jetfire/.xsession-errors

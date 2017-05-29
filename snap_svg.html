@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>SVG animation with lib snap.svg</title>
+<script src="snap.svg-min.js"></script>	
+</head>
+<body>
+		
+<script>
+window.onload = function () {
+
+  var s = Snap("#svgout"); 
+
+  var r = s.rect(100,100,100,100,20,20).attr({ stroke: '#123456', 'strokeWidth': 20, fill: 'red' });
+  var r = s.rect(0,0,100,100).attr({ stroke: '#123456', 'strokeWidth': 5, fill: 'red' });
+  var r2 = s.rect(0,250,100,100).attr({  fill: 'red' });
+  var r3 = s.rect(0,400,100,100).attr({  fill: 'red' });
+  var r4 = s.rect(600,400,100,100).attr({  fill: '#000' });
+  // var cr4 = s.circle( 600,400,10 );
+  var c = s.circle(100,650,100,100).attr({  fill: 'gray' });
+  var c2 = s.circle(600,650,100,100).attr({  fill: 'green' });
+  var c3 = s.circle(800,850,100,100).attr({  fill: 'pink' });
+
+
+// console.log(s.innerSVG());
+// $("#svgout").append(  s.innerSVG() )
+var inerR = Snap("#rect-2");
+ inerR.animate({x:400},2000);
+
+  function move_xy(){
+    r.animate({x:400,y:200},2000,function(){
+      r.animate({x:0,y:0},2000);
+    });
+
+  }
+  move_xy();
+  setInterval(move_xy,4000);
+
+  function scale(){
+    r2.animate({width:0,height:0},2000,function(){
+      r2.animate({width:100,height:100},2000);
+    });
+
+  }
+  scale();
+  setInterval(scale,4000);
+
+  function move_x(){
+    r3.animate({x:300,fill:'blue'},2000,function(){
+      r3.animate({x:0,fill:'red'},2000);
+    });
+
+  }
+  move_x();
+  setInterval(move_x,4000);
+
+  function circle_move_x(){
+    c.animate({cx:500},2000,function(){
+      c.animate({cx:100},2000);
+    });
+
+  }
+  circle_move_x();
+  setInterval(circle_move_x,4000);
+
+  function circle_scale(){
+    c2.animate({r:0},2000,function(){
+      c2.animate({r:100},2000);
+    });
+
+  }
+  circle_scale();
+  setInterval(circle_scale,4000);
+
+  function rec_rotate(){
+    r4.animate({transform:"r360,600,400"},3000,function(){
+      r4.animate({transform:"r0,600,400"},3000);
+    });
+
+  }
+  rec_rotate();
+  setInterval(rec_rotate,6500);
+
+   // c3.animate({r:30},2000);
+   // c3.animate({r:30},2000, mina.bounce);
+   // c3.animate({r:30},2000, mina.backin);
+   // c3.animate({r:30},2000, mina.backout);
+   // c3.animate({r:30},2000, mina.elastic);
+   // c3.animate({r:30},2000, mina.easein);
+   // c3.animate({r:30},2000, mina.linear);
+
+   // r4.animate({transform:"r360,100,100"},2000);
+   // r4.animate({transform:"r360,600,400"},2000);
+
+
+// rclone = r4.clone();
+// rclone2 = r4.clone();
+// rclone3 = r4.clone();
+// rclone4 = r4.clone();
+
+// rclone.transform( 'r20' );
+// rclone2.transform( 'r40' );
+// rclone3.transform( 'r270' );
+// rclone3.transform( 'r310' );
+
+
+};
+
+</script>
+<p><a href="http://snapsvg.io/" target="_blank">Snag.svg</a> - js библиотека для создания крутых анимаций. Совместимость: IE9+, Safari, Chrome, Firefox,Opera</p>
+
+<svg id="svgout2" width="100%" height="60px">
+	<desc>Created with Snap</desc><defs></defs>
+	<rect id="rect-2" x="0" y="0" width="50" height="50" stroke="#123456" fill="gray" style="stroke-width: 5;"></rect>
+</svg>
+
+<svg id="svgout" width="100%" height="100%"></svg>
+
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+inurl:wp-config.php -intext:wp-config DB_NAME
+inurl:backup filetype:zip

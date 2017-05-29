@@ -1,0 +1,31 @@
+=====================================================================
+========= ошибка связанная с mysql: "Got error 'this version of PCRE is compiled without UTF support at offset 0' from regexp..." ===
+
+xampp/lampp Решение:
+
+download ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.gz
+enter the folder with extracted PCRE and run the following commands
+
+# /home/jetfire/www/pcre-8.40/configure --prefix=/opt/lampp/lib/ --enable-utf8 --enable-unicode-properties make
+
+1. sudo /home/jetfire/www/pcre-8.40/configure --enable-utf8 --enable-unicode-properties
+2. sudo make
+3. sudo make install
+4. sudo cp .libs/* /opt/lampp/lib | or | sudo cp /home/jetfire/.libs/* /opt/lampp/lib
+
+more details:
+https://xtechbiz.com/wordpress-xampp-ubuntu-16-04/
+http://stackoverflow.com/questions/35801425/xampp-mysql-this-version-of-pcre-is-compiled-without-utf-support-at-offset-0
+
+get status:
+jetfire@debxfce131216:~$ /opt/lampp/bin/pcretest -C
+
+PCRE version 8.37 2015-04-28
+Compiled with
+  8-bit support
+  No UTF-8 support
+  No Unicode properties support
+  No just-in-time compiler support
+  ......................
+  Match recursion uses stack
+========================================================================
