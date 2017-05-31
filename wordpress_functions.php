@@ -856,9 +856,14 @@ function alex_get_data_from_class(){
 		echo "REVIEWS = ".$class->version;
 	}
 }
-//private метод нельзя переопределить http://php.net/manual/ru/language.oop5.visibility.php
-//он доступен только из того класса,где обьявлен,иначе будет выводиться fatal error
-//[04-Apr-2017 23:12:28 UTC] PHP Fatal error:  Call to private method sMyles_Updater_v2::add_notice() from context '' in /home/jetfire/www/dugoodr2.dev/wp-content/themes/buddyapp-child/job_manager/wp-job-manager-groups/index.php on line 199
+
+/* private метод нельзя переопределить в дочерних классах подробно обо всех модификаторах и области видимости
+на http://php.net/manual/ru/language.oop5.visibility.php 
+он доступен только из того класса,где обьявлен,иначе будет выводиться fatal error
+[04-Apr-2017 23:12:28 UTC] PHP Fatal error:  Call to private method sMyles_Updater_v2::add_notice() from context '' in /home/jetfire/www/dugoodr2.dev/wp-content/themes/buddyapp-child/job_manager/wp-job-manager-groups/index.php on line 199
+ Добавление методов извне в принципе не есть хорошо
+ В итоге если нужно переопределить private метод,то скорее всего придется создать fork плагина,если CLASS большой,если маленький то можно попробовать переопределить его в functions.php
+ */
 	
 /* ****** получение всех данных из класса находясь вне класса ********** */
 
