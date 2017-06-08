@@ -885,7 +885,40 @@ if(class_exists('BP_Member_Reviews')){
 }
 /*** один из вариантов переопределения метода класса какого-то плагина ***/
 
+/*
+Overloading is defining functions that have similar signatures, yet have different parameters. Overriding is only pertinent to derived classes, where the parent class has defined a method and the derived class wishes to override that method.
+
+In PHP, you can only overload methods using the magic method __call.
+
+An example of overriding:
+
+<?php
+
+class Foo {
+   function myFoo() {
+      return "Foo";
+   }
+}
+
+class Bar extends Foo {
+   function myFoo() {
+      return "Bar";
+   }
+}
+
+$foo = new Foo;
+$bar = new Bar;
+echo($foo->myFoo()); //"Foo"
+echo($bar->myFoo()); //"Bar"
+*/
 	
+  public static function instance() {
+  if ( is_null( self::$_instance ) ) {
+    self::$_instance = new self();
+  }
+  return self::$_instance;
+}
+  
 /*
 ставил плагин SI CAPTCHA Anti-Spam с показом капчи в виде изображения,и все ранво спам приходил!!!!
 ***** отличная защита wp сайта от спама ************* */
