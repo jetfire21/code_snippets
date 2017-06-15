@@ -94,6 +94,8 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 
 37) WP Security Audit Log - плагин отслеживает активность всех зарегистрированных пользователей (вход в админку,изменение/удаление/добавление постов и многое другое) а также все запросы от незарегистриованных пользователей
 
+38) WP Crontrol - WP Crontrol lets you view and control what's happening in the WP-Cron system
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery
