@@ -93,3 +93,5 @@ foreach ($date_timeline as $date) {
 }
 
 /* **** as21 добавление правильной даты в формате mysql нужное потом для сортировки по этому полю post_date **** */
+
+$wpdb->delete( $wpdb->posts, array( 'ID' => $id ), array( '%d' ) ); 

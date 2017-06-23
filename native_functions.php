@@ -67,3 +67,35 @@ var_dump( preg_match('#^(http|https):\/\/([A-Z0-9][A-Z0-9_-]*(?:.[A-Z0-9][A-Z0-9
 var_dump( preg_match('#^(http|https):\/\/(www\.)??[a-z0-9-\.]+(\.){1}(com|ru|net)\/??#i', $url) );
 
 /* **** as21 Валидация/фильтр url **** */
+
+
+/* **** as21 write in file **** */
+// permissin should be is least 666 for write
+function as21_wjm_write_file_jobs_count($filename,$text){
+
+	chmod($filename, 0777);
+	$fp = fopen($filename, "w"); 
+	$write = fwrite($fp, $text); 
+	// var_dump($write);
+	fclose($fp); 
+}
+/* **** as21 write in file **** */
+
+/* **** as21 get valid array from file **** */ 
+function as21_wjm_get_display_count_plus_by_group_id($group_id){
+	$filename = AS21_PATH_JOBS_COUNT_TXT;
+	if( file_exists($filename)) {
+
+		// on hosting immediately convert valid array
+		$file = file($filename); 
+		// if($_GET['dev']==1) { alex_debug(0,1,'file',$file);}
+		
+		 /* //need for correctly work on localhost
+		 $file = explode("\r", $file[0]); */
+
+		 // get valid array from file
+		 if( !isset($file[1]) ) $file = explode("\r", $file[0]);
+	}
+
+}
+/* **** as21 get valid array from file **** */ 
