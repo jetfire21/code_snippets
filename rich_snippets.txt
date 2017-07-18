@@ -1,0 +1,96 @@
+/* **** as21 рабочий вариант (покажет рейтниг,количество отзывов,калории и главное изображение) 
+изображение появилось в поиске гугла только ~ через 2 месяца,осталные данные сразу через пару часов,
+при других способах разметки изображение почему-то не подхатывалось **** */
+
+<!doctype html>
+<html amp lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chocolate Cake</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<script type="application/ld+json">{
+"@context": "http://schema.org/",
+"@type": "Recipe",
+"name": "Chocolate Cake",
+"image": "http://web-dev-pro.ru/microdata/51120_640x428.jpg",
+"author": "Recipe by Kraft",
+"description": "Super very 5 Chocolate Cake for your next special occasion. Everyone adores Original BAKER&#39;S GERMAN&#39;S Sweet Chocolate Cake!",
+"aggregateRating": {
+"@type": "AggregateRating",
+"RatingValue": "4.5",
+"ReviewCount": "153"},
+"prepTime": "PT45M",
+"totalTime": "PT2H25M",
+"recipeYield": "16 servings",
+"nutrition": {
+"@type": "NutritionInformation",
+"calories": "640 ",
+"fatContent": "38 g",
+"saturatedFatContent": "21 g",
+"cholesterolContent": "150 mg",
+"sodiumContent": "380 mg",
+"carbohydrateContent": "69 g",
+"fiberContent": "3 g",
+"sugarContent": "54 g",
+"proteinContent": "8 g"},
+"recipeIngredient": [
+"1 pkg. (4 oz.) BAKER&#39;S GERMAN&#39;S Sweet Chocolate  ",
+"1/2 cup  water  ",
+"4   egg s, separated ",
+"2 cups  flour  ",
+"1 tsp.  baking soda  ",
+"1/4 tsp.  salt  ",
+"1 cup  butter , softened ",
+"2 cups  sugar  ",
+"1 tsp.  vanilla  ",
+"1 cup  buttermilk  ",
+"   &lt;A HREF=&quot;/recipes/coconut-pecan-filling-frosting-51053.aspx&quot;&gt;Coconut-Pecan Filling and Frosting&lt;/A&gt;  "],
+"recipeInstructions": [
+"1. Cover bottoms of 3 (9-inch) round pans with parchment; spray sides with cooking spray.  Microwave chocolate and water in large microwaveable bowl on HIGH 1-1/2 to 2 min. or until chocolate is almost melted, stirring after 1 min.  Stir until chocolate is completely melted.",
+"2. Beat egg whites in small bowl with mixer on high speed until stiff peaks form; set aside. Combine flour, baking soda and salt.  Beat butter and sugar in large bowl with mixer until light and fluffy.  Add egg yolks, 1 at a time, beating well after each.  Blend in melted chocolate and vanilla.  Add flour mixture alternately with buttermilk, beating until well blended after each addition.",
+"3. Add egg whites; stir gently until well blended.  Pour into prepared pans.",
+"4. Bake 30 min. or until toothpick inserted in centers comes out clean.  Immediately run small spatula around cakes in pans.  Cool cakes in pans 15 min.  Remove from pans to wire racks; cool completely.  ",
+"5. Prepare Coconut-Pecan Filling and Frosting; spread between cake layers and onto top of cake."]
+}</script>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+  </head>
+  <body>
+    <h1 class="title">Chocolate Cake</h1>
+    <img src="http://web-dev-pro.ru/microdata/51120_640x428.jpg" alt="Chocolate Cake"/>
+    <div class="description">Ultra interesting. Chocolate Cake fast entre Make Original BAKER'S GERMAN'S Sweet Chocolate Cake for your next special occasion. Everyone adores Original BAKER'S GERMAN'S Sweet Chocolate Cake! Super impressive.</div>
+            <div class="ERSRatingInner" style="width: 96%">
+            <img src="/microdata/star.png" alt="">
+            <img src="/microdata/star.png" alt="">
+            <img src="/microdata/star.png" alt="">
+            <img src="/microdata/star.png" alt="">
+            </div>
+  </body>
+</html>
+<!-- page created 24.05.2017 13:00 -->
+
+/* **** as21 **** */
+
+
+/* **** as21 рейтинг и количество голосов,изображение не подхватывается **** */
+  <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "AggregateRating",
+        "name": "Admin",
+        "ratingCount": 2,
+        "image": {
+        "@type": "ImageObject",
+        "name": "Image",
+        "url": "http://dugoodr.com/wp-content/uploads/avatars/1/5803f61eb836b-bpthumb.jpg",
+        "height": "50",
+        "width": "50"
+        },
+        "bestRating": "5",
+        "ratingValue": "4",
+        "itemReviewed": {
+          "@type": "Thing",
+          "name": "Person"
+        }
+      }
+      </script>
+/* **** as21 рейтинг и количество голосов **** */

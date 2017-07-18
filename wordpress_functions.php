@@ -468,6 +468,10 @@ list_hooked_functions();
 
 /* ****** показывает все хуки и все функции вызванные в них ********** */
 
+// show all callbaks for some hook/filter by priority
+   global $wp_filter;
+   alex_debug(0,1,'',$wp_filter['wp_title']);
+   alex_debug(0,1,'',$wp_filter['wp_head'])
 
 /* ********* получение всех категорий по пользовательской таксономии ****************** */
 
