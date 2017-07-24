@@ -889,6 +889,17 @@ if(class_exists('BP_Member_Reviews')){
 }
 /*** один из вариантов переопределения метода класса какого-то плагина ***/
 
+// add_action('wp_ajax_bp_user_review',   array($this, 'ajax_review'),300);
+// add_action('wp_ajax_bp_user_review',   array("BP_Member_Reviews", 'ajax_review'),300);
+
+add_action('wp_ajax_bp_user_review','ajax_review_override',1);
+function ajax_review_override(){
+
+if ( class_exists('BP_Member_Reviews') ){
+
+  }
+}
+
 /*
 Overloading is defining functions that have similar signatures, yet have different parameters. Overriding is only pertinent to derived classes, where the parent class has defined a method and the derived class wishes to override that method.
 
@@ -1129,6 +1140,31 @@ function as21_temp_func(){
 	}
 }
 /* **** получение/удаление опции 2-получение списка всех таблиц у базы данных 3-удаление одной таблицы **** */
+
+add_action('wp_ajax_bp_user_review1', 'ajax_review2');
+add_action('wp_ajax_nopriv_bp_user_review1', 'ajax_review2');
+function ajax_review2(){
+  echo 'output test text in js console-------';
+  // $a['res'] = 'aaa';
+  // echo json_encode($a);
+  exit;
+}
+
+
+var data = { 'action': 'bp_user_review1'};
+$.ajax({
+  url: BP_User_Reviews.ajax_url,
+  // data:$(this).serialize(), 
+  data:data,
+  type:'POST', 
+  success:function(data){
+      console.log("----data from WP AJAX ---");
+      console.log("data="+data);
+      console.log("data="+data.res);
+      console.log(typeof data);
+      if( data ) {   } else { console.log("data send with errors!");}
+  }
+ });
 
 /*
 
