@@ -871,6 +871,7 @@ function alex_get_data_from_class(){
 	
 /* ****** получение всех данных из класса находясь вне класса ********** */
 
+https://wordpress.stackexchange.com/questions/36013/remove-action-or-remove-filter-with-external-classes
 /*** один из вариантов переопределения метода класса какого-то плагина ***/
 
 /* this variable in some plugin where have class BP_Member_Reviews

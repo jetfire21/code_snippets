@@ -224,3 +224,44 @@ endif;
 $groups = BP_Groups_Group::get(array('type'=>'alphabetical'));
 alex_debug(0,1,'',$groups);
 /* **** as21 еще один способ получения данных вне цикла через статические методы **** */
+
+
+
+/* **** as21 buddypress add custom page tab (beside activity,profile,groups etc) **** */
+
+add_action( 'bp_setup_nav', 'my_bp_nav_adder', 50 );
+
+function my_bp_nav_adder() {
+    global $bp;
+    bp_core_new_nav_item(
+            array(
+                    'name'                => __( 'Listings', 'buddypress' ),
+                    'slug'                => 'my-listings',
+                    'position'            => 1,
+                    'screen_function'     => 'listingsdisplay',
+                    'default_subnav_slug' => 'my-listings',
+                    'parent_url'          => $bp->loggedin_user->domain . $bp->slug . '/',
+                    'parent_slug'         => $bp->slug,
+                    // 'show_for_displayed_user' => false,
+                    // 'site_admin_only'         => true, 
+            ) );
+}
+
+function listingsdisplay() {
+    //add title and content here - last is to call the members plugin.php template
+    add_action( 'bp_template_title', 'my_groups_page_function_to_show_screen_title' );
+    add_action( 'bp_template_content', 'my_groups_page_function_to_show_screen_content' );
+    bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );
+}
+
+function my_groups_page_function_to_show_screen_title() {
+    echo 'My new Page Title';
+}
+
+function my_groups_page_function_to_show_screen_content() {
+    echo 'My Tab content here';
+
+}
+
+
+/* **** as21 buddypress add custom page tab (beside activity,profile,groups etc) **** */
