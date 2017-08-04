@@ -113,3 +113,32 @@ window.print();
 	*/
 });
 <!-- /* **** as21 prints the contents of the current window**** */ -->
+
+
+/* **** as21 magnificPopup example callbacks **** */
+
+<script>
+jQuery( document ).ready(function() {
+jQuery('#show-signup-report').magnificPopup({
+    items: {
+        src: '#show-signup-report-modal',
+        type: 'inline',
+        focus: '.username'
+    },
+    preloader: false,
+    callbacks: {
+	    open: function() {
+	    	console.log("open---");
+	    	// jQuery("#show-signup-report-modal").show();
+	    	// var orig = jQuery("body").html();
+	    	// console.log("open===="+orig);
+	    	// console.log(this);
+	    },
+	    close: function() {
+	    	console.log("close---");
+	    	// console.log("close===="+orig);
+	    }
+	}
+});
+
+/* **** as21 magnificPopup example callbacks **** */

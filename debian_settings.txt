@@ -1,0 +1,41 @@
+/* **** as21 настрйка lampp в debian для отправки почты через mail() ****  */
+
+Устанавливваем ssmtp
+apt-get install ssmtp
+
+sudo mousepad /etc/ssmtp/ssmtp.conf
+
+#
+# Config file for sSMTP sendmail
+#
+# The person who gets all mail for userids < 1000
+# Make this empty to disable rewriting.
+root=postmaster
+
+# The place where the mail goes. The actual machine name is required no 
+# MX records are consulted. Commonly mailhosts are named mail.domain.com
+#mailhub=mail
+
+# Where will the mail seem to come from?
+#rewriteDomain=
+
+# The full hostname
+#hostname=debxfce131216
+
+# Are users allowed to set their own From: address?
+# YES - Allow the user to specify their own From: address
+# NO - Use the system generated From: address
+#FromLineOverride=YES
+
+mailhub=smtp.gmail.com:587
+AuthUser=rafaelsanti@gmail.com
+AuthPass=somepass
+UseSTARTTLS=YES
+
+# You can only do this if you've verified your domain with Gmail.
+# If you haven't, delete, or add a # before this
+hostname=graphite-pro.dev
+
+FromLineOverride=YES
+
+/* **** as21 настрйка lampp в debian для отправки почты через mail() ****  */
