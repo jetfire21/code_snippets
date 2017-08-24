@@ -96,6 +96,8 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 
 38) WP Crontrol - WP Crontrol lets you view and control what's happening in the WP-Cron system
 
+39) Q2W3 Fixed Widget - интересный плагин,фиксирует виджеты при скролле (можно отключать на определенной ширине экрана! надо посмотреть как это там реализовано)
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery

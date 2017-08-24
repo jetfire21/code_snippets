@@ -1,4 +1,6 @@
 <?php
+проблема связанная с именованием файлов
+когда делаешь бекапы,там исопользуется механизм архивации,который не дружит с кирилическими названиями файлов,поэтому для названия файлов изображений лучше использовать транслит или английские буквы
 
 ########### wp replace url in DB #############
 1
@@ -46,6 +48,17 @@ define('WP_DEBUG_DISPLAY', false);
 // path log - /home/jetfire/www/graphite-pro.dev/wp-content/debug.log.
 
 /* ******* запись всех ошибок в файл .log ****************** */
+
+/* **** as21 debug function **** */
+add_action("wp_footer","as21_cb_function");
+
+function as21_cb_function(){
+
+  // it wll work if site.ru/?dev=1
+  if( (bool)$_GET['dev'] == true ) {
+
+  }
+}
 
 /******** отправка писем через gmail smtp c плагиноам wp-mail-smtp
 тестировал с wp 4.7.3,сработало только если во from email вставить то же что и в username *******/
