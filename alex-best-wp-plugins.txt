@@ -8,7 +8,7 @@ My best wordpress plugins 28.03.2016
 
 4) Wordfence Security - проверка безопасности сайта
 
-5) Cyr to Lat enhanced - чпу
+5) Cyr to Lat enhanced - чпу ссылки
 
 6) TinyMCE Advanced - добалвение таблиц и добалвение новых тэгов,стилей в визуальный редактор и отображение их в том же виде на сайте
 
@@ -20,7 +20,7 @@ My best wordpress plugins 28.03.2016
 
 10) BackWPup - бэкап с отправкой в различные сервисы,drppbox,почта и т д.
 
-11)CodeStyling Localization - перевод тем на англ яз в любой другой,через .po файл
+11)CodeStyling Localization - перевод тем на англ яз в любой другой,через .po файл (плагина больше не существует)
 
 12)apache password protect - блокировка wp-login,2-x факторная авторизация
 
