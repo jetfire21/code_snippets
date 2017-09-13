@@ -1189,6 +1189,32 @@ foreach($ids as $id){
 }
 /* **** получение целого столбца (например все id, и изменение/добавление slug к нему ***** */
 
+/**** чтобы добавить приставку .html для ссылок товаров в WooCommerce, нужно в файле функций functions.php разместить следующий код (взято отсюда): */
+
+function wpse_178112_permastruct_html( $post_type, $args ) {
+    if ( $post_type === 'product' )
+        add_permastruct( $post_type, "{$args->rewrite['slug']}/%$post_type%.html", $args->rewrite );
+}
+ 
+add_action( 'registered_post_type', 'wpse_178112_permastruct_html', 10, 2 );
+Если вы хотите сделать такой же формат ссылок для страниц категорий, то добавляете еще и такой код:
+
+function wpse_178112_category_permastruct_html( $taxonomy, $object_type, $args ) {
+    if ( $taxonomy === 'product_cat' )
+        add_permastruct( $taxonomy, "{$args['rewrite']['slug']}/%$taxonomy%.html", $args['rewrite'] );
+}
+ 
+add_action( 'registered_taxonomy', 'wpse_178112_category_permastruct_html', 10, 3 );
+/* 
+Важно! После этого вам следует вернуться в раздел Permalinks (Постоянные ссылки) админки WordPress и сохранить настройки дабы URL’ы обновились. Теперь ссылки магазина будут по типу:
+
+http://домен_магазина/category/green.html — для категории товаров.
+http://домен_магазина/products/green/product7.html — для конкретного товара.
+Я пытался по аналогии с категориями сделать такую же фишку и для тегов, но, к сожалению, у меня ничего не вышло. То есть сама ссылка с html генерируется системой, но при попадании на страницу появляется ошибка 404.
+чтобы удалить косую черту во всех url нужно в общих настройках permalinks в поле произвольно добавить /%postname%
+*/
+
+
 /* **** 1-получение/удаление опции 2-получение списка всех таблиц у базы данных 3-удаление одной таблицы **** */
 
 add_action("wp_footer","as21_temp_func");
