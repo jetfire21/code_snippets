@@ -1207,12 +1207,43 @@ function wpse_178112_category_permastruct_html( $taxonomy, $object_type, $args )
 add_action( 'registered_taxonomy', 'wpse_178112_category_permastruct_html', 10, 3 );
 /* 
 Важно! После этого вам следует вернуться в раздел Permalinks (Постоянные ссылки) админки WordPress и сохранить настройки дабы URL’ы обновились. Теперь ссылки магазина будут по типу:
-
-http://домен_магазина/category/green.html — для категории товаров.
-http://домен_магазина/products/green/product7.html — для конкретного товара.
+ http://site.ru/product-category/cars
+ http://site.ru/product-category/cars.html
 Я пытался по аналогии с категориями сделать такую же фишку и для тегов, но, к сожалению, у меня ничего не вышло. То есть сама ссылка с html генерируется системой, но при попадании на страницу появляется ошибка 404.
 чтобы удалить косую черту во всех url нужно в общих настройках permalinks в поле произвольно добавить /%postname%
 */
+
+
+/* **** as21 скрыть родительский каталог товара из url ( http://my-wp.dev/product-category/xiaomi/redmi/ ) в настройках permalinks product base insert in field
+. минус выдает 404 ошибку при переходе на страницу продуктов если они внутри категории 3 уровня 
+https://gist.github.com/vovadocent/2c9510bd748c6ef1d05252b9034a67cf
+https://rudrastyh.com/wordpress/remove-taxonomy-slug-from-urls.html
+Remove Taxonomy Base Slug - 4 года не обновлялся,но тем не менее работает прекрасно
+1 lv-http://gorproms.dev/katalogi-chetra
+2 lv-http://gorproms.dev/katalogi-chetra/t-9-01ya-yam
+3 lv-http://gorproms.dev/katalogi-chetra/t-9-01ya-yam/0902-01-1sp-sp
+http://gorproms.dev/product/testovyj-tovar
+**** */
+
+add_filter('request', function( $vars ) {
+	global $wpdb;
+	var_dump($vars);
+	if( ! empty( $vars['pagename'] ) || ! empty( $vars['category_name'] ) || ! empty( $vars['name'] ) || ! empty( $vars['attachment'] ) ) {
+		$slug = ! empty( $vars['pagename'] ) ? $vars['pagename'] : ( ! empty( $vars['name'] ) ? $vars['name'] : ( !empty( $vars['category_name'] ) ? $vars['category_name'] : $vars['attachment'] ) );
+		$exists = $wpdb->get_var( $wpdb->prepare( "SELECT t.term_id FROM $wpdb->terms t LEFT JOIN $wpdb->term_taxonomy tt ON tt.term_id = t.term_id WHERE tt.taxonomy = 'product_cat' AND t.slug = %s" ,array( $slug )));
+		if( $exists ){
+			$old_vars = $vars;
+			$vars = array('product_cat' => $slug );
+			if ( !empty( $old_vars['paged'] ) || !empty( $old_vars['page'] ) )
+				$vars['paged'] = ! empty( $old_vars['paged'] ) ? $old_vars['paged'] : $old_vars['page'];
+			if ( !empty( $old_vars['orderby'] ) )
+	 	        	$vars['orderby'] = $old_vars['orderby'];
+      			if ( !empty( $old_vars['order'] ) )
+ 			        $vars['order'] = $old_vars['order'];	
+		}
+	}
+	return $vars;
+});
 
 
 /* **** 1-получение/удаление опции 2-получение списка всех таблиц у базы данных 3-удаление одной таблицы **** */

