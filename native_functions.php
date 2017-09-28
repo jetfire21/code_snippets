@@ -74,11 +74,13 @@ var_dump( preg_match('#^(http|https):\/\/(www\.)??[a-z0-9-\.]+(\.){1}(com|ru|net
 function as21_wjm_write_file_jobs_count($filename,$text){
 
 	chmod($filename, 0777);
-	$fp = fopen($filename, "w"); 
+	$fp = fopen($filename, "w"); // 'a' - write end file
 	$write = fwrite($fp, $text); 
 	// var_dump($write);
 	fclose($fp); 
 }
+// file auto create,path http://site.ru/filename.ext
+	as21_wjm_write_file_jobs_count($_SERVER['DOCUMENT_ROOT'].'/check21.txt',$text); // если есть поддомен то запись строго в род домен site.ru/check21.txt
 /* **** as21 write in file **** */
 
 /* **** as21 get valid array from file **** */ 
