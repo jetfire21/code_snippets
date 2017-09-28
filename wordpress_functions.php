@@ -1270,6 +1270,44 @@ function as21_temp_func(){
 }
 
 
+/* **** as21 создание дополнительных метаполей у категории (в данном коде раздел) c плагином acf (advanced custom fields)
+Пример: каталоги четра->T-9.01 - раздел 1 кабина (список категорий) - раздел 2 Двигатель (список категорий) и т.д. **** */
+add_action('wp_footer','as21_acf_get_suction_from_cat');
+function as21_acf_get_suction_from_cat(){
+
+	$product_categories = get_categories(
+ 	array(
+		// 'child_of'       => $parent_id,
+		'child_of'       => 53,
+		'menu_order'   => 'ASC',
+		'hide_empty'   => 0,
+		'hierarchical' => 1,
+		'taxonomy'     => 'product_cat',
+		// 'pad_counts'   => 1,
+	) );
+
+	alex_debug(0,1,'',$product_categories);
+	// var_dump( get_field('подраздел', 'product_cat_75') ); work
+	$field_settings = get_field_object('as21subsection2','product_cat_'.$product_categories[0]->term_id); // get all data about field
+	alex_debug(0,1,'',$field_settings ).'<br>';
+	var_dump($field_settings['choices']);
+
+	foreach ($product_categories as $cat) {
+		// if( !empty(get_field('подраздел', 'product_cat_'.$cat->term_id) ) ) 
+		// { $subsections[get_field('подраздел', 'product_cat_'.$cat->term_id)][] = $cat; }
+		// echo get_field('подраздел', 'product_cat_'.$cat->term_id).'<br>';
+		if( !empty(get_field('as21subsection2', 'product_cat_'.$cat->term_id) ) ) 
+		{ $subsections[ $field_settings['choices'][get_field('as21subsection2', 'product_cat_'.$cat->term_id)] ][] = $cat; }
+		// echo get_field('as21subsection2', 'product_cat_'.$cat->term_id).'<br>';
+		// alex_debug(0,1,'', get_fields( 'product_cat_'.$cat->term_id)).'<br>';
+	}
+	ksort($subsections);
+	alex_debug(0,1,'',$subsections);
+
+}
+/* **** as21 создание дополнительных метаполей у категории (в данном коде раздел) c плагином acf */
+
+
 /* **** as21 **** * перенос сайта с сохранениме структуры ссылок на wp
 
 site.ru/product-category/cars/sport/bmw замена на
