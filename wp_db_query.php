@@ -101,3 +101,13 @@ $wpdb->delete( $wpdb->posts, array( 'ID' => $id ), array( '%d' ) );
  $wpdb->query("SELECT term_id,meta_id,meta_key,meta_value FROM gorp21_termmeta WHERE term_id IN (50,59,63,52) AND meta_key='txcat_section_title' ORDER BY meta_id");
 // запрос с подзапросом ( находит всю инфу о категории у который во второй таблице есть нужный ключ) хотя это можно делать в 2 отдельных запроса, получить все id категорий из второй таблицы отфильтровав по ключу и затем уже по cat_id вытащить всю инфу о категории
 $get_cat_subsection = $wpdb->get_results("SELECT * FROM gorp21_terms INNER JOIN gorp21_termmeta ON ( gorp21_terms.term_id = gorp21_termmeta.term_id ) WHERE gorp21_termmeta.meta_key = 'txseo_seo_title'"); 
+
+
+
+/* **** as21 **** */
+
+$wpdb->insert(
+	$wpdb->posts,
+	array( 'post_author' => $post['user_id'], 'post_date'=>current_time('mysql'),'post_type' => 'as21_orders','post_parent'=>$prod_id,'menu_order'=>$price,'comment_count'=> $_SESSION['products'][$prod_id]['count'] ),
+	array( '%d','%s', '%s','%d', '%d', '%d' )
+);

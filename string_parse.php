@@ -1,7 +1,7 @@
 <?php
 // - #1
 
-/* ********Обработка строк (обрезка / поиск) ****** */
+/* ********Обработка строк (обрезка / поиск) в php ****** */
 
 // Находит последнее вхождение подстроки Пример: https://twitter.com/ottawafoodbank 
 echo $str = substr(strrchr($str,"/"), 1); // вернет ottawafoodbank
@@ -88,3 +88,10 @@ view-source:http://test.dev/find_page_js/find_page_js.php
 $str = 'here any 234 $ text';
 $str = preg_replace("/[^0-9]/", '', $str);
 /* ****  извлекает числа из строки **** */
+
+/* **** as21 разбивает строку на подстроку (будет работаь быстрее чем регулярка) **** */
+	// $mail = 'as_fds35@ya.ru';
+	$mail = $post_validate['user_email'];
+	$user_mail = explode('@', $mail);
+	$username = $user_mail[0]; // as_fds35
+/* **** as21 разбивает строку на подстроку **** */

@@ -101,6 +101,7 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 40) Disable Comments - отключает комментарии
 
 41) Duplicator - мощный плагин для бэкапа.Легко и просто перемещает сайт с одного домена на другой (заменяет все сериализованные данные)
+выдает ошибку на этапе сканирования,если в картинках используются названия с кирилицей,поэтому бэкап не получится сделать
 
 Database Search and Replace Script in PHP (https://interconnectit.com/products/search-and-replace-for-wordpress-databases/) - для правильной замены сериализованных данных
 
