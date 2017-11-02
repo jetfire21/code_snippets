@@ -142,3 +142,24 @@ jQuery('#show-signup-report').magnificPopup({
 });
 
 /* **** as21 magnificPopup example callbacks **** */
+
+/* **** as21 разрешение экрана **** */
+jQuery( document ).ready(function($) {
+
+			var h = window.screen.availHeight;
+			var w = window.screen.availWidth;
+			var screen = w+"x"+h;
+			var data = { 'action': 'as21_get_screen_resolution','screen': screen};
+			// console.log(screen);	console.log(ajaxurl);  console.log(data);
+			$.ajax({
+				url:ajaxurl, // обработчик
+				data:data, // данные
+				type:'POST', // тип запроса
+				success:function(data){
+					// if( data ) // console.log(data); console.log('success ajax');
+					 // else { console.log("data send with errors!");}
+				}
+
+			 });
+	});
+/* **** as21 разрешение экрана **** */

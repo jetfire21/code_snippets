@@ -1326,6 +1326,29 @@ function as21_acf_get_suction_from_cat(){
 }
 /* **** as21 создание дополнительных метаполей у категории (в данном коде раздел) c плагином acf */
 
+/* **** добавление к меню нового пункта/ссылки/элемента html ********* */
+
+add_filter( 'wp_nav_menu_items', 'your_custom_menu_item', 10, 2 );
+function your_custom_menu_item ( $items, $args ) {
+    if ( $args->theme_location == 'primary') {
+    	// $cart_prod_count = ( WC()->cart->get_cart_contents_count() > 0
+        $items .= '<li class="as21_menu_cart"><span>'.WC()->cart->get_cart_contents_count().'</span><a href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>';
+    }
+    return $items;
+}
+/* **** as21 **** */
+
+
+/* **** цепляемся за ajax добавление товара в корзину (ползено когда нужно обновить количество товара при клике на добавить товар в кастомной миникорзине) */
+add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
+function iconic_cart_count_fragments( $fragments ) {
+    
+    $fragments['li.as21_menu_cart span'] = '<span>' . WC()->cart->get_cart_contents_count() . '</span>';
+    // var_dump($fragments);
+    // exit;
+    return $fragments;    
+}
+/* **** as21 **** */
 
 /* **** as21 **** * перенос сайта с сохранениме структуры ссылок на wp
 
