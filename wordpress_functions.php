@@ -1412,7 +1412,7 @@ $url = 'http://b2b.berghoffworldwide.ru/catalog_xml_export/productsPhoto/1399843
 $desc = "";
 
 // Download an image from the specified URL and attach it to a post
-$attachment = media_sideload_image( $url, $post_id, $desc,'id' );
+$attachment = media_sideload_image( $url, $post_id, $desc,'id' ); // arg 'id' only with wp 4.8
 // set featured image to post
 add_post_meta($post_id, '_thumbnail_id', $attachment);
 
