@@ -126,3 +126,7 @@ demo https://huge-it.com/wordpress-gallery-demo-5-thumbnails/#plugin_demo_wrappe
 
 3) Photo Gallery by WD – Responsive Photo Gallery for WordPress
 годная галерея,можно создать много галерей и добавлять в них изображения с thumms,добавляется на страницу через шорткод
+
+#####################
+
+1) Adminer - легкий компкатный php скрипт для управления бд,удобно когда нет доступа к phpmyadmin (аналог phpmyadmin https://www.adminer.org/)
