@@ -163,3 +163,31 @@ jQuery( document ).ready(function($) {
 			 });
 	});
 /* **** as21 разрешение экрана **** */
+
+
+
+/* **** валидация полей средствами js **** */
+
+var phone = jQuery("#a21_form_oformit_zakaz .phone").val().trim();
+var mail = jQuery("#a21_form_oformit_zakaz .mail").val().trim();
+var name = jQuery("#a21_form_oformit_zakaz .name").val().trim();
+var address = jQuery("#a21_form_oformit_zakaz .address").val().trim();
+// console.log( phone );
+// console.log( typeof phone );
+// console.log( typeof phone.length );
+// console.log( phone.length );
+var errors = '';
+if (name.length === 0) errors = errors + 'Вы не заполнили ФИО !<br> ';
+if (phone.length === 0) errors = errors + 'Вы не заполнили Телефон !<br>';
+if (mail.length === 0) errors = errors + 'Вы не заполнили E-mail !<br>';
+if (address.length === 0) errors = errors + 'Вы не заполнили Адрес доставки !';
+// console.log(errors);
+if(errors.length !== 0){
+	jQuery('#a21_form_oformit_zakaz .as21_mes_errors').remove();
+	jQuery('#a21_form_oformit_zakaz form').prepend('<div class="as21_mes_errors">'+errors+'</div>');
+	return false;
+}
+// jQuery("#btn_send_from_oform_zakaz").attr('disabled','disabled');
+// jQuery("#btn_send_from_oform_zakaz").attr('disabled',false);
+
+/* **** валидация полей средствами js **** */
