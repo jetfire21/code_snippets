@@ -1,4 +1,11 @@
 <?php
+/* **** включить все ошибки php (удобно когда один скрипт нужно отладить) **** */
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+
+
 $b = '2017-03-08 14:11:10';
 echo strtotime( $b); // e.g 1488982270 произвольную дату в правильном формате в unix метку
 

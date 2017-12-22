@@ -884,17 +884,18 @@ add_action('admin_head','hide_user_count');
 /* вывод системных/отладочных данных в форматированном виде */
 function alex_debug ( $show_text = false, $is_arr = false, $title = false, $var, $var_dump = false, $sep = "| "){
 
-	// e.g: alex_debug(0, 1, "name_var", $get_tasks_by_event_id, 1);
-	$debug_text = "<br>========Debug MODE==========<br>";
-	if( boolval($show_text) ) echo $debug_text;
-	if( boolval($is_arr) ){
-		echo "<br>".$title."-";
-		echo "<pre>";
-		if($var_dump) var_dump($var); else print_r($var);
-		echo "</pre>";
-	} else echo $title."-".$var;
-	if( is_string($var) ) { if($sep == "l") echo "<hr>"; else echo $sep; }
+    // e.g: alex_debug(0, 1, "name_var", $get_tasks_by_event_id, 1);
+    $debug_text = "<br>========Debug MODE==========<br>";
+    if( (bool)($show_text) ) echo $debug_text;
+    if( (bool)($is_arr) ){
+        echo "<br>".$title."-";
+        echo "<pre>";
+        if($var_dump) var_dump($var); else print_r($var);
+        echo "</pre>";
+    } else echo $title."-".$var;
+    if( is_string($var) ) { if($sep == "l") echo "<hr>"; else echo $sep; }
 }
+
 /* вывод системных данных в форматированном виде */ 
 
 /* ********** вывод всех дочерних категорий родительской категории ****************** */
@@ -1414,7 +1415,9 @@ $desc = "";
 // Download an image from the specified URL and attach it to a post
 $attachment = media_sideload_image( $url, $post_id, $desc,'id' ); // arg 'id' only with wp 4.8
 // set featured image to post
-add_post_meta($post_id, '_thumbnail_id', $attachment);
+$add_meta = add_post_meta($post_id, '_thumbnail_id', $attachment);
+if($add_meta) echo 'added successfully!';
+else "error when added";
 
 // Relates an object (post, link etc) to a term and taxonomy type (tag, category, etc). Creates the term and taxonomy relationship if it doesn't already exist.
 wp_set_object_terms( $post_id, 20, 'product_cat' );

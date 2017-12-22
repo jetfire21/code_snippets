@@ -95,3 +95,6 @@ $str = preg_replace("/[^0-9]/", '', $str);
 	$user_mail = explode('@', $mail);
 	$username = $user_mail[0]; // as_fds35
 /* **** as21 разбивает строку на подстроку **** */
+
+/* **** получить текст между тэгами **** */
+$html_crop =  preg_match_all('#<h3 class="r"><(.+?)</h3>#is', $html, $match);

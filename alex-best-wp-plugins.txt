@@ -130,3 +130,4 @@ demo https://huge-it.com/wordpress-gallery-demo-5-thumbnails/#plugin_demo_wrappe
 #####################
 
 1) Adminer - легкий компкатный php скрипт для управления бд,удобно когда нет доступа к phpmyadmin (аналог phpmyadmin https://www.adminer.org/)
+2) IonCube - платное по для защиты и шифрования php кода. около 200$ есть trial (декодирование зашифрованных файлов https://idecode.eu/decoder)
