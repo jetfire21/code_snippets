@@ -835,6 +835,8 @@ add_action("wp_footer","wp_get_name_page_template");
 
 function wp_get_name_page_template(){
 
+	if( !(bool)$_GET['dev'] ) return;
+
     global $template;
     // echo basename($template);
     // полный путь с названием шаблона страницы
@@ -1473,6 +1475,11 @@ $.ajax({
   }
  });
 
+/* когда выбрасываются ошибки типа $ not function или fn-undefined */
+
+(function ( $ ) { 
+	// code $('.selector').click() ...
+}( jQuery ));
 /*
 
  get_header('shop') is a Wordpress function that will try to load the file header-shop.php from your theme root folder. So, you must look in your theme root folder for it. You must know that if this file dosen't exists Wordpress will load the default header.php file or you can create it.
