@@ -68,6 +68,37 @@ Wordpress
 
 !!! на страницах все протоколы http:// заменить на https:// иначе в строке браузера не будет отображаться "НАДЕЖНЫЙ"
 
+####################
+
+/**
+ * Redirect WordPress front end https URLs to http without a plugin
+ * Necessary when running forced SSL in admin and you don't want links to the front end to remain https.
+ * @link http://blackhillswebworks.com/?p=5088
+ некотр новые браузеры если сайт не имеет ssl сертификата,то выдается ошибка на уровне браузера - "Этот сайт не может обеспечить безопасное соединение"
+ работает,но не всегда,надо тестировать каждый сайт отдельно
+ */
+ 
+add_action( 'template_redirect', 'bhww_ssl_template_redirect', 1 );
+
+function bhww_ssl_template_redirect() {
+	// if ( is_ssl() && ! is_admin() ) {
+	if ( is_ssl() ) {
+	
+		if ( 0 === strpos( $_SERVER['REQUEST_URI'], 'http' ) ) {
+		
+			wp_redirect( preg_replace( '|^https://|', 'http://', $_SERVER['REQUEST_URI'] ), 301 );
+			exit();
+			
+		} else {
+		
+			wp_redirect( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], 301 );
+			exit();
+			
+		}	
+	}
+}
+
+
 ##################
 
 /* ******* запись всех ошибок в файл .log ****************** */

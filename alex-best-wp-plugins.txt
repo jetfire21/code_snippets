@@ -77,6 +77,8 @@ define( 'SAVEQUERIES', true );
 32) Query Monitor - тот же Debug Bar,но функций гораздо больше
 
 33) interconnect - php скрипт для смены домена wordpress сайта
+Database Search and Replace Script in PHP (https://interconnectit.com/products/search-and-replace-for-wordpress-databases/) - для правильной замены сериализованных данных
+его улучшенный аналог https://ru.wordpress.org/plugins/better-search-replace/
 
 34) Regenerate Thumbnails - этот плагин позволяет создать новые размеры для каждого загруженного изображения отдельно по одному или массово за раз. Полезен когда вы изменили или добавили новые размеры миниатюр (через Настройки > Медиафайлы) во время когда в библиотеке уже есть загруженные изображения. Или когда вы изменили размеры "Избранного изображения" поста.
 Обязательно в Настройках изображений поставить макс размер,если там будет 0 0 то плагин не будет работать.Также работает с add_image_size
@@ -102,8 +104,6 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 
 41) Duplicator - мощный плагин для бэкапа.Легко и просто перемещает сайт с одного домена на другой (заменяет все сериализованные данные)
 выдает ошибку на этапе сканирования,если в картинках используются названия с кирилицей,поэтому бэкап не получится сделать
-
-Database Search and Replace Script in PHP (https://interconnectit.com/products/search-and-replace-for-wordpress-databases/) - для правильной замены сериализованных данных
 
 42)  WooCommerce - платежный шлюз для Робокассы - Прием платежей с помощью Робокассы
 
