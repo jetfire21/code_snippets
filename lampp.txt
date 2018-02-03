@@ -49,3 +49,7 @@ Compiled with
     Require all granted
     </Directory>
 </VirtualHost>
+
+
+################
+/opt/lampp/etc/httpd.conf

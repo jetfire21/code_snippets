@@ -111,3 +111,37 @@ $wpdb->insert(
 	array( 'post_author' => $post['user_id'], 'post_date'=>current_time('mysql'),'post_type' => 'as21_orders','post_parent'=>$prod_id,'menu_order'=>$price,'comment_count'=> $_SESSION['products'][$prod_id]['count'] ),
 	array( '%d','%s', '%s','%d', '%d', '%d' )
 );
+
+
+
+############# work mysql сложные запросы ###################
+SELECT ( 6371 * acos( cos( radians(56.1076798) ) * cos( radians( 56.1443258 ) ) * cos( radians( 47.2471201 ) - radians(47.1779399) ) + sin( radians(56.1076798) ) * sin( radians( 56.1443258) ) ) ) FROM bpw_posts
+
+// ищет 15 записей имеющих от заданной точки кординат дистанцию в радиусе 5 милей (можно в км перевести)
+SELECT SQL_CALC_FOUND_ROWS  bpw_posts.*, ( 3959 * acos( 
+            cos( radians(45.4285788) ) * 
+            cos( radians( latitude.meta_value ) ) * 
+            cos( radians( longitude.meta_value ) - radians(-75.6731258) ) + 
+            sin( radians(45.4285788) ) * 
+            sin( radians( latitude.meta_value ) ) 
+          ) ) AS distance , latitude.meta_value AS latitude , longitude.meta_value AS longitude FROM bpw_posts INNER JOIN bpw_postmeta AS latitude ON bpw_posts.ID = latitude.post_id  INNER JOIN bpw_postmeta AS longitude ON bpw_posts.ID = longitude.post_id AND bpw_posts.post_type = 'post' AND (bpw_posts.post_status = 'publish' OR bpw_posts.post_status = 'private') AND latitude.meta_key="wp_gp_latitude"  AND longitude.meta_key="wp_gp_longitude" GROUP BY bpw_posts.ID HAVING distance<5 LIMIT 15 
+
+
+$as21_custom_query = $wpdb->get_results(" SELECT SQL_CALC_FOUND_ROWS  bpw_posts.*, ( 3959 * acos( 
+            cos( radians(".$lat.") ) * 
+            cos( radians( latitude.meta_value ) ) * 
+            cos( radians( longitude.meta_value ) - radians(".$lng.") ) + 
+            sin( radians(".$lat.") ) * 
+            sin( radians( latitude.meta_value ) ) 
+          ) ) AS distance , latitude.meta_value AS latitude , longitude.meta_value AS longitude , location.meta_value AS location  FROM bpw_posts  INNER JOIN bpw_postmeta ON ( bpw_posts.ID = bpw_postmeta.post_id )  INNER JOIN bpw_postmeta AS mt1 ON ( bpw_posts.ID = mt1.post_id )  INNER JOIN bpw_postmeta AS mt2 ON ( bpw_posts.ID = mt2.post_id ) INNER JOIN bpw_postmeta AS latitude ON bpw_posts.ID = latitude.post_id  INNER JOIN bpw_postmeta AS longitude ON bpw_posts.ID = longitude.post_id  INNER JOIN bpw_postmeta AS location ON bpw_posts.ID = location.post_id  WHERE 1=1  AND ( 
+  ( 
+    ( bpw_postmeta.meta_key = 'start_date' AND bpw_postmeta.meta_value <= '".$lastdate."' ) 
+    AND 
+    ( mt1.meta_key = 'end_date' AND mt1.meta_value BETWEEN '".$today."' AND '".$lastdate."' )
+      ) 
+  AND 
+  ( mt2.meta_key = 'wp_gp_location' 
+) AND bpw_posts.post_type = 'post' AND 
+(bpw_posts.post_status = 'publish' OR bpw_posts.post_status = 'private')
+ AND latitude.meta_key='wp_gp_latitude'  AND longitude.meta_key='wp_gp_longitude'  AND location.meta_key='wp_gp_location' ) GROUP BY bpw_posts.ID HAVING distance<='".$miles."' ORDER BY  distance ASC, bpw_postmeta.meta_value ASC LIMIT 0,20");
+#####################################

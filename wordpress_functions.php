@@ -33,6 +33,7 @@ http:\/\/dugoodr.com\/wp-content\
 #####################
 
 НАСТРОЙКА САЙТА ДЛЯ РАБОТЫ ПО HTTPS
+http://oddstyle.ru/wordpress-2/stati-wordpress/kak-perejti-na-https-v-wordpress.html
 
 Если для работы с сайтом должен использоваться протокол HTTPS, после установки сертификата производится настройка защищенного соединения для всех элементов и страниц сайта.
 
@@ -1384,6 +1385,10 @@ function iconic_cart_count_fragments( $fragments ) {
 }
 /* **** as21 **** */
 
+/* **** check page templage **** */
+if( is_page_template('page_multiquery.php') )
+
+
 /* **** as21 **** * перенос сайта с сохранениме структуры ссылок на wp
 
 site.ru/product-category/cars/sport/bmw замена на
@@ -1421,6 +1426,8 @@ RewriteRule . /index.php [L]
 # END WordPress
 
 /* **** получение/удаление опции 2-получение списка всех таблиц у базы данных 3-удаление одной таблицы **** */
+
+ site_url('save-pins/'); /* example: http(s)://site.com/save-pins/    */
 
 /* **** программное добавление продуктов,товаров в базу данных woocommerce **** */
 
