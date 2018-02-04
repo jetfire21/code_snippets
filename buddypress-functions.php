@@ -265,3 +265,24 @@ function my_groups_page_function_to_show_screen_content() {
 
 
 /* **** as21 buddypress add custom page tab (beside activity,profile,groups etc) **** */
+
+
+/* **** as21 bp edit (name,position etc) tab or nav **** */
+
+function bpcodex_change_nav_tabs() {
+
+    buddypress()->members->nav->edit_nav( array(
+        'position' => 999,
+        'name' => 'Mijn aankopen'
+    ), 'shop' );
+
+    buddypress()->members->nav->edit_nav( array(
+        'name' => 'Shopping Cart'
+    ), 'cart','shop' ); // subnav
+
+    buddypress()->members->nav->edit_nav( array(
+        'name' => ' Track your order'
+    ), 'track','shop' );
+
+}
+add_action( 'bp_setup_nav', 'bpcodex_change_nav_tabs', 100 );

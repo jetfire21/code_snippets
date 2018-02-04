@@ -1389,6 +1389,157 @@ function iconic_cart_count_fragments( $fragments ) {
 if( is_page_template('page_multiquery.php') )
 
 
+/* **** передача через php названия и ссылки продукта в email сообщение contact form 7 **** */
+function as21_wpcf7_custom_hidden_tag() {
+	 // return "Привет! Я шоркод для Contact Form 7! ".$_GET['target_id'];
+	$product_id = (int)$_GET['t_id'];
+	return '<input type="hidden" name="t_id" value="'.$product_id.'" class="wpcf7-form-control wpcf7-hidden">';
+}
+wpcf7_add_form_tag('custom_hidden_product_title', 'as21_wpcf7_custom_hidden_tag');
+
+add_action('wp_footer','as21_inc_js',999);
+function as21_inc_js(){
+
+	$target_id = (int)$_GET['t_id'];
+	$title = get_the_title($target_id);
+	$link = get_the_permalink($target_id);	
+
+	$title = str_replace('″', '', $title);
+	$title = str_replace('"', '', $title);
+	$title = str_replace('&#8243;', '', $title);
+	$title = str_replace('&amp;', '&', $title);
+	$title = 'I have a question about the product: '.$title;
+
+	// if( $_GET['dev']) { 
+	// 	echo $target_id.' | '.$title.' | '.$link;
+	// }
+	?>
+	<script>
+		var ym = document.querySelector(".your-message textarea");
+		if(ym){
+			// console.log(ym.innerHTML);
+			ym.innerHTML = '<?php echo $title;?>';
+			document.addEventListener( 'wpcf7mailsent', function( event ) {
+				setTimeout(function() {
+					location = '<?php echo $link;?>';
+				}, (3000)); // redirect original product page after go cf7 page
+			}, false );
+		}
+	</script>
+	<?php
+}
+
+////////////////// только для ознакомления (сложный способ) /////////////////////////
+add_action("wpcf7_before_send_mail", "wpcf7_do_something");
+
+function wpcf7_do_something($WPCF7_ContactForm)
+{
+	// get параметр не виден вообще url не виден тут
+	global $wp_rewrite;
+	var_dump($wp_rewrite);
+	// $target_id = (int)$_GET['target_id'];
+	// $title = get_the_title($target_id);
+	// var_dump($target_id);
+	// var_dump($title);
+
+        //Get current form
+        $wpcf7      = WPCF7_ContactForm::get_current();
+        print_r($wpcf7);
+
+        // get current SUBMISSION instance
+        $submission = WPCF7_Submission::get_instance();
+        print_r($submission);
+
+        // Ok go forward
+        if ($submission) {
+
+            // get submission data
+            $data = $submission->get_posted_data();
+
+            // nothing's here... do nothing...
+            if (empty($data))
+                return;
+
+            // extract posted data for example to get name and change it
+            // $name         = isset($data['your-name']) ? $data['your-name'] : "";
+
+            // do some replacements in the cf7 email body
+            $mail         = $wpcf7->prop('mail');
+
+            // Find/replace the "[your-name]" tag as defined in your CF7 email body
+            // and add changes name
+            // $mail['body'] = str_replace('[your-name]', $name . '-tester', $mail['body']);
+
+
+            $mail['body'] = " ==I have a question about the product: (custom code from php to email message) ==\r\n".$target_id.$title.$mail['body'];
+
+            // Save the email body
+            $wpcf7->set_properties(array(
+                "mail" => $mail
+            ));
+
+            // return current cf7 instance
+            return $wpcf7;
+        }
+}
+/////////////////////////////////
+/* **** передача через php названия и ссылки продукта в email сообщение contact form 7 **** */
+
+/* **** получение координат по назвинию страны/города googlemaps **** */
+// https://www.google.ru/maps/place/Москва/@55.7494733,37.35232,
+add_action('wp_footer','as21_get_coordinates',999);
+function as21_get_coordinates(){
+	if( !is_front_page() ) return;
+	?>
+	<script>
+	// as21 code
+	console.log('as21 code----');
+	jQuery('#submitlocn').click(function(e){
+		e.preventDefault();
+		var geocoder = new google.maps.Geocoder();
+		var address = document.getElementById("place").value;
+		console.log(address);
+		var calc_status = false;
+
+		// return false;
+		geocoder.geocode( { 'address': address}, function(results, status){
+			console.log(status);
+			// console.log(results);
+			// console.log(results[0]);
+			// console.log(results[0].geometry);
+			if (status == google.maps.GeocoderStatus.OK)
+			{
+		      // do something with the geocoded result
+		      //
+		      var lat = results[0].geometry.location.lat();
+		      var lng = results[0].geometry.location.lng();
+		      var lat_box = document.getElementById('da_lat');
+		      lat_box.value = lat;
+		      var long_box = document.getElementById('da_long');
+		      long_box.value = lng;
+		      calc_status = true;
+		      // console.log('lat-'+lat);
+		      // console.log(lng);
+			}
+		});
+
+		function as21_delay_calc_geo() {
+		  // alert( 'timeout' );
+		  	console.log('da_lat-'+document.getElementById('da_lat').value);
+		  	console.log('da_long-'+document.getElementById('da_long').value);
+		  	console.log(calc_status);
+		  	// return false;
+			jQuery("form#get_loc").submit();
+		}
+		setTimeout(as21_delay_calc_geo, 700); // wait while calc geocode min 700ms
+
+	});
+	</script>
+<?php
+}
+/* **** получение координат по назвинию страны/города googlemaps **** */
+
+
 /* **** as21 **** * перенос сайта с сохранениме структуры ссылок на wp
 
 site.ru/product-category/cars/sport/bmw замена на
