@@ -145,3 +145,8 @@ $as21_custom_query = $wpdb->get_results(" SELECT SQL_CALC_FOUND_ROWS  bpw_posts.
 (bpw_posts.post_status = 'publish' OR bpw_posts.post_status = 'private')
  AND latitude.meta_key='wp_gp_latitude'  AND longitude.meta_key='wp_gp_longitude'  AND location.meta_key='wp_gp_location' ) GROUP BY bpw_posts.ID HAVING distance<='".$miles."' ORDER BY  distance ASC, bpw_postmeta.meta_value ASC LIMIT 0,20");
 #####################################
+
+########## обьединение таблицы с самой собой либо с неск другими, прмер есть 1 таблица с одинак полями,но разными значениями и между ними есть связи (удобно для отладки) ###########################
+$as21_custom_query = $wpdb->get_results(" SELECT *, latitude.meta_value AS latitude , longitude.meta_value AS longitude , location.meta_value AS location , date_string.meta_value AS date_string   FROM bpw_postmeta AS t1 
+INNER JOIN bpw_postmeta AS latitude ON (t1.post_id = latitude.post_id) INNER JOIN bpw_postmeta AS longitude ON (t1.post_id = longitude.post_id)  INNER JOIN bpw_postmeta AS location ON (t1.post_id = location.post_id) INNER JOIN bpw_postmeta AS date_string ON (t1.post_id = date_string.post_id) WHERE 1=1 AND latitude.meta_key='wp_gp_latitude' AND longitude.meta_key='wp_gp_longitude' AND location.meta_key='wp_gp_location' AND location.meta_value LIKE '%".$location."%'  AND date_string.meta_key='date_string' GROUP BY t1.post_id LIMIT 5");
+#####################################
