@@ -1664,6 +1664,24 @@ $.ajax({
   }
  });
 
+/* tmp
+кеширование запросов к бд или внешним url,если парсится обьемный html контент 
+Object cache and Transients,
+*/
+wp_cache_set(); // смысл в них есть если установлен плагин обьектного кеширования
+set_transient(); // сохраняет результат в таблицу options или в обьект кэш если установлен плагин
+wpcom_vip_file_get_contents()
+
+wp_remote_get()
+wp_remote_post().
+// ядро WP_Http полностью заменили PHP библиотекой Requests for PHP вместо curl 
+// отличные примеры с кэшированием результатов полученных с внешн url https://wp-kama.ru/id_6462/wordpress-http-api.html
+
+// Выведет на экран информацию о кэше
+global $wp_object_cache;
+$wp_object_cache->stats();
+
+
 /* когда выбрасываются ошибки типа $ not function или fn-undefined */
 
 (function ( $ ) { 
