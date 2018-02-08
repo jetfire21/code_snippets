@@ -326,3 +326,12 @@ Bleachbit - Утилита для очистки системного мусор
 
 из этого файла можно узнать во сколько включен компьютер
 /home/jetfire/.xsession-errors
+
+
+################## поиск куска текста в файлах
+
+grep -rnw '/path/to/somewhere/' -e 'pattern'
+grep -nw '/home/jetfire/www/tmp/nearby/' -e 'as21'
+grep -rnw '/home/jetfire/www/tmp/nearby/' -e 'as21'
+grep --exclude=options-framework.php -r '/home/jetfire/www/tmp/nearby/' -e '---as21 TEST----'
+grep --exclude=options-framework.php -r 'www/vh109980.eurodir.ru/wp-content/themes/nearby' -e '---as21 TEST----'
