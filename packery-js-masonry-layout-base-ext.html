@@ -1,129 +1,224 @@
-
-
-
 </!DOCTYPE html>
 <html>
 <head>
   <title></title>
   <style>
-  * { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
-/* force scrollbar, prevents initial gap */
-html { overflow-y: scroll; }
+    /* force scrollbar, prevents initial gap */
+    html { overflow-y: scroll; }
 
-body { font-family: sans-serif; }
+    body { font-family: sans-serif; }
 
-/* ---- grid ---- */
+    /* ---- grid ---- */
 
-.grid {
-  background: #DDD;
-}
+    .grid {
+      background: #DDD;
+    }
 
-/* clear fix */
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
-}
+    /* clear fix */
+    .grid:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
 
-/* ---- .element-item ---- */
+    /* ---- .element-item ---- */
 
-/* 5 columns, percentage width */
-.grid-sizer,
-.grid-item {
-  width: 23%;
-}
+    /* 5 columns, percentage width */
+    .grid-sizer,
+    .grid-item {
+      width: 23%;
+    }
 
-.grid-item {
-  float: left;
-  height: 200px;
-  background: #C09;
-  border: 2px solid hsla(0, 0%, 0%, 0.5);
-}
+    .grid-item {
+      float: left;
+      height: 300px;
+      background: #C09;
+      /*border: 2px solid hsla(0, 0%, 0%, 0.5);*/
+      overflow: hidden;
+    }
 
-.grid-item--width2 { width: 48%; }
-.grid-item--height2 { height: 300px; }
+    .grid-item--width2 { width: 48%; }
+    .grid-item--height2 { height: 350px; }
+    .height3 { height: 250px; }
 
-.b1-height{height: 300px;}
-/*.grid-item--width2 img{ width: 100%; }*/
-/*.grid-item--width2 img{ height: 100%; }*/
-.grid-item--width2 img{ height: 100%; width: 100%;}
-.gutter-sizer{ width: 2%; }
+    .b1-height{height: 300px;}
+    /*.grid-item--width2 img{ width: 100%; }*/
+    /*.grid-item--width2 img{ height: 100%; }*/
+    .grid-item--width2 img{ height: 100%; width: 100%;}
+    .gutter-sizer{ width: 2%; }
+    .grid article img{width: 100%; max-height: 150px;}
 
-@media screen and (max-width: 800px) {
+    @media screen and (max-width: 800px) {
 
-  .grid-sizer,
-  .grid-item {
-    width: 48%;
-  }
-.grid-item { max-height: 300px; height: auto; min-height: 200px; }
+      .grid-sizer,
+      .grid-item {
+        width: 48%;
+      }
+      .grid-item { max-height: 300px; height: auto; min-height: 200px; }
 
-}
+    }
+    @media screen and (max-width: 600px) {
+      .grid-item{width: 70%; margin-bottom: 15px;}
+      .grid-item article,.grid-item{ margin-left: auto; margin-right: auto; float: none;}
+    }
+    @media screen and (max-width: 460px) {
+      .grid-item{width: 100%;}
 
+    }
 
-</style>
-<script
-src="http://code.jquery.com/jquery-1.12.4.min.js"
-integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-crossorigin="anonymous"></script>
+  </style>
+  <script
+  src="http://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
 
-<script src="/home/jetfire/www/tmp/masonry-layout/packery.pkgd.min.js"></script>
+  <script src="/home/jetfire/www/tmp/masonry-layout/packery.pkgd.min.js"></script>
 </head>
 <body>
-<h1>Packery - columnWidth, element sizing</h1>
+  <h1>Packery - columnWidth, element sizing</h1>
 
-<div class="grid">
+  <div class="grid">
 
-  <div class="gutter-sizer"></div>
-  <div class="grid-sizer"></div>
-  <div class="grid-item grid-item--width2 b1-height"> <img src="1.jpg" alt=""></div>
-  <div class="grid-item grid-item--height2">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item grid-item--height2">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item ">6</div>
-  <div class="grid-item ">7</div>
+    <div class="gutter-sizer"></div>
+    <div class="grid-sizer"></div>
 
-  <div class="grid-item grid-item--width2 b1-height"> <img src="2.jpg" alt=""></div>
-  <div class="grid-item grid-item--height2">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item grid-item--height2">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item ">6</div>
-  <div class="grid-item ">7</div>
+    <div class="grid-item grid-item--width2 b1-height"> <img src="1.jpg" alt=""></div>
+    <div class="grid-item grid-item--height2">
+      <article>
+        <img src="3.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
+    </div>
+    <div class="grid-item height3">
+      <article>
+        <img src="4.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+      </article>
 
-<!-- show order -->
+    </div>
+    <div class="grid-item grid-item--height2">
+      <article>
+        <img src="5.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+        <p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
+    </div>
+    <div class="grid-item">
+      <article>
+        <img src="5.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+        <p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
 
-  <div class="grid-sizer"></div>
-  <div class="grid-item grid-item--width2 b1-height"> 1</div>
-  <div class="grid-item grid-item--height2">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item grid-item--height2">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item ">6</div>
-  <div class="grid-item ">7</div>
+    </div>
+    <div class="grid-item ">
+      <article>
+        <img src="6.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
 
-  <div class="grid-item grid-item--width2 b1-height"> 1</div>
-  <div class="grid-item grid-item--height2">2</div>
-  <div class="grid-item">3</div>
-  <div class="grid-item grid-item--height2">4</div>
-  <div class="grid-item">5</div>
-  <div class="grid-item ">6</div>
-  <div class="grid-item ">7</div>
+    </div>
+    <div class="grid-item height3">
+      <article>
+        <img src="7.jpg" alt="">
+        <h3>Bachelor students of the University of Calgary’s Fine Art program proudly present the 6th</h3></p>
+      </article>
 
-</div>
+    </div>
 
 
-<script>
-  // external js: packery.pkgd.js
+    <div class="grid-item grid-item--width2 b1-height"> <img src="2.jpg" alt=""></div>
+    <div class="grid-item grid-item--height2">
+      <article>
+        <img src="7.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
+    </div>
+    <div class="grid-item height3">
+      <article>
+        <img src="4.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+      </article>
 
-$('.grid').packery({
-  itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  percentPosition: true,
-  gutter:'.gutter-sizer'
-});
+    </div>
+    <div class="grid-item grid-item--height2">4</div>
+    <div class="grid-item">
+      <article>
+        <img src="5.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
+
+    </div>
+    <div class="grid-item ">
+      <article>
+        <img src="6.jpg" alt="">
+        <h3>Bachelor students of the University of Calgary’s Fine Art program proudly present the 6th</h3></p>
+      </article>
+    </div>
+    <div class="grid-item height3">7</div>
+
+    <div class="grid-item grid-item--width2 b1-height"> <img src="4.jpg" alt=""></div>
+    <div class="grid-item grid-item--height2">
+      <article>
+        <img src="3.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
+    </div>
+    <div class="grid-item height3">
+      <article>
+        <img src="1.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+      </article>
+
+    </div>
+    <div class="grid-item grid-item--height2">4</div>
+    <div class="grid-item">
+      <article>
+        <img src="7.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
+
+    </div>
+    <div class="grid-item ">
+      <article>
+        <img src="8.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+      </article>
+
+    </div>
+    <div class="grid-item height3">7</div>
+
+
+    <!-- show order -->
+
+    <div class="grid-item grid-item--width2 b1-height"> 1 </div>
+    <div class="grid-item grid-item--height2">  2 </div>
+    <div class="grid-item height3">3    </div>
+    <div class="grid-item grid-item--height2">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item ">6    </div>
+    <div class="grid-item height3">7</div>
+
+    <div class="grid-item grid-item--width2 b1-height"> 1 </div>
+    <div class="grid-item grid-item--height2">  2 </div>
+    <div class="grid-item height3">3    </div>
+    <div class="grid-item grid-item--height2">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item ">6    </div>
+    <div class="grid-item height3">7</div>
+
+
+  </div>
+
+
+  <script>
+
+  $('.grid').packery({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    gutter:'.gutter-sizer'
+  });
+
+  if($(window).width() < 600){
+    console.log('if');
+    $('.grid').packery('destroy'); 
+  }
 
 </script>
 </body>
 </html>
+
+<!-- 
+заголовки и тексты могут вылезать за границы блоков фиксированной высоты либо показываться на половину в ниженй границе , поэтому надо заранее на стороне сервера обрезать их чтобы остовалось пустое пространство!
+ -->
