@@ -113,6 +113,8 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 
 45) ElasticPress - быстрая работа с базой данных на wp, актуально для работы с большими обьемами данных и для high load
 
+46) WordPress Plugin Boilerplate - каркас для создания плагина по стандартам. A standardized, organized, object-oriented foundation for building high-quality WordPress Plugins.
+
 -регистрация как ип
 для активации магазина нужны полные данные юридического лица (ип) и паспортные данные,заполнить тех настрйки,без них даже тестовые платежи не будут работать
 

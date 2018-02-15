@@ -1,0 +1,129 @@
+
+
+
+</!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+  * { box-sizing: border-box; }
+
+/* force scrollbar, prevents initial gap */
+html { overflow-y: scroll; }
+
+body { font-family: sans-serif; }
+
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .element-item ---- */
+
+/* 5 columns, percentage width */
+.grid-sizer,
+.grid-item {
+  width: 23%;
+}
+
+.grid-item {
+  float: left;
+  height: 200px;
+  background: #C09;
+  border: 2px solid hsla(0, 0%, 0%, 0.5);
+}
+
+.grid-item--width2 { width: 48%; }
+.grid-item--height2 { height: 300px; }
+
+.b1-height{height: 300px;}
+/*.grid-item--width2 img{ width: 100%; }*/
+/*.grid-item--width2 img{ height: 100%; }*/
+.grid-item--width2 img{ height: 100%; width: 100%;}
+.gutter-sizer{ width: 2%; }
+
+@media screen and (max-width: 800px) {
+
+  .grid-sizer,
+  .grid-item {
+    width: 48%;
+  }
+.grid-item { max-height: 300px; height: auto; min-height: 200px; }
+
+}
+
+
+</style>
+<script
+src="http://code.jquery.com/jquery-1.12.4.min.js"
+integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+crossorigin="anonymous"></script>
+
+<script src="/home/jetfire/www/tmp/masonry-layout/packery.pkgd.min.js"></script>
+</head>
+<body>
+<h1>Packery - columnWidth, element sizing</h1>
+
+<div class="grid">
+
+  <div class="gutter-sizer"></div>
+  <div class="grid-sizer"></div>
+  <div class="grid-item grid-item--width2 b1-height"> <img src="1.jpg" alt=""></div>
+  <div class="grid-item grid-item--height2">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item grid-item--height2">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item ">6</div>
+  <div class="grid-item ">7</div>
+
+  <div class="grid-item grid-item--width2 b1-height"> <img src="2.jpg" alt=""></div>
+  <div class="grid-item grid-item--height2">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item grid-item--height2">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item ">6</div>
+  <div class="grid-item ">7</div>
+
+<!-- show order -->
+
+  <div class="grid-sizer"></div>
+  <div class="grid-item grid-item--width2 b1-height"> 1</div>
+  <div class="grid-item grid-item--height2">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item grid-item--height2">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item ">6</div>
+  <div class="grid-item ">7</div>
+
+  <div class="grid-item grid-item--width2 b1-height"> 1</div>
+  <div class="grid-item grid-item--height2">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item grid-item--height2">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item ">6</div>
+  <div class="grid-item ">7</div>
+
+</div>
+
+
+<script>
+  // external js: packery.pkgd.js
+
+$('.grid').packery({
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  gutter:'.gutter-sizer'
+});
+
+</script>
+</body>
+</html>
