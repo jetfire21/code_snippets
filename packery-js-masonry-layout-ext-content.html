@@ -1,0 +1,361 @@
+</!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		* { box-sizing: border-box; }
+
+		/* force scrollbar, prevents initial gap */
+		html { overflow-y: scroll; }
+
+		body { font-family: sans-serif; }
+
+		/* ---- grid ---- */
+
+		.as21-cutom-grid{
+			background: #DDD;
+		}
+
+		/* clear fix */
+		.grid:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		/* ---- .element-item ---- */
+
+		/* 5 columns, percentage width */
+		.grid-sizer,
+		.grid-item {
+			width: 23%;
+		}
+
+		.grid-item {
+			float: left;
+			height: 300px;
+			background: #C09;
+			/*border: 2px solid hsla(0, 0%, 0%, 0.5);*/
+			overflow: hidden;
+			position: relative;
+		}
+
+		.as21-first-bg-widht { width: 48%; }
+		.grid-item--height2 { height: 350px; }
+		.as21-cutom-grid .height3 { height: 250px; }
+
+		.as21-cutom-grid .b1-height{height: 300px;}
+		/*.as21-first-bg-widht img{ width: 100%; }*/
+		/*.as21-first-bg-widht img{ height: 100%; }*/
+		.as21-first-bg-widht img{ height: 100%; width: 100%;}
+		.gutter-sizer{ width: 2%; }
+		.as21-cutom-grid article img {width: 100%; max-height: 150px; min-height: 110px;}
+
+
+		/*  custom styles   */
+		.first-article	.article-image h2{
+			position: absolute;
+			color: #fff;
+			background: rgba(0,0,0,0.5);
+			padding: 10px;
+			width: 100%;
+			bottom: 0;
+			margin-bottom: 0;
+			font-size: 15px;
+			font-weight: normal;
+		}
+		.as21-cutom-grid .first-article img{ max-height: 300px; }
+
+		.as21-bg-article-img { display:block;position: absolute; width:100%;height: 100%;}
+		.first-article:hover .as21-bg-article-img{ background: rgba(0,0,0,0.3); transition: background 0.5s; z-index: 999;  }
+		/*.article-image:hover .as21-bg-article-img{background: rgba(89,89,89,0.8); transition: background 0.4s;}*/
+		.parent-overlay-block-img {position: relative;}
+		.parent-overlay-block-img:hover .as21-bg-article-img{background: rgba(0,0,0,0.3); transition: background 0.5s; z-index: 999;}
+		.parent-overlay-block-img:hover span {opacity: 0.6;}
+		/*.parent-overlay-block-img:hover img {opacity: 0.6;}*/
+
+		.as21-wrap-img{position: relative; display: block;width: 100%;}
+		.as21-wrap-img span {position: absolute;}
+		/*.as21-wrap-img img, .as21-wrap-img span {position: absolute;}*/
+
+		.as21-pin-anons-location,
+		.as21-pin-anons-date{
+			background: #FFF176;
+			color: #000;
+			opacity: .8;
+			padding: 3px 8px;
+			position: absolute;
+			top:12px;
+			right: 0;
+			font-size: 13px;
+		}
+
+		.as21-pin-anons-location{
+			padding: 5px 8px;
+			font-size: 11.5px;
+			max-height: 40px;
+			text-transform: capitalize;
+			top: 44px;
+			overflow: hidden;
+			max-width: 85%;
+			text-align: right;
+		}
+		.as21-pin-anons-location-bot{
+			font-size: 11.5px;
+			padding-top: 20px;
+		}
+		.as21-pin-anons-location-bot i,.as21-pin-anons-location-bot span{ float:left; }
+		.as21-pin-anons-location-bot i{width: 8%; padding-top: 5px;}
+		.as21-pin-anons-location-bot span{width: 92%;}
+
+		.as21-cutom-grid .article-title {
+			color: #333;
+			flex-shrink: 0;
+			/* font-size: 1.4em; */
+			font-size: 17px;
+			font-weight: 700;
+			line-height: 1.2;
+			/*  custom styles   */
+		}
+
+		@media screen and (max-width: 800px) {
+
+			.grid-sizer,
+			.grid-item {
+				width: 48%;
+			}
+			.grid-item { max-height: 300px; height: auto; min-height: 200px; }
+
+		}
+		@media screen and (max-width: 600px) {
+			.grid-item{width: 70%; margin-bottom: 15px;}
+			.grid-item article,.grid-item{ margin-left: auto; margin-right: auto; float: none;}
+
+		}
+		@media screen and (max-width: 460px) {
+			.grid-item{width: 100%;}
+
+		}
+
+	</style>
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="/home/jetfire/www/tmp/masonry-layout/packery.pkgd.min.js"></script>
+</head>
+<body>
+	<h1>Packery - columnWidth, element sizing</h1>
+
+	<div class="as21-cutom-grid">
+
+		<div class="gutter-sizer"></div>
+		<div class="grid-sizer"></div>
+
+		<div class="grid-item as21-first-bg-widht b1-height"> 
+			<!-- <img src="1.jpg" alt=""> -->
+			<article class="article first-article" href="#">
+				<div class="article-image">
+					<h2>Monthly #FirstFridayFair Business, Data & Tech (Virtual Event) - Moscow (#DME)</h2>
+					<a href="http://vh109980.eurodir.ru/monthly-firstfridayfair-business-data-tech-virtual-event-moscow-dme-2/" class="as21-bg-article-img"></a>
+					<!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/image-01-lo.jpg" alt="">-->
+					<a href="http://vh109980.eurodir.ru/monthly-firstfridayfair-business-data-tech-virtual-event-moscow-dme-2/">
+						<span class="as21-pin-anons-date">Dec 22 - Mar 22 2018</span>
+						<span class="as21-pin-anons-location">Virtual Event [Online Only]-Moscow, Russian Federation</span>
+						<img src="http://vh109980.eurodir.ru/wp-content/uploads/2018/02/image_6500-700x492.jpg" alt="">
+					</a>
+				</div>
+			</article>		
+		</div>
+
+		<div class="grid-item grid-item--height2">
+			<article class="article">
+				<div class="parent-overlay-block-img">
+					<a href="http://vh109980.eurodir.ru/ie-blended-experience-leading-in-the-vuca-world/" class="as21-bg-article-img"></a>
+					<a class="as21-wrap-img" href="http://vh109980.eurodir.ru/ie-blended-experience-leading-in-the-vuca-world/">
+						<span class="as21-pin-anons-date">Feb 15 - Feb 15 2018</span>
+						<span class="as21-pin-anons-location">Cabinet Lounge-6 Novaya Ploshchad', Moskva, Moskva, Russian Federation</span>
+						<img src="6.jpg" alt="">
+					</a>
+				</div>
+				<div class="article-body">
+					<h2 class="article-title"><a href="http://vh109980.eurodir.ru/ie-blended-experience-leading-in-the-vuca-world/">IE Blended Experience: Leading in the VUCA world</a></h2>
+					<p class="article-content"> IE Business School, the leader of blended education, is glad to invite yo</p>
+				</div>
+			</article>
+
+		</div>
+
+		<div class="grid-item height3">
+<!-- 
+			<article>
+				<img src="4.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+			</article>
+		-->			
+		<article class="article">
+			<div class="parent-overlay-block-img">
+				<a href="http://vh109980.eurodir.ru/ie-blended-experience-leading-in-the-vuca-world/" class="as21-bg-article-img"></a>
+				<a class="as21-wrap-img" href="http://vh109980.eurodir.ru/ie-blended-experience-leading-in-the-vuca-world/">
+					<span class="as21-pin-anons-date">Feb 15 - Feb 15 2018</span>
+					<span class="as21-pin-anons-location">Cabinet Lounge-6 Novaya Ploshchad', Moskva, Moskva, Russian Federation</span>
+					<img src="4.jpg" alt="">
+				</a>
+			</div>
+			<div class="article-body">
+				<h2 class="article-title"><a href="http://vh109980.eurodir.ru/ie-blended-experience-leading-in-the-vuca-world/">IE Blended Experience: Leading in the VUCA world</a></h2>
+			</div>
+		</article>
+
+	</div>
+	<div class="grid-item grid-item--height3">
+		<article>
+			<img src="5.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+			<p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+	</div>
+	<div class="grid-item">
+		<article>
+			<img src="5.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+			<p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+
+	</div>
+	<div class="grid-item ">
+		<article>
+			<img src="6.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+
+	</div>
+	<div class="grid-item height3">
+		<article>
+			<img src="7.jpg" alt="">
+			<h3>Bachelor students of the University of Calgary’s Fine Art program proudly present the 6th</h3></p>
+		</article>
+
+	</div>
+
+
+	<div class="grid-item as21-first-bg-widht b1-height"> 
+		<!-- <img src="1.jpg" alt=""> -->
+		<article class="article first-article" href="#">
+			<div class="article-image">
+				<h2>Monthly #FirstFridayFair Business, Data & Tech (Virtual Event) - Moscow (#DME)</h2>
+				<a href="http://vh109980.eurodir.ru/monthly-firstfridayfair-business-data-tech-virtual-event-moscow-dme-2/" class="as21-bg-article-img"></a>
+				<!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/image-01-lo.jpg" alt="">-->
+				<a href="http://vh109980.eurodir.ru/monthly-firstfridayfair-business-data-tech-virtual-event-moscow-dme-2/">
+					<span class="as21-pin-anons-date">Dec 22 - Mar 22 2018</span>
+					<span class="as21-pin-anons-location">Virtual Event [Online Only]-Moscow, Russian Federation</span>
+					<img src="2.jpg" alt="">
+				</a>
+			</div>
+		</article>		
+	</div>
+	<div class="grid-item grid-item--height2">
+		<article>
+			<img src="7.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+	</div>
+	<div class="grid-item height3">
+		<article>
+			<img src="4.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+		</article>
+
+	</div>
+	<div class="grid-item grid-item--height2">4</div>
+	<div class="grid-item">
+		<article>
+			<img src="5.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+
+	</div>
+	<div class="grid-item ">
+		<article>
+			<img src="6.jpg" alt="">
+			<h3>Bachelor students of the University of Calgary’s Fine Art program proudly present the 6th</h3></p>
+		</article>
+	</div>
+	<div class="grid-item height3">7</div>
+
+	<div class="grid-item as21-first-bg-widht b1-height">
+		<!-- <img src="1.jpg" alt=""> -->
+		<article class="article first-article" href="#">
+			<div class="article-image">
+				<h2>Monthly #FirstFridayFair Business, Data & Tech (Virtual Event) - Moscow (#DME)</h2>
+				<a href="http://vh109980.eurodir.ru/monthly-firstfridayfair-business-data-tech-virtual-event-moscow-dme-2/" class="as21-bg-article-img"></a>
+				<!--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/image-01-lo.jpg" alt="">-->
+				<a href="http://vh109980.eurodir.ru/monthly-firstfridayfair-business-data-tech-virtual-event-moscow-dme-2/">
+					<span class="as21-pin-anons-date">Dec 22 - Mar 22 2018</span>
+					<span class="as21-pin-anons-location">Virtual Event [Online Only]-Moscow, Russian Federation</span>
+					<img src="4.jpg" alt="">
+				</a>
+			</div>
+		</article>		
+
+	</div>
+	<div class="grid-item grid-item--height2">
+		<article>
+			<img src="3.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+	</div>
+	<div class="grid-item height3">
+		<article>
+			<img src="1.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3>
+		</article>
+
+	</div>
+	<div class="grid-item grid-item--height2">4</div>
+	<div class="grid-item">
+		<article>
+			<img src="7.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+
+	</div>
+	<div class="grid-item ">
+		<article>
+			<img src="8.jpg" alt=""> <h3>Event Marketing School [Virtual Summit]</h3><p>The ultimate playbook to triple your revenue, create lifetime customers and dominate your market in 90 days or less. There’s no den</p>
+		</article>
+
+	</div>
+	<div class="grid-item height3">7</div>
+
+
+	<!-- show order -->
+
+	<div class="grid-item as21-first-bg-widht b1-height"> 1 </div>
+	<div class="grid-item grid-item--height2">  2 </div>
+	<div class="grid-item height3">3    </div>
+	<div class="grid-item grid-item--height2">4</div>
+	<div class="grid-item">5</div>
+	<div class="grid-item ">6    </div>
+	<div class="grid-item height3">7</div>
+
+	<div class="grid-item as21-first-bg-widht b1-height"> 1 </div>
+	<div class="grid-item grid-item--height2">  2 </div>
+	<div class="grid-item height3">3    </div>
+	<div class="grid-item grid-item--height2">4</div>
+	<div class="grid-item">5</div>
+	<div class="grid-item ">6    </div>
+	<div class="grid-item height3">7</div>
+
+
+</div>
+
+
+<script>
+
+	$('.as21-cutom-grid').packery({
+		itemSelector: '.grid-item',
+		columnWidth: '.grid-sizer',
+		percentPosition: true,
+		gutter:'.gutter-sizer'
+	});
+
+	if($(window).width() < 600){
+		console.log('if');
+		$('.as21-cutom-grid').packery('destroy'); 
+	}
+
+</script>
+</body>
+</html>
+
+<!-- 
+заголовки и тексты могут вылезать за границы блоков фиксированной высоты либо показываться на половину в ниженй границе , поэтому надо заранее на стороне сервера обрезать их чтобы остовалось пустое пространство!
+ -->
