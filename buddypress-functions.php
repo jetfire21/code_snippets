@@ -196,7 +196,7 @@ if( bp_is_group() ):
 	$nav_item = array(
 		'name'                    => "as21 new link",
 		'slug'                    => 'causes',
-		'parent_slug' 		  => 'test-group-test', // $group->slug
+		'parent_slug' 		  => 'test-group-test', // $group->slug (for example 'settings','proifle')
 		'link'                    => "http://ya.ru",
 		'css_id'                  => "dddddddd",
 		'show_for_displayed_user' => 1,
@@ -217,6 +217,22 @@ if( bp_is_group() ):
 	return $nav_item;
 endif;
 }
+//or
+
+function my_bp_nav_adder() {
+
+    global $bp;
+
+    bp_core_new_nav_item( array(
+    'name' => '111',
+    'slug' => 'public',
+    'default_subnav_slug' => 'settings',
+    // 'screen_function' => 'bp_media_privacy_link','position' => 75,// 'user_has_access' => bp_is_my_profile()
+    ) );
+
+}
+
+add_action( "bp_setup_nav", "my_bp_nav_adder" );
 
 /******* создание нового пункта в меню группы *********/
 
