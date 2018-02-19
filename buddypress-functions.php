@@ -302,3 +302,9 @@ function bpcodex_change_nav_tabs() {
 
 }
 add_action( 'bp_setup_nav', 'bpcodex_change_nav_tabs', 100 );
+
+/* **** as21 пользователь авторизован и имеет доступ к редактированию своего аккаунта **** */
+
+global $bp;
+$user_id_isnotlogin = $bp->displayed_user->id;
+if( is_user_logged_in() && $user_id_isnotlogin == get_current_user_id() ) echo 'user login and he is owner page, can edit yourself account pages';
