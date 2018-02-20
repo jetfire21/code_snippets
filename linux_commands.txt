@@ -29,6 +29,11 @@ lsblk
 или (если такой команды нет):
 blkid
 
+########## запуск .run программы ##########
+
+chmod +x timedoctorlite-setup-2.3.49-linux-x64.run
+./timedoctorlite-setup-2.3.49-linux-x64.run
+
 ########## запись iso образа на usb flash ##########3
 
 pv alt.iso | dd oflag=direct of=/dev/sdX bs=1M;sync
