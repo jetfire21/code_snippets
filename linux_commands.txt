@@ -340,3 +340,15 @@ grep -nw '/home/jetfire/www/tmp/nearby/' -e 'as21'
 grep -rnw '/home/jetfire/www/tmp/nearby/' -e 'as21'
 grep --exclude=options-framework.php -r '/home/jetfire/www/tmp/nearby/' -e '---as21 TEST----'
 grep --exclude=options-framework.php -r 'www/vh109980.eurodir.ru/wp-content/themes/nearby' -e '---as21 TEST----'
+
+#########
+установка nodejs на debian 8
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-debian-8
+- проверка версии
+$ nodejs -v
+v6.13.0
+
+работает ли nodejs?
+$ node
+> console.log('Hello World');
+Hello World

@@ -1,15 +1,25 @@
 # ColorHighlighter - https://packagecontrol.io/packages/Color%20Highlighter
-полезный плагин для подсветки html кодов цвета+colorpicker
+  полезный плагин для подсветки html кодов цвета+colorpicker
 
 # Color​Scheme​Editor - https://packagecontrol.io/packages/ColorSchemeEditor
-удобный редактор цветовых схем (работает в паре с PackageResourceViewer)
+  удобный редактор цветовых схем (работает в паре с PackageResourceViewer)
 
 # PackageResourceViewer - https://packagecontrol.io/packages/PackageResourceViewer
-удобный и быстрый просмотр всех исходных кодов
+  удобный и быстрый просмотр всех исходных кодов
 
 # Compare Side-By-Side - https://packagecontrol.io/packages/Compare%20Side-By-Side
-сравнивает код/текст 2 файлов и ищет в них все изменения
+  сравнивает код/текст 2 файлов и ищет в них все изменения
 
+# emmet
+  html автодополнение
+
+# CodeFormatter
+  CodeFormatter is a Sublime Text 2/3 plugin that supports format (beautify) source code.PHP,JS,HTML,CSS,SASS
+  форматирование немного отличается от стандартного ST (более читабельный вид у плагина,особенно в CSS! )
+
+# Sublime Linter,
+  A linter is a small program that checks code for stylistic or programming errors
+  проверка синтаксиса «налету» HTML, CSS, JS, PHP (для css и js нужен node.js)
 --------------------------
 // переназначение горячих клавиш в linux (путь ~/.config/sublime-text-3/Packages/User/Default.syblime-keymap)
 [
