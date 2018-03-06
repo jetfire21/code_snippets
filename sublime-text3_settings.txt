@@ -69,6 +69,7 @@
 	"show_encoding": true,
 	"word_wrap": true,
 	"highlight_line": true,
+	"theme": "Adaptive.sublime-theme"
 }
 
 ###################
