@@ -196,6 +196,7 @@ ini_set('max_execution_time', 400);
 
 // 2.Adapting the /.htaccess file of your WordPress installation
 php_value max_execution_time 60
+php_value max_input_vars 3000
 
 /* ************************************************ */
 
@@ -1191,14 +1192,15 @@ $_SESSION['s_var'] = "alex session";
 
 /******** регистрации сессии $_SESSION **********/
 
-/* ********* пример создание куки в wordpress ********* */
+/* ********* пример создание куки в wordpress $_COOKIE  ********* */
+// бывает способ не срабатывает,альтернатива библиотека sourcebuster.js (можно получить referrer,entry point) актуально когда формы обрабатывают различные плагины
 add_action( 'init', 'setting_my_first_cookie' );
 function setting_my_first_cookie() {	
 	global $wpdb;
 	$table = $wpdb->prefix."bp_groups";
 	$last_gr_id = $wpdb->get_var( "SELECT MAX(`id`) FROM {$table}");
 	$new_gr_id = $last_gr_id + 1;
-	setcookie("alex_new_gr_id", $new_gr_id,30 * DAYS_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN,is_ssl());
+	setcookie("alex_new_gr_id", $new_gr_id,DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN,is_ssl()); // 1 день будет жить
 }
 /* ********* пример создание куки в wordpress ********* */
 

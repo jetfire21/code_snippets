@@ -98,3 +98,77 @@ $str = preg_replace("/[^0-9]/", '', $str);
 
 /* **** получить текст между тэгами **** */
 $html_crop =  preg_match_all('#<h3 class="r"><(.+?)</h3>#is', $html, $match);
+
+
+
+/* **** as21 parsing data **** */
+
+echo '<h2>demo 1</h2>';
+
+// on input
+$url = "http://seo-crawler.loc/?utm_source=google&utm_medium=cpc&utm_campaign=friendly&network=g&placement&adposition=1t3&keyword=%2Bmobile%20%2Bfriendly%20%2Bwebsite&gclid=cnmq76wgksscfysjvqodqvsfqw";
+
+$url_query = explode("&", $url);
+foreach ($url_query as $query) {
+    $subquery = explode("=", $query);
+    print_r($subquery);
+    if ($subquery[1]) {
+        $parse_url[$subquery[0]] = $subquery[1];
+    }
+
+}
+print_r($url_query);
+print_r($parse_url);
+
+/*
+result (on output):
+Array
+(
+[http://seo-crawler.loc/?utm_source] => google
+[utm_medium] => cpc
+[utm_campaign] => friendly
+[network] => g
+[adposition] => 1t3
+[keyword] => %2Bmobile%20%2Bfriendly%20%2Bwebsite
+[gclid] => cnmq76wgksscfysjvqodqvsfqw
+)
+ */
+echo '<h2>demo 2</h2>';
+
+// $url = "fd=2018-03-07 00:16:05|||ep=http://seo-crawler.loc/?utm_source=google&utm_medium=cpc&utm_campaign=friendly&network=g&placement&adposition=1t3&keyword=%2Bmobile%20%2Bfriendly%20%2Bwebsite&gclid=cnmq76wgksscfysjvqodqvsfqw|||rf=http://j9523120.beget.tech/test_cookie2.html";
+$url = "fd=2018-03-07 00:59:55|||ep=http://seo-crawler.loc/|||rf=(none)";
+
+$url_query = explode("|||", $url);
+$fd        = $url_query[0];
+$ep        = $url_query[1];
+$rf        = $url_query[2];
+// foreach ($url_query as $query) {
+//     $subquery = explode("=", $query);
+//     print_r($subquery);
+//     if( $subquery[1]) $parse_url[$subquery[0]] = $subquery[1];
+// }
+print_r($url_query);
+
+var_dump(strpos($ep, '?'));
+
+// if (!false == strpos($ep, '?')) {
+if (strpos($ep, '?') >= 1) {
+    // echo 'if yes';
+    $full_url  = explode("?", $ep);
+    $url_query = explode("&", $full_url[1]);
+    foreach ($url_query as $query) {
+        $subquery = explode("=", $query);
+        print_r($subquery);
+        if ($subquery[1]) {
+            $ext_data[$subquery[0]] = $subquery[1];
+        }
+
+    }
+}
+
+// print_r($url_query);
+// print_r($parse_url);
+// echo urldecode($parse_url['keyword']);
+echo $ep;
+
+/* **** as21 parsing data **** */
