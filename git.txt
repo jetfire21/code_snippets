@@ -11,3 +11,11 @@ Push  URL: https://github.com/jetfire21/bp-group-calendar.git
 # изменить url
 git remote set-url origin git+ssh://git@github.com/jetfire21/bp-group-calendar.git
 ========= делать push без ввода пароля и логина ================
+
+========= клонирование своего git репозитория (если грузить zip то при комите глобально все файлы целиком буду модифицированы и нельзя будет узнать какие измения кода добавлены в проекте) ================
+
+1. Необходимо создать идентификационный ключ RSA (по умолчанию он помещается в файл id_rsa.pub):
+ssh-keygen -t rsa2.
+2. Открыть в браузере страницу _https://github.com/settings/ssh. Нажать в ней на кнопку New SSH key. В открывшейся форме ввести имя и ключ из файла id_rsa.pub.
+3. Выполнить клонирования репозитория. 
+git clone git@github.com:jetfire21/code_snippets.git
