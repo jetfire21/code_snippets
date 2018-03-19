@@ -123,6 +123,8 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 -регистрация как физ лицо (идеально подходит для демнострации работы приема платежа)
 нужны только паспортные данные,заполнить тех настрйки,образец будет даже без активации магазина,до шага ввода данных карт visa,mastercard
 
+48) Hestia - красивая бесплатная тема для тестирования плагинов и прочего функционала https://ru.wordpress.org/themes/hestia/
+
 
 ======== галлереи изображений ======================
 
@@ -136,6 +138,8 @@ demo https://huge-it.com/wordpress-gallery-demo-5-thumbnails/#plugin_demo_wrappe
 
 3) Photo Gallery by WD – Responsive Photo Gallery for WordPress
 годная галерея,можно создать много галерей и добавлять в них изображения с thumms,добавляется на страницу через шорткод
+
+4) GT3 Photo & Video Gallery - Lite немножко расширяет стандартную галлерею wordpress (плюс в том что есть lightbox слайдшоу)
 
 #####################
 
