@@ -1,0 +1,2 @@
+все способы вертиального выравнивания css
+https://habrahabr.ru/company/netcracker/blog/277433/

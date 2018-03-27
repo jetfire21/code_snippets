@@ -68,8 +68,78 @@ Wordpress
 Используйте схожие по протоколам URL-адреса для всех остальных доменов (например //petstore.example.com/dogs/biscuits.php ), или обновите ссылки своего сайта для перехода непосредственно на ресурс HTTPS.
 
 !!! на страницах все протоколы http:// заменить на https:// иначе в строке браузера не будет отображаться "НАДЕЖНЫЙ"
+chect ssl domen https://www.ssllabs.com/ssltest/
 
-####################
+----------------------------
+1. Внутрь блока # BEGIN WordPress ... # END WordPress ничего руками писать не рекомендуется — wordpress, если у него есть возможность, все равно запишет туда своё.
+
+2. Перед использованием директив Rewrite*, нужно включить механизм директивой RewriteEngine On. И лучше обернуть в условие <IfModule mod_rewrite.c> ... </IfModule>
+
+3. Имя переменной окружения, в которой содержится информация о SSL (в Ваших вариантах это HTTP:X-SSL) зависит от конфигурации сервера.
+
+Рабочий .htaccess с одного из моих подопечных
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+#########  last use work this configuration !!!!!!     ##############
+1) без define('FORCE_SSL_ADMIN', true)
+2)смненил в админке только site_url и пути в базе смнеил с http на https
+3)
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# not work
+#RewriteCond %{HTTPS}        =off   [OR]
+#RewriteCond %{HTTP_HOST}    !^spotsandspace\.com.au$
+#RewriteRule ^(.*)$          "https://spotsandspace.com.au/$1" [R=301,L]
+
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# remaining htaccess mod_rewrite CODE for WordPress
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
+
+check url:
+communityradio.com.au +
+spotsandspace.com.au +
+www.spotsandspace.com.au +
+www.spotsandspace.com.au/services +
+http://spotsandspace.com.au + 
+http://www.spotsandspace.com.au +
+http://spotsandspace.com.au/wp-admin
+
+redirect on https://www.spotsandspace.com.au/
+#############################################
 
 /**
  * Redirect WordPress front end https URLs to http without a plugin
@@ -79,9 +149,9 @@ Wordpress
  работает,но не всегда,надо тестировать каждый сайт отдельно
  */
  
-add_action( 'template_redirect', 'bhww_ssl_template_redirect', 1 );
+add_action( 'template_redirect', 'as21_bhww_ssl_template_redirect', 1 );
 
-function bhww_ssl_template_redirect() {
+function as21_bhww_ssl_template_redirect() {
 	// if ( is_ssl() && ! is_admin() ) {
 	if ( is_ssl() ) {
 	
@@ -131,6 +201,12 @@ function as21_cb_function(){
   }
 }
 
+
+################# оптимизация WP #######################
+удалить ревизии постов,страниц на продакшане
+
+########################################
+
 /******** отправка писем через gmail smtp c плагиноам wp-mail-smtp
 тестировал с wp 4.7.3,сработало только если во from email вставить то же что и в username *******/
 
@@ -141,6 +217,11 @@ Encryption: SSL
 Authentication: Yes
 ! From Email: graphitepro21@gmail.com
 ! Username: graphitepro21@gmail.com
+
+через yandex (на open server smtp.gmail.com не сработал,там почему то блокирует)
+адрес почтового сервера — smtp.yandex.ru;
+защита соединения — SSL;
+порт — 465.
 
 From Email — адрес, с которого будут отправляться письма и на который получатель отправит ответ, нажав на кнопку «Ответить» в своей почте.
 From Name — имя отправителя, можно указать название сайта или свое имя и фамилию.
@@ -1486,6 +1567,16 @@ function wpcf7_do_something($WPCF7_ContactForm)
 }
 /////////////////////////////////
 /* **** передача через php названия и ссылки продукта в email сообщение contact form 7 **** */
+
+/* **** useful tips contact form 7 **** */
+
+когда стояла конфигурация php 5.4.45 и apache 2.2 если прикреплялся к форме любой файл (например img) cf7 никакого уведомление после отправки не было! в chrome tools-network ajax preview 
+выводилось сообщение что заголовки уже отправлены,
+изменил конфигурацию на php 5.6 appache 2.4 и все заработало!
+
+contact form 7, шорткоды с виджетов парсит
+/* **** useful tips contact form 7 **** */
+
 
 /* **** получение координат по назвинию страны/города googlemaps **** */
 // https://www.google.ru/maps/place/Москва/@55.7494733,37.35232,
