@@ -1,0 +1,11 @@
+1# ############ PHP File Manager
+
+https://github.com/alexantr/filemanager
+Tiny file manager in single php file
+Удобнов юзать когда у хостинга нет ФМ или у него урезанный функционал, есть все базовые функции (удаление,переименование,создание архива и т д)
+
+2# ############ Tiny PHP File Manager
+
+https://github.com/prasathmani/tinyfilemanager
+Tiny file manager in single php file
+This is an excellent and improved version of the original PHP File Manager

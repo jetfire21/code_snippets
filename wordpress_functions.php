@@ -147,6 +147,8 @@ redirect on https://www.spotsandspace.com.au/
  * @link http://blackhillswebworks.com/?p=5088
  некотр новые браузеры если сайт не имеет ssl сертификата,то выдается ошибка на уровне браузера - "Этот сайт не может обеспечить безопасное соединение"
  работает,но не всегда,надо тестировать каждый сайт отдельно
+
+ когда обращаемся по https to is_ssl - true если по http:// то is_ssl-false судя по этому,бесполезная функция (на последнем сайте пользы не было никакой)
  */
  
 add_action( 'template_redirect', 'as21_bhww_ssl_template_redirect', 1 );
