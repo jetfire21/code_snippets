@@ -126,6 +126,15 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 
 48) Hestia - красивая бесплатная тема для тестирования плагинов и прочего функционала https://ru.wordpress.org/themes/hestia/
 
+49) Relevanssi – A Better Search - заменяет стандартный поиск и расширяет его возможности,можно искать по разным таксономиям,custom fields (доп метаполя в таблице postmeta)
+база graphite
+600 мб - сам сайт бд-40.57 мб
+после build index post,page,custom field-as21_prod_options для плагина Meta Box
+503 documents(posts) in the index.
+31491 terms in the index.
+11978 is the highest post ID indexed.
+бд после индексироания стала 67.82 мб размер файлов сайта остался прежним
+использовал чтобы поиск работал по кастомному полю товара 'артикул' сгенерирован Meta Box plugin, решение быстрое,но далеко не самое лучшее
 
 ======== галлереи изображений ======================
 
