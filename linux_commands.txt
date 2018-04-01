@@ -59,6 +59,9 @@ http://www.f-notes.info/linux:linux_command
 jetfire21@deb16:~$ uname -r
 3.16.0-4-amd64
 
+# отобразить используемую версию Linux
+jetfire21@deb16:~$ cat /etc/*-release
+
 # вывести версию ядра 
 
 jetfire21@deb16:~$ cat /proc/version 
