@@ -136,6 +136,33 @@ add_action( 'after_setup_theme', 'wpse_setup_theme' );
 бд после индексироания стала 67.82 мб размер файлов сайта остался прежним
 использовал чтобы поиск работал по кастомному полю товара 'артикул' сгенерирован Meta Box plugin, решение быстрое,но далеко не самое лучшее
 
+50) WT GeoTargeting - позволяющий с помощью Шорткодов и глобальных методов настраивать геотаргетинг на страницах сайта. (вывод контента в зависимости от города и страны)
+в бесплатном тарифе автоматически оределяет по ip города России (тестил через инет теле2 Нижний Новгород)
+но пришлось доработать фронтенд,ушло пару часов
+----------------
+шорткоды для теста:
+[wt_geotargeting type="phone" city_show="Нижний Новгород"] Нижний Новгород 8(н) 503-53-26[/wt_geotargeting]
+[wt_geotargeting type="phone" city_show="Казань"] казань 8(499) 503-53-26[/wt_geotargeting]
+[wt_geotargeting type="phone" city_show="Йошкар-Ола"] йошка 9999999999[/wt_geotargeting]
+[wt_geotargeting type="phone" default=true]426508 чебы[/wt_geotargeting]
+
+Выберите город:
+<a href="?wt_city_by_default=Нижний Новгород">Нижний Новгород</a>
+<a href="?wt_city_by_default=Казань">Казань</a>
+<a href="?wt_city_by_default=Чебоксары">Чебоксары</a>
+<a href="?wt_city_by_default=Йошкар-Ола">Йошкар-Ола</a>
+<a href="?wt_geo_clean=1">Отменить выбор
+</a>
+<!-- debug -->
+IP: [wt_geotargeting get="ip"]
+Страна: [wt_geotargeting get="country"]
+Город: [wt_geotargeting get="city"]
+Регион: [wt_geotargeting get="region"]
+Округ: [wt_geotargeting get="district"]
+Широта (Latitude): [wt_geotargeting get="lat"]
+Долгота (Longitude): [wt_geotargeting get="lng"]
+
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery
