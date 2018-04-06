@@ -32,9 +32,28 @@ deb https://deb.nodesource.com/clang-3.4 wheezy main
 deb https://deb.nodesource.com/clang-3.4 wheezy main
 -------------------------------------
 
+
+# Stretch
+ 
+deb http://security.debian.org/ stretch/updates main
+# Line commented out by installer because it failed to verify:
+deb-src http://security.debian.org/ stretch/updates main
+ 
+deb http://mirror.yandex.ru/debian stretch main
+deb-src http://mirror.yandex.ru/debian stretch main
+ 
+deb http://mirror.yandex.ru/debian stretch-updates main
+deb-src http://mirror.yandex.ru/debian stretch-updates main
+ 
+deb http://mirror.yandex.ru/debian/ stretch-proposed-updates main non-free contrib
+deb-src http://mirror.yandex.ru/debian/ stretch-proposed-updates main non-free contrib
+ 
+# Backports
+#deb http://mirror.yandex.ru/debian stretch-backports main contrib non-free
+#deb-src http://mirror.yandex.ru/debian stretch-backports main contrib non-free
 установка debian_x64 со всеми графич средами (gnome,xfce,kde,etc) = 5,8gb
 полная установка заняла чуть больше 1 часа
-
+-------------------------------------------
 Хоткеи в терминале
 Фичи линуксов можно узнавать бесконечно.
 
