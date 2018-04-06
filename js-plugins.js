@@ -21,3 +21,21 @@ http://keith-wood.name/countdownRef.html
 http://hilios.github.io/jQuery.countdown/
 
 глянуть таймер здесь http://potolki.expert/
+
+#4-----------------
+Скрипт плавной прокрутки без якоря в адресной строке
+
+http://smartlanding.biz/skript-plavnoj-prokrutki.html
+
+<script>
+  $(document).ready(function(){
+    $("a[href*=#]").on("click", function(e){
+        var anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $(anchor.attr('href')).offset().top
+        }, 777);
+        e.preventDefault();
+        return false;
+    });
+});
+</script>
