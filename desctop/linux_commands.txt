@@ -355,3 +355,9 @@ v6.13.0
 $ node
 > console.log('Hello World');
 Hello World
+
+############## persistence #######
+mkdir -p /mnt/sda3
+mount /dev/sda3/ /mnt/sda3
+echo "/ union" > /mnt/sda3/persistence.conf
+umount /dev/sda3
