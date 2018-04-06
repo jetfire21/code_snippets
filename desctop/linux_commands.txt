@@ -1,3 +1,37 @@
+# deb cdrom:[Debian GNU/Linux 8.6.0 _Jessie_ - Official amd64 DVD Binary-1 20160917-14:25]/ jessie contrib main
+
+#deb cdrom:[Debian GNU/Linux 8.6.0 _Jessie_ - Official amd64 DVD Binary-1 20160917-14:25]/ jessie contrib main
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+
+# jessie-updates, previously known as 'volatile'
+# A network mirror was not selected during install.  The following entries
+# are provided as examples, but you should amend them as appropriate
+# for your mirror of choice.
+#
+# deb http://ftp.debian.org/debian/ jessie-updates main contrib
+# deb-src http://ftp.debian.org/debian/ jessie-updates main contrib
+
+# - Основные репозитории, обновления, безопасность, свободные и несвободные пакеты
+
+deb http://mirror.yandex.ru/debian/ jessie main contrib non-free
+deb-src http://mirror.yandex.ru/debian/ jessie main contrib non-free
+
+deb http://ftp.ru.debian.org/debian jessie main contrib non-free
+deb-src http://ftp.ru.debian.org/debian jessie main contrib non-free
+
+deb http://ftp.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.debian.org/debian/ jessie-updates main contrib non-free
+deb http://download.virtualbox.org/virtualbox/debian jessie contrib
+
+# - Multimedia
+
+deb http://www.deb-multimedia.org/ jessie main non-free
+deb https://deb.nodesource.com/clang-3.4 wheezy main
+deb https://deb.nodesource.com/clang-3.4 wheezy main
+-------------------------------------
+
 установка debian_x64 со всеми графич средами (gnome,xfce,kde,etc) = 5,8gb
 полная установка заняла чуть больше 1 часа
 
