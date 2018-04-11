@@ -1774,6 +1774,19 @@ RewriteRule . /index.php [L]
 </IfModule>
 # END WordPress
 
+
+/* **** вывод html шаблона в shortcode (удобно если страница построена на wp page builder,секцию можно перемещать в любое место) * ****** */
+в файле inc/section-scheme.php $out_html = 'some html code';
+
+function as21_section_scheme($atts){
+		require_once('inc/section-scheme.php');
+		// return 'shortcode work!';
+		return $out_html;
+}
+add_shortcode('as21-scheme', 'as21_section_scheme');
+/* **** вывод html шаблона в shortcode (удобно если страница построена на wp page builder,секцию можно перемещать в любое место) * ****** */
+
+
 /* **** получение/удаление опции 2-получение списка всех таблиц у базы данных 3-удаление одной таблицы **** */
 
  site_url('save-pins/'); /* example: http(s)://site.com/save-pins/    */
