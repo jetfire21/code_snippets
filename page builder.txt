@@ -1,4 +1,0 @@
-#1=======
-TEMPLATERA TEMPLATE MANAGER Powerful Template Manager for WPBakery Page Builder
-дополнение, любую секцию с елементами можно сохранить как template а потом вставлять в любую страницу,
-а потом изменяя один template он изменится на всех страницах! Волшебно просто!
