@@ -215,6 +215,27 @@ define('WP_DEBUG_DISPLAY', false);
 
 /* ******* запись всех ошибок в файл .log ****************** */
 
+// make php error for check write logs
+// ошибки в functions.php wp почему то сервером не ловятся,ловятся только после включения WP_DEBUG
+// add_action('wp_head','as21_check_server_logs');
+function  as21_check_server_logs(){
+
+	if( !(bool)$_GET['dev']) return;
+
+		ini_set('error_reporting', E_ALL);
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		call_noexist_functions();
+}
+
+if( (bool)$_GET['dev']) call_noexist_functions2();
+
+/* 
+или проще так создать файл /public_html/error.php c кодом:
+<?php call_noexist_functions(); ?>
+сервер в таком файле ошибку отловит
+*/
+
 /* **** as21 debug function **** */
 add_action("wp_footer","as21_cb_function");
 
