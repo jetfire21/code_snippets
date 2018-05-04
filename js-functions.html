@@ -22,84 +22,84 @@ title = title.substr(1);
         render: function(){ // ...какой-то код метода }
       };
   -->    
- <!-- разметка для плагина -->   
-<div id="as21">
-	 <li>
-	  <div class="timeliner_element teal">
-	      <div class="timeliner_title">
-	          <span class="timeliner_label">Event Title</span><span class="timeliner_date">03 Nov 2014</span>
-	      </div>
-	      <div class="content">
-	           <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text evsince he 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only fcenturies, ut also the leap into electronic typesetting, remaining essentially unchang
-	      </div>
-	      <div class="readmore">
-	          <a class="btn btn-primary" href="javascript:void(0);" ><i class="fa fa-pencil fa fa-white"></i></a>
-	          <a class="btn btn-bricky" href="javascript:void(0);" ><i class="fa fa-trash fa fa-white"></i></a>
-	          <a href="#" class="btn btn-info">
-	              Read More <i class="fa fa-arrow-circle-right"></i>
-	          </a>
-	      </div>
-	   </div>
-	  </li>
-	  <!-- ....... можно добавить сколько угодно li -->
-</div>
+  <!-- разметка для плагина -->   
+  <div id="as21">
+  	<li>
+  		<div class="timeliner_element teal">
+  			<div class="timeliner_title">
+  				<span class="timeliner_label">Event Title</span><span class="timeliner_date">03 Nov 2014</span>
+  			</div>
+  			<div class="content">
+  				<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text evsince he 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only fcenturies, ut also the leap into electronic typesetting, remaining essentially unchang
+  			</div>
+  			<div class="readmore">
+  				<a class="btn btn-primary" href="javascript:void(0);" ><i class="fa fa-pencil fa fa-white"></i></a>
+  				<a class="btn btn-bricky" href="javascript:void(0);" ><i class="fa fa-trash fa fa-white"></i></a>
+  				<a href="#" class="btn btn-info">
+  					Read More <i class="fa fa-arrow-circle-right"></i>
+  				</a>
+  			</div>
+  		</div>
+  	</li>
+  	<!-- ....... можно добавить сколько угодно li -->
+  </div>
 
-<script type="text/javascript">
-jQuery( document ).ready(function($) {
+  <script type="text/javascript">
+  	jQuery( document ).ready(function($) {
 
-var new_li = '<li>\
-				  <div class="timeliner_element teal">\
-				      <div class="timeliner_title">\
-				          <span class="timeliner_label">Event Title</span><span class="timeliner_date">10 Nov 2014</span>\
-				      </div>\
-				      <div class="content">\
-				           11111111111\
-				      </div>\
-				      <div class="readmore">\
-				          <a class="btn btn-primary" href="javascript:void(0);" ><i class="fa fa-pencil fa fa-white"></i></a>\
-				          <a class="btn btn-bricky" href="javascript:void(0);" ><i class="fa fa-trash fa fa-white"></i></a>\
-				          <a href="#" class="btn btn-info">\
-				              Read More <i class="fa fa-arrow-circle-right"></i>\
-				          </a>\
-				      </div>\
-				   </div>\
-			  </li>\
-			  <li>\
-				  <div class="timeliner_element teal">\
-				      <div class="timeliner_title">\
-				          <span class="timeliner_label">Event Title</span><span class="timeliner_date">15 Nov 2014</span>\
-				      </div>\
-				      <div class="content">\
-				           22222\
-				      </div>\
-				      <div class="readmore">\
-				          <a class="btn btn-primary" href="javascript:void(0);" ><i class="fa fa-pencil fa fa-white"></i></a>\
-				          <a class="btn btn-bricky" href="javascript:void(0);" ><i class="fa fa-trash fa fa-white"></i></a>\
-				          <a href="#" class="btn btn-info">\
-				              Read More <i class="fa fa-arrow-circle-right"></i>\
-				          </a>\
-				      </div>\
-				   </div>\
-			  </li>';
+  		var new_li = '<li>\
+  		<div class="timeliner_element teal">\
+  		<div class="timeliner_title">\
+  		<span class="timeliner_label">Event Title</span><span class="timeliner_date">10 Nov 2014</span>\
+  		</div>\
+  		<div class="content">\
+  		11111111111\
+  		</div>\
+  		<div class="readmore">\
+  		<a class="btn btn-primary" href="javascript:void(0);" ><i class="fa fa-pencil fa fa-white"></i></a>\
+  		<a class="btn btn-bricky" href="javascript:void(0);" ><i class="fa fa-trash fa fa-white"></i></a>\
+  		<a href="#" class="btn btn-info">\
+  		Read More <i class="fa fa-arrow-circle-right"></i>\
+  		</a>\
+  		</div>\
+  		</div>\
+  		</li>\
+  		<li>\
+  		<div class="timeliner_element teal">\
+  		<div class="timeliner_title">\
+  		<span class="timeliner_label">Event Title</span><span class="timeliner_date">15 Nov 2014</span>\
+  		</div>\
+  		<div class="content">\
+  		22222\
+  		</div>\
+  		<div class="readmore">\
+  		<a class="btn btn-primary" href="javascript:void(0);" ><i class="fa fa-pencil fa fa-white"></i></a>\
+  		<a class="btn btn-bricky" href="javascript:void(0);" ><i class="fa fa-trash fa fa-white"></i></a>\
+  		<a href="#" class="btn btn-info">\
+  		Read More <i class="fa fa-arrow-circle-right"></i>\
+  		</a>\
+  		</div>\
+  		</div>\
+  		</li>';
 
-	var tl = $('#as21').timeliner();
-	tl.add(new_li).render();
+  		var tl = $('#as21').timeliner();
+  		tl.add(new_li).render();
 	// tl.destroy(); //work
 });
 </script>
 
 <!-- /* **** as21 динмаическое добавление данных в метод плагина, например через ajax
- http://www.jqueryscript.net/time-clock/Responsive-Dynamic-Timeline-Plugin-For-jQuery-Timeliner.html  **** */ -->
+	http://www.jqueryscript.net/time-clock/Responsive-Dynamic-Timeline-Plugin-For-jQuery-Timeliner.html  **** */ -->
 
-<!-- /* **** as21 prints the contents of the current window**** */ -->
-jQuery(".print img").click(function (){
+	<!-- /* **** as21 prints the contents of the current window**** */ -->
+	jQuery(".print img").click(function (){
 
-var styles = "<style>@media print{.print{ display: none; } body{ background: #000;} .mfp-close{display:none;} }</style>";
+	var styles = "<style>@media print{.print{ display: none; } body{ background: #000;} .mfp-close{display:none;} }</style>";
 	// var printContents = document.getElementById("show-signup-report-modal").innerHTML;
 	var printContents = jQuery("#show-signup-report-modal").html()+styles;
 	console.log(printContents);
 	// way 1 
-w=window.open();
+	w=window.open();
 	w.document.write(printContents);
 	w.print();
 	w.close();
@@ -108,7 +108,7 @@ w=window.open();
 	/*
 	var originalContents = document.body.innerHTML;
 	document.body.innerHTML = printContents;
-window.print();
+	window.print();
 	body.innerHTML = originalContents;
 	*/
 });
@@ -118,17 +118,17 @@ window.print();
 /* **** as21 magnificPopup example callbacks **** */
 
 <script>
-jQuery( document ).ready(function() {
-jQuery('#show-signup-report').magnificPopup({
-    items: {
-        src: '#show-signup-report-modal',
-        type: 'inline',
-        focus: '.username'
-    },
-    preloader: false,
-    callbacks: {
-	    open: function() {
-	    	console.log("open---");
+	jQuery( document ).ready(function() {
+		jQuery('#show-signup-report').magnificPopup({
+			items: {
+				src: '#show-signup-report-modal',
+				type: 'inline',
+				focus: '.username'
+			},
+			preloader: false,
+			callbacks: {
+				open: function() {
+					console.log("open---");
 	    	// jQuery("#show-signup-report-modal").show();
 	    	// var orig = jQuery("body").html();
 	    	// console.log("open===="+orig);
@@ -141,10 +141,10 @@ jQuery('#show-signup-report').magnificPopup({
 	}
 });
 
-/* **** as21 magnificPopup example callbacks **** */
+		/* **** as21 magnificPopup example callbacks **** */
 
-/* **** as21 разрешение экрана **** */
-jQuery( document ).ready(function($) {
+		/* **** as21 разрешение экрана **** */
+		jQuery( document ).ready(function($) {
 
 			var h = window.screen.availHeight;
 			var w = window.screen.availWidth;
@@ -158,20 +158,20 @@ jQuery( document ).ready(function($) {
 				success:function(data){
 					// if( data ) // console.log(data); console.log('success ajax');
 					 // else { console.log("data send with errors!");}
-				}
+					}
 
-			 });
-	});
-/* **** as21 разрешение экрана **** */
+				});
+		});
+		/* **** as21 разрешение экрана **** */
 
 
 
-/* **** валидация полей средствами js **** */
+		/* **** валидация полей средствами js **** */
 
-var phone = jQuery("#a21_form_oformit_zakaz .phone").val().trim();
-var mail = jQuery("#a21_form_oformit_zakaz .mail").val().trim();
-var name = jQuery("#a21_form_oformit_zakaz .name").val().trim();
-var address = jQuery("#a21_form_oformit_zakaz .address").val().trim();
+		var phone = jQuery("#a21_form_oformit_zakaz .phone").val().trim();
+		var mail = jQuery("#a21_form_oformit_zakaz .mail").val().trim();
+		var name = jQuery("#a21_form_oformit_zakaz .name").val().trim();
+		var address = jQuery("#a21_form_oformit_zakaz .address").val().trim();
 // console.log( phone );
 // console.log( typeof phone );
 // console.log( typeof phone.length );
@@ -196,16 +196,16 @@ if(errors.length !== 0){
 
 /* **** as21 выровнять все блоки по максимальной высоте (годится когда в колонках есть динамический контент) **** */
 
-  $(document).ready(function(){
-    $.fn.equivalent = function (){
+$(document).ready(function(){
+	$.fn.equivalent = function (){
             //запишем значение jQuery выборки к которой будет применена эта функция в локальную переменную $blocks
-        var $blocks = $(this),
+            var $blocks = $(this),
             //примем за максимальную высоту - высоту первого блока в выборке и запишем ее в переменную maxH
             maxH    = $blocks.eq(0).height(); 
 
         //делаем сравнение высоты каждого блока с максимальной
         $blocks.each(function(){
-            maxH = ( $(this).height() > maxH ) ? $(this).height() : maxH;
+        	maxH = ( $(this).height() > maxH ) ? $(this).height() : maxH;
             /*
             Этот блок можно записать так:
             if ( $(this).height() > maxH ) {
@@ -224,3 +224,13 @@ if(errors.length !== 0){
 
 
 /* **** as21 выровнять все блоки по максимальной высоте (годится когда в колонках есть динамический контент) **** */
+
+
+/* add anchor to end url: http:/site.ru/#block-prices (support ie >=10) */
+jQuery(".seocrawler-navigation .sf-menu li a").click(function(){
+	var id = jQuery(this).attr('href');
+	console.log(id);
+	history.pushState(null, null, id);
+	console.log("\r\n\r\n");
+});
+/* add anchor to end url: http:/site.ru/#block-prices (support ie >=10) */

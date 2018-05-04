@@ -162,6 +162,19 @@ IP: [wt_geotargeting get="ip"]
 Широта (Latitude): [wt_geotargeting get="lat"]
 Долгота (Longitude): [wt_geotargeting get="lng"]
 
+51) Flamingo - сохраняет все письма отправленные с contact form 7 в базу данных,может быть полезен когда почта на 
+сервере настроена с ошибками 
+https://wordpress.org/plugins/flamingo/
+
+52) Custom Permalinks By Sami Ahmed Siddiqui https://wordpress.org/plugins/custom-permalinks/
+
+Set the URL of any post, page, tag or category to anything you want.
+Example:
+можно изменить url только одной страницы,а не всех сразу..то есть выборочное изменение
+http://new-wyw.loc/make-mobile-friendly
+http://new-wyw.loc/services/make-mobile-friendly.html
+
+
 
 ======== галлереи изображений ======================
 

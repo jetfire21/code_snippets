@@ -1,3 +1,4 @@
+/*
 #1------------
 	Masked Input plugin for jQuery
 	Copyright (c) 2007-2013 Josh Bush (digitalbush.com)
@@ -23,12 +24,14 @@ http://hilios.github.io/jQuery.countdown/
 глянуть таймер здесь http://potolki.expert/
 
 #4-----------------
-Скрипт плавной прокрутки без якоря в адресной строке
+Скрипт плавной прокрутки без мельканий, без якоря в адресной строке
 
 http://smartlanding.biz/skript-plavnoj-prokrutki.html
+*/
 
-<script>
-  $(document).ready(function(){
+$(document).ready(function(){
+
+    // $('.as21-scroll-down').click(function(e) {
     $("a[href*=#]").on("click", function(e){
         var anchor = $(this);
         $('html, body').stop().animate({
@@ -37,5 +40,21 @@ http://smartlanding.biz/skript-plavnoj-prokrutki.html
         e.preventDefault();
         return false;
     });
+
 });
-</script>
+
+
+// вариант 2:
+  // $('.as21-scroll-down').click(function(e) {
+$('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });

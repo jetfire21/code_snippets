@@ -1703,6 +1703,9 @@ https://wordpress.org/support/topic/contact-form-7-rest-api/
 
 /* **** useful tips contact form 7 **** */
 
+define ('WPCF7_AUTOP', false );
+
+/* **** This will remove the <br>,<p> tags that get added automatically when you call Contact Form 7 from the template via shortcode ** */
 
 /* **** получение координат по назвинию страны/города googlemaps **** */
 // https://www.google.ru/maps/place/Москва/@55.7494733,37.35232,
