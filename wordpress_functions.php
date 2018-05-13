@@ -787,6 +787,28 @@ print_r($categories);
 
 ?>
 
+/* ********* стандартая wp gallereya изображений ****************** */
+
+по умолчанию у сетки в 3 колонки плохой responsive !!!,на маленьк экранах вместо 1 изображения несколько изображ в ряд,
+плюс возможность прицепить к галерее любой размер изобраения сгенерирванный wp функцией add_image_siez() 
+(GT3 Photo & Video Gallery проблему responsive частично исправляет,но не все) поискать плагин получше или самому добавить адаптивных стилей
+пример изображения с касмотным размером
+[gallery link="none" size="induscity-portfolio-thumbnail" ids="3468,3467,3464,3463,3360,3358,3361,3435,3357,406,403,3362,3434,3433,3432,3438,3437,3436"]
+
+
+/*  common wp: custom fix css лучший responsive for 3 column */
+@media (max-width: 991px) {
+   .gallery.gallery-columns-3 .gallery-item {
+        max-width: 50%; // by 2 col
+    }
+}
+@media (max-width: 600px) {
+   .gallery.gallery-columns-3 .gallery-item {
+        max-width: 100%; // by 1 col
+    }
+}
+
+/* ********* стандартая wp gallereya изображений ****************** */
 
 <?php
 
@@ -878,8 +900,22 @@ if($template == "tpl_contact.php") {
 //Your metaboxes
 }
 
+/* ************ целяемся за фильтры плагниа ********** */
 
+// когда происходит такая ошибка
+// Warning: Missing argument 2 for as21_test() in E:\OSPanel\domains\ausvisasolutions.loc\wp-content\themes\customizr\functions.php on line 81
+// просто не нужно указывать все передаваемые параметры в callback функции,достаточно только указать один нужный
 
+// $options    = apply_filters( 'gt3pg_render_lightbox_options', $options, $atts );
+add_filter( 'gt3pg_render_lightbox_options','as21_gt3_photo_gallery_change_options');
+function as21_gt3_photo_gallery_change_options($options){
+	// transitionSpeed: 100
+	$options['transitionSpeed'] = 500;
+	// print_r($options);
+	// exit;
+	return $options;
+}
+/* ************ целяемся за фильтры плагниа ********** */
 
 /* ************ буферизированный вывод ********** */
 
@@ -1614,6 +1650,7 @@ function as21_wpcf7_custom_hidden_tag() {
 	$product_id = (int)$_GET['t_id'];
 	return '<input type="hidden" name="t_id" value="'.$product_id.'" class="wpcf7-form-control wpcf7-hidden">';
 }
+// создаине кастомного shortcode только для cf 7
 wpcf7_add_form_tag('custom_hidden_product_title', 'as21_wpcf7_custom_hidden_tag');
 
 add_action('wp_footer','as21_inc_js',999);
