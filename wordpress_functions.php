@@ -253,7 +253,7 @@ function as21_cb_function(){
 
 ########################################
 
-/******** отправка писем через gmail smtp c плагиноам wp-mail-smtp
+/******** отправка писем через gmail smtp c плагиноам WP Mail SMTP by WPForms
 тестировал с wp 4.7.3,сработало только если во from email вставить то же что и в username *******/
 
 Mailer: SMTP
@@ -265,9 +265,9 @@ Authentication: Yes
 ! Username: graphitepro21@gmail.com
 
 через yandex (на open server smtp.gmail.com не сработал,там почему то блокирует)
-адрес почтового сервера — smtp.yandex.ru;
-защита соединения — SSL;
-порт — 465.
+адрес почтового сервера — smtp.yandex.ru
+защита соединения — SSL
+порт — 465
 
 From Email — адрес, с которого будут отправляться письма и на который получатель отправит ответ, нажав на кнопку «Ответить» в своей почте.
 From Name — имя отправителя, можно указать название сайта или свое имя и фамилию.
@@ -282,9 +282,13 @@ Password — пароль от почтового ящика.
 /* ****  проверка работы sendmail или через SMTP **** */
 
 // Загружаем WordPress
+// проверять сначала без включения плагина smtp,а потом с включением
+$to = 'freerun-2012@yandex.ru'; /**** 21arenda@gmail.com ****/
+$from = 'gbo.servise21@yandex.ru'; // для работы smtp ллагина сюда обязательно указывать адрес отправителя указанный в плагине,иначе письмо те отправится!
 require_once( $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php' );
 $headers = "From: {$sitename} <" .$from. ">\r\nContent-type:text/plain; charset=utf-8\r\n";
-if( wp_mail($to, 'Тема', 'Проверка работы wp_mail', $headers) ) echo "mail send success!"; else echo "mail send error!";
+if( wp_mail($to, 'Тема', 'Проверка работы wp_mail', $headers) ) echo "mail send success!";
+else echo "mail send error!";
 
 /* ****  проверка работы sendmail или через SMTP **** */
 

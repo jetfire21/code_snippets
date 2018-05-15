@@ -175,7 +175,13 @@ http://new-wyw.loc/make-mobile-friendly
 http://new-wyw.loc/services/make-mobile-friendly.html
 
 53) Imsanity - бесплатный плагин,изменяет размер оригинальных изображений,даже тогда когда уже изображения давно были загружены на сайт (как выборочно один или неск так и сразу массово все),также может изменить размер автоматически сразу после загрузки. нужно чтобы освободить дисковое место на сервере.
-после сделанной работы плагин разумеется можно отключить
+после сделанной работы плагин разумеется можно отключить. Массовое конвертирование png в jpg не предусмотрено,работает только при новой загрузке изображения,но не для существующих!
+
+Indeed, Imsanity cannot bulk convert images, as it contains no code to update existing posts when the images are converted. If you would like to bulk convert images, the best option is to use my other plugin, EWWW Image Optimizer. But be sure to check your pages to ensure your links are up to date, as it only checks the wp_posts table to make changes. If your content is pulling from other sources, those would need to be updated manually.
+
+54) EWWW Image Optimizer - доступна конвертация png в jpg по одной в Media Library и автоудаление после оригин png файлов
+пример: 
+Full size было 1.png (591.1 KB) стало 1.jpg с белым фоном (29.7 KB)	Reduced by 95.2% (591.1 KB)
 
 для начала нужно выбрать макс размеры для все областей
 максимальные рамзер изображений в posts,pages: 784 x 517,
@@ -193,6 +199,9 @@ optm.loc\wp-content\uploads\ - 96.4 мб
 page-title-bg
 tcp-zoom
 
+55) PNG to JPG Автор: Jakub Novák - png в jpg, массовая конвертация всех изображений png или выборочно в jpg. Имена файлов также будут исправлены в стандарт таблицах в базе данных! перед работой отключить кэширующие плагины
+
+56) WP Mail SMTP by WPForms - отправка писем через smtp
 
 ======== галлереи изображений ======================
 
