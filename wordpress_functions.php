@@ -1244,6 +1244,27 @@ if(class_exists('BP_Member_Reviews')){
 		echo "a21 new_html========";
 	}
 }
+
+
+/*** выполнение допольнительного кода из плагина,темы в любом месте ***/
+
+ // добавление нового хука-события и привязка к нему функции,помещать в теме,плагине,обязательно следить за порядком и местом вызова функций 
+// add_action('wp_head', array($this, 'initial'),8);
+// add_action('plugins_loaded', array($this, 'initial'),8);
+
+add_action( 'as21_action', 'as21_function_1', 10, 1 ); // 1 - количество параметров
+function as21_function_1( $data ) {
+ 
+    echo '<hr>-----------check_function_dd77 : --------- ';
+    var_dump($data);
+    // exit;
+}
+//  вызов хук-события в functions.php,главное чтобы add_action( 'as21_action') был обьявлен до do_action,иначе не сработает
+do_action( 'as21_action', $this->data );
+
+/*** выполнение допольнительного кода из плагина,темы в любом месте ***/
+
+
 /*** один из вариантов переопределения метода класса какого-то плагина ***/
 
 // add_action('wp_ajax_bp_user_review',   array($this, 'ajax_review'),300);

@@ -208,6 +208,11 @@ tcp-zoom
 
 56) WP Mail SMTP by WPForms - отправка писем через smtp
 
+57) Simple History - записывает все действия пользователей (добавление/изменение страниц) не записывает http запросы посетителей сайта. Нет возможности отслеживать 1 конкретного юзера и прочих дополнительных
+настроек
+
+58) Enable Media Replace - allows you to seamlessly replace an image or file in your Media Library by uploading a new file in its place. No more deleting, renaming and re-uploading files. Быстрая замена изображения или файла без изменения путей и лишних действий в постах,страницах и других местах,куда файл вставлен
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery

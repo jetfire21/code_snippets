@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8" >
+	<title>Кастомный select (с помощью css можно все изменить) и получить любое значение через jQuery</title>
+	<script
+	src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="libs/js-nice-select/jquery.nice-select.min.js"></script>
+	<link rel="stylesheet" href="libs/js-nice-select/nice-select.css">
+	<style type="text/css">
+	.nice-select, .nice-select .list{ 
+		background-color: #d9e2e9;
+		border-radius: 0;
+	}
+	.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+		/* background-color: #f6f6f6; */
+		background: #79b8ce;
+	}
+	.nice-select .option, .nice-select{height: 30px; line-height: 30px; min-height: auto; border: 0; border-radius: 0;}
+	.nice-select {padding-left: 36px;}
+	.nice-select:before {
+		content: '';
+		background-image: url("http://www.max-gas.ru/bitrix/templates/maxgas/img/ico/tel_icon.png");
+		background-position: top;
+		width: 15px;
+		height: 15px;
+		position: absolute;
+		top: 8px;
+		left: 13px
+	}
+	.as21-select-contacts{
+		display: block;
+		clear: both;
+	}
+</style>
+
+</head>
+<body>
+
+<script>
+	$(document).ready(function() {
+
+
+  jQuery('select').niceSelect();
+
+  jQuery('.box').on('click','li',function(){
+        // console.log( $('select').val() );
+        // console.log( $('.nice-select .current').text() );
+        var city_tel = $(this).text();
+        console.log( city_tel);
+        // if(city_tel == 'в Чебоксарах') $('.as21-select-contacts').text('+7(8352) 38-76-65');
+        // if(city_tel == 'в Йошкар-Оле') $('.as21-select-contacts').text('8(8362) 335300');
+        // if(city_tel == 'в Казани') $('.as21-select-contacts').text('8-999-199-34-36');
+        if(city_tel == 'в Чебоксарах') $('.as21-select-contacts').html('<a href="tel:+7(8352)387665">+7(8352) <b>38-76-65</b></a>');
+        if(city_tel == 'в Йошкар-Оле') $('.as21-select-contacts').html('<a href="tel:8(8362)335399">8(8362) <b>33-53-00</b></a>');
+        if(city_tel == 'в Казани') $('.as21-select-contacts').html('<a href="tel:89991993436"> <b>8-999-199-34-36</b></a>');
+      });
+
+	});
+</script>
+	<div class="box">
+		<select>
+			<option data-display="в Чебоксарах">в Чебоксарах</option>
+			<option value="1">в Йошкар-Оле</option>
+			<option value="4">в Казани</option>
+		</select>
+	</div>
+	<div class="as21-select-contacts"><a href="tel:+7(8352)387665">+7(8352) <b>38-76-65</b></a></div>
+
+
+</body>
+</html>
