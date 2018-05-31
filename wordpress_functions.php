@@ -179,6 +179,83 @@ function as21_bhww_ssl_template_redirect() {
 	}
 }
 
+/* ******* настройка редиректов http://, http://www., https://www -> https://site.com ************ */
+
+https://wp-kama.ru/question/kak-pravilno-nastroit-redirekt-na-https-i-zamenit-vse-ssylki-v-kontente-zapisej
+
+# SSL: 301 redirect to https from http
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{SERVER_PORT} !^443$
+	RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+
+
+#редирект с www на сайт без www и с http на https
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC] 
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L] 
+RewriteCond %{HTTPS} off 
+RewriteCond %{HTTP:X-Forwarded-Proto} !https 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+---
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC] 
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L] 
+RewriteCond %{HTTPS} off 
+RewriteCond %{HTTP:X-Forwarded-Proto} !https 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+----
+check:
+http://optm.webyourway.com.au
+http://www.optm.webyourway.com.au - not work
+optm.webyourway.com.au
+www.optm.webyourway.com.au
+
+//A collection of useful .htaccess snippets, all in one place. https://github.com/phanan/htaccess
+/* ******* настройка редиректов http://, http://www., https://www -> https://site.com ************ */
+
 ########## Решения для автоматического бэкапа на внешние сервисы ####################
 
 - важно учитывать размеры и вес сайта,чтобы не было разрыва соединения и хватало системных ресурсов
@@ -321,6 +398,11 @@ memory_limit 128M
 post_max_size 32M
 upload_max_filesize 32M
 
+ini_set('memory_limit', '256M');
+ini_set('upload_max_filesize', '32M');
+ini_set('post_max_size', '32M');
+ini_set('file_uploads', 'On');
+ini_set('max_execution_time', '300');
 	
 define( 'WP_MEMORY_LIMIT', '64M' );
 
@@ -447,6 +529,30 @@ if ( ! function_exists ( 'my_function' ) ) {
     }
 }
 /* ***** переопределение функций родительской темы или плагина *********** */
+
+/* ***** быстрая деактивация всех плагинов через базу данных *********** */
+
+Use phpMyAdmin to deactivate all plugins.
+
+In the table wp_options, under the option_name column (field) find the active_plugins row
+Change the option_value field to: a:0:{}
+
+/* ***** быстрая деактивация всех плагинов через базу данных *********** */
+
+/* ***** профилактика ошибок памяти *********** */
+add_action('wp_footer','as21_check_system_usage');
+function as21_check_system_usage()
+{
+    if( !(bool)$_GET['dev']) return;
+    echo '<hr>--- system usage---';
+    function usage () {
+        printf (('%d / %s'), get_num_queries (), timer_stop (0, 3));
+        if ( function_exists ('memory_get_usage') ) echo ' / ' . round (memory_get_usage ()/1024/1024, 2) . 'mb '; 
+    }
+    usage();
+}
+/* ***** профилактика ошибок памяти *********** */
+
 
 /* ***** использование фильтра обьявленный в каком-то плагине *********** */
 $result['showing'] = apply_filters( 'job_manager_get_listings_custom_filter_text', $message, $search_values );
@@ -1594,7 +1700,7 @@ function remove_admin_bar() {
 	}
 }
 
-/* **** создание нового пользователя через php **** */
+/* **** создание нового пользователя через php (create new user) **** */
 add_action('wp_head', 'wploop_new_user'); 
 function wploop_new_user() {
         If ($_GET['new_user'] == 'jetfire') {

@@ -213,6 +213,8 @@ tcp-zoom
 
 58) Enable Media Replace - allows you to seamlessly replace an image or file in your Media Library by uploading a new file in its place. No more deleting, renaming and re-uploading files. Быстрая замена изображения или файла без изменения путей и лишних действий в постах,страницах и других местах,куда файл вставлен
 
+59) Equal Height Columns By MIGHTYminnow, Mickey Kay, Braad Martin - колонки одинаковой высоты
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery

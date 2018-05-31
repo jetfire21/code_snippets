@@ -58,3 +58,9 @@ $('a[href*="#"]:not([href="#"])').click(function() {
       }
     }
   });
+
+/*
+#5-----------------
+ js-cookie (замена старого jquery cookie- No longer maintained https://github.com/carhartl/jquery-cookie)
+ A simple, lightweight JavaScript API for handling browser cookies
+ https://github.com/js-cookie/js-cookie
