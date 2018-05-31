@@ -183,13 +183,34 @@ function as21_bhww_ssl_template_redirect() {
 
 https://wp-kama.ru/question/kak-pravilno-nastroit-redirekt-na-https-i-zamenit-vse-ssylki-v-kontente-zapisej
 
-# SSL: 301 redirect to https from http
+# SSL: Permanent Redirect, or "301 redirect" to https from http
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 	RewriteCond %{SERVER_PORT} !^443$
 	RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 </IfModule>
 
+//--------------------------------------------------------------------------
+# тестил работает на сервере eurobyte,но не работает на digital pacific c cloudflare на поддомене optm.site.com.au
+# www.vh109980.eurodir.ru https://vh109980.eurodir.ru
+# vh109980.eurodir.ru https://vh109980.eurodir.ru
+# http://vh109980.eurodir.ru https://vh109980.eurodir.ru
+# http://www.vh109980.eurodir.ru https://vh109980.eurodir.ru
+# https://www.vh109980.eurodir.ru https://www.vh109980.eurodir.ru - not work(надо без www) (можно через php сменить отловив в url '//www.')
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# match any URL with www and rewrite it to https without the www
+RewriteCond %{HTTP_HOST} ^(www\.)(.*) [NC]
+RewriteRule (.*) https://%2%{REQUEST_URI} [L,R=301]
+
+# match urls that are non https (without the www)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^(www\.)(.*) [NC]
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+//--------------------------------------------------------------------------
 
 
 #редирект с www на сайт без www и с http на https
@@ -217,19 +238,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # BEGIN WordPress
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
-</IfModule>
-
-# END WordPress
-
-
-# BEGIN WordPress
+# for digital pacific for main domain site.com
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -247,13 +256,10 @@ RewriteRule . /index.php [L]
 
 # END WordPress
 ----
-check:
-http://optm.webyourway.com.au
-http://www.optm.webyourway.com.au - not work
-optm.webyourway.com.au
-www.optm.webyourway.com.au
 
 //A collection of useful .htaccess snippets, all in one place. https://github.com/phanan/htaccess
+// дополнит инфа https://www.digitalocean.com/community/tutorials/how-to-redirect-www-to-non-www-with-apache-on-centos-7
+
 /* ******* настройка редиректов http://, http://www., https://www -> https://site.com ************ */
 
 ########## Решения для автоматического бэкапа на внешние сервисы ####################
