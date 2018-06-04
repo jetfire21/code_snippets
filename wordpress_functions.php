@@ -179,6 +179,19 @@ function as21_bhww_ssl_template_redirect() {
 	}
 }
 
+/* ******* если не удается попасть в админ зону,вставить это ************ */
+
+// for work https for admin dashboard
+define('FORCE_SSL_ADMIN', true);  
+// не подойдет если https://www.site.ru нужно редиректить на https://site.ru
+define('WP_HOME','https://'. $_SERVER['HTTP_HOST']);
+define('WP_SITEURL','https://'. $_SERVER['HTTP_HOST']);
+
+define('WP_HOME','https://new-wyw.loc');
+define('WP_SITEURL','https://new-wyw.loc');
+
+/* ******* если не удается попасть в админ зону,вставить это ************ */
+
 /* ******* настройка редиректов http://, http://www., https://www -> https://site.com ************ */
 
 https://wp-kama.ru/question/kak-pravilno-nastroit-redirekt-na-https-i-zamenit-vse-ssylki-v-kontente-zapisej
@@ -524,6 +537,17 @@ function deb_last_query(){
 
 /* **********отладка sql-запросов ********** */	
 
+/* ********** jquery noconflict ********** */	
+
+jQuery(document).ready(function($){
+
+	// внутри этой функции $ будет работать как jQuery
+
+});
+
+/* ********** jquery noconflict ********** */	
+
+
 /* ***** переопределение функций родительской темы или плагина *********** */
 
 // функции задаются с проверкой function_exists,то можете ее переопределить
@@ -783,6 +807,7 @@ function hide_plugins($plugins)
 current_time('mysql'); // по умолчанию возвр время utc+4 (для москвы надо ставить utc+3 в консоль/настройки/общие/часовой пояс)
 
 /* ************** добавить фильтр к шорткоду *********** */
+
 $shortcode = do_shortcode('[mingleforum]');
 echo apply_filters('my_new_filter',$shortcode);
 
@@ -793,6 +818,17 @@ function my_new_filter_callback($shortcode){
     return $shortcode;
 }
 /* ************** добавить фильтр к шорткоду *********** */
+
+/* ************** добавить фильтр к шорткоду метод 2 *********** */
+// only with WP 4.7
+add_filter( 'do_shortcode_tag', 'cooltimeline_view', 10, 4 );
+function cooltimeline_view( $output, $tag, $attr, $m ){
+    // filter...
+    $output = str_replace('<div class="timeline-meta">', '<div class="as21-cool-hor-line"></div><div class="as21-cool-timeline"></div><div class="timeline-meta">', $output);
+    return $output;
+}
+/* ************** добавить фильтр к шорткоду метод 2 *********** */
+
 
 /* *********** передача параметров в шаблон wordpress ************ */
 
