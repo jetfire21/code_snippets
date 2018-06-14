@@ -416,6 +416,7 @@ max_execution_time 180
 memory_limit 128M
 post_max_size 32M
 upload_max_filesize 32M
+php_value max_input_vars 4000
 
 ini_set('memory_limit', '256M');
 ini_set('upload_max_filesize', '32M');
@@ -1861,6 +1862,27 @@ function as21_inc_js(){
 	</script>
 	<?php
 }
+
+/* **** передача события отправки формы сf7 в GA (google) **** */
+
+add_action('wp_head','as21_send_event_ga',999);
+function as21_send_event_ga(){
+    ?>
+    <script>
+     document.addEventListener( 'wpcf7submit', function( event ) {
+        if ( '7' == event.detail.contactFormId ) {
+            ga('send', 'event', 'form', 'submit', 'Contact us');
+        }
+        if ( '155' == event.detail.contactFormId ) {
+            ga('send', 'event', 'form', 'submit', 'Get a free quote');
+        }
+        console.log('success send data in GA');
+    }, false );
+</script>
+<?php  
+}
+
+/* **** передача события отправки формы сf7 в GA **** */
 
 ////////////////// только для ознакомления (сложный способ) /////////////////////////
 add_action("wpcf7_before_send_mail", "wpcf7_do_something");
