@@ -9,3 +9,9 @@ Tiny file manager in single php file
 https://github.com/prasathmani/tinyfilemanager
 Tiny file manager in single php file
 This is an excellent and improved version of the original PHP File Manager
+
+###############
+
+1) Adminer - легкий компкатный php скрипт для управления бд,удобно когда нет доступа к phpmyadmin (аналог phpmyadmin https://www.adminer.org/)
+1) Sypex Dumper - легкий компкатный php скрипт для управления бд,удобно когда нет доступа к phpmyadmin (аналог phpmyadmin http://sypex.net/)
+2) IonCube - платное по для защиты и шифрования php кода. около 200$ есть trial (декодирование зашифрованных файлов https://idecode.eu/decoder)

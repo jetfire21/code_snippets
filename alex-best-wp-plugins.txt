@@ -231,6 +231,3 @@ demo https://huge-it.com/wordpress-gallery-demo-5-thumbnails/#plugin_demo_wrappe
 4) GT3 Photo & Video Gallery - Lite немножко расширяет стандартную галлерею wordpress (плюс в том что есть lightbox слайдшоу),еще на мобилах изображения в 1 колонку выстраивает по 100% ширине,а wp по умолчанию по 3 колонки оставляет и получются слишком мелкие неудобные изображения
 
 #####################
-
-1) Adminer - легкий компкатный php скрипт для управления бд,удобно когда нет доступа к phpmyadmin (аналог phpmyadmin https://www.adminer.org/)
-2) IonCube - платное по для защиты и шифрования php кода. около 200$ есть trial (декодирование зашифрованных файлов https://idecode.eu/decoder)
