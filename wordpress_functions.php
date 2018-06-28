@@ -859,18 +859,7 @@ function get_template_part_with_data($slug, array $data = array()){
 
 
 
-/* *********** передача параметров в шаблон woocommerce ************ */
 
-function get_template_part_with_data($slug, array $data = array()){
-    $slug .= '.php';
-    $slug =  WC()->template_path().$slug;
-    extract($data);
-
-     require locate_template($slug);
-}
-
-
-<h1>woocommerce.php</h1>
 
 <?php
 
@@ -1330,7 +1319,7 @@ add_action('admin_head','hide_user_count');
 /* ***** простое сркытие администратора от других пользователей в админ панели ************** */
 	 
 /* вывод системных/отладочных данных в форматированном виде */
-function alex_debug ( $show_text = false, $is_arr = false, $title = false, $var, $var_dump = false, $sep = "| "){
+function as21_debug ( $show_text = false, $is_arr = false, $title = false, $var, $var_dump = false, $sep = "| "){
 
     // e.g: alex_debug(0, 1, "name_var", $get_tasks_by_event_id, 1);
     $debug_text = "<br>========Debug MODE==========<br>";
@@ -1824,16 +1813,7 @@ function your_custom_menu_item ( $items, $args ) {
 /* **** as21 **** */
 
 
-/* **** цепляемся за ajax добавление товара в корзину (ползено когда нужно обновить количество товара при клике на добавить товар в кастомной миникорзине) */
-add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
-function iconic_cart_count_fragments( $fragments ) {
-    
-    $fragments['li.as21_menu_cart span'] = '<span>' . WC()->cart->get_cart_contents_count() . '</span>';
-    // var_dump($fragments);
-    // exit;
-    return $fragments;    
-}
-/* **** as21 **** */
+
 
 /* **** check page templage **** */
 if( is_page_template('page_multiquery.php') )
@@ -2082,64 +2062,7 @@ add_shortcode('as21-scheme', 'as21_section_scheme');
 
  site_url('save-pins/'); /* example: http(s)://site.com/save-pins/    */
 
-/* **** программное добавление продуктов,товаров в базу данных woocommerce **** */
 
-echo 'a777';
-$products['Name'] = 'продукт 1 добавл программно';
-$products['Description'] = 'описание продукт 1 добавл программно';
-$products['SKU'] = 3423423434;
-$post_id = wp_insert_post( array(
-    'post_author' => 1,
-    'post_title' => $products['Name'],
-    'post_content' => $products['Description'],
-    'post_status' => 'publish',
-    'post_type' => "product",
-    // 'post_category' => array(20,26)
-) );
-
-// if we are in frontend
-require_once ABSPATH . 'wp-admin/includes/media.php';
-require_once ABSPATH . 'wp-admin/includes/file.php';
-require_once ABSPATH . 'wp-admin/includes/image.php';
-
-$url = 'http://b2b.berghoffworldwide.ru/catalog_xml_export/productsPhoto/1399843/01.jpg';
-$desc = "";
-
-// Download an image from the specified URL and attach it to a post
-$attachment = media_sideload_image( $url, $post_id, $desc,'id' ); // arg 'id' only with wp 4.8
-// set featured image to post
-$add_meta = add_post_meta($post_id, '_thumbnail_id', $attachment);
-if($add_meta) echo 'added successfully!';
-else "error when added";
-
-// Relates an object (post, link etc) to a term and taxonomy type (tag, category, etc). Creates the term and taxonomy relationship if it doesn't already exist.
-wp_set_object_terms( $post_id, 20, 'product_cat' );
-
-wp_set_object_terms( $post_id, 'simple', 'product_type' );
-update_post_meta( $post_id, '_visibility', 'visible' );
-update_post_meta( $post_id, '_stock_status', 'instock');
-update_post_meta( $post_id, 'total_sales', '0' );
-update_post_meta( $post_id, '_downloadable', 'no' );
-update_post_meta( $post_id, '_virtual', 'yes' );
-update_post_meta( $post_id, '_regular_price', '400' ); // цена внтурти отдельного продукта
-update_post_meta( $post_id, '_sale_price', '' );
-update_post_meta( $post_id, '_purchase_note', '' );
-update_post_meta( $post_id, '_featured', 'no' );
-update_post_meta( $post_id, '_weight', '' );
-update_post_meta( $post_id, '_length', '' );
-update_post_meta( $post_id, '_width', '' );
-update_post_meta( $post_id, '_height', '' );
-update_post_meta( $post_id, '_sku', 111111 ); // артикул
-update_post_meta( $post_id, '_product_attributes', array() );
-update_post_meta( $post_id, '_sale_price_dates_from', '' );
-update_post_meta( $post_id, '_sale_price_dates_to', '' );
-update_post_meta( $post_id, '_price', '401' ); // цена в таблице продуктов
-update_post_meta( $post_id, '_sold_individually', '' );
-update_post_meta( $post_id, '_manage_stock', 'no' );
-update_post_meta( $post_id, '_backorders', 'no' );
-update_post_meta( $post_id, '_stock', '' );
-
-/* **** as21 **** */
 
 add_action('wp_ajax_bp_user_review1', 'ajax_review2');
 add_action('wp_ajax_nopriv_bp_user_review1', 'ajax_review2');
