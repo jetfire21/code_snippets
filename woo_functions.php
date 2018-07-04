@@ -273,3 +273,18 @@ function get_products_from_category_by_ID( $category_id ) {
 
 global $product;
 $id = $product->get_id();
+
+
+/******** меняет кол-во выводимых продуктов на странице shop  ************/
+add_filter('loop_shop_columns', 'loop_columns',999);
+// if (!function_exists('loop_columns')) {
+function loop_columns() {
+    return 3; // 3 products per row
+// }
+}
+/******** меняет кол-во выводимых продуктов на странице shop  ************/
+
+/***** меняет кол-во продуктов-категорий на странице front_page если продукты добавлены шорткодом [product_categories] **********/
+// закинут в файл site.ru\themes\storefront\woocommerce\loop\loop-start.php
+$GLOBALS['woocommerce_loop']['columns'] = 5;
+/***** меняет кол-во продуктов-категорий на странице front_page если продукты добавлены шорткодом [product_categories] **********/
