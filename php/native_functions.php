@@ -126,3 +126,8 @@ function as21_wjm_write_file_jobs_count($filename,$text){
 		<input type='submit'> 
 	</form>
 
+<?php
+
+header('Content-Type: text/html; charset=utf-8');
+
+$td =  mb_convert_encoding($td, 'utf-8', 'cp-1251'); // переконвертация кириллица windows-1251 в utf-8
