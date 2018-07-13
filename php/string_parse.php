@@ -172,3 +172,18 @@ if (strpos($ep, '?') >= 1) {
 echo $ep;
 
 /* **** as21 parsing data **** */
+
+/* **** извлечет все что находится между тэгом table **** */
+preg_match('~<table>(.*?)</table>~is', $geo, $m );
+
+/* ****  заменяет текст между тегами <a> **************/
+$next = preg_replace("#>[^<]+#i", '>Next card 2', trim($next_link));
+/*
+без trim($next) "Next card 2" будет дублировать после ссылки!
+<a href="http://aussieglo3.loc/product/64-cooperation/" rel="next">Next card</a><a href="http://aussieglo3.loc/product/64-cooperation/" rel="next">Next card 2</a>Next card 
+*/
+
+/* ****  пример #1 **************/
+
+string(14) "#33 Brilliance" => string(10) "Brilliance"
+$full_title = preg_replace('/#(.*)\s/i', '',$full_title );

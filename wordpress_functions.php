@@ -847,6 +847,25 @@ function cooltimeline_view( $output, $tag, $attr, $m ){
 }
 /* ************** добавить фильтр к шорткоду метод 2 *********** */
 
+/* ************** пример использования фильтра (добавление новой локации для меню) *********** */
+
+add_filter( 'storefront_register_nav_menus','as21_m1');
+function as21_m1($menus){
+    $menus['footer_menu1'] = __( 'Footer Menu 1', 'storefront' );
+    // print_r($menus);
+    // exit;
+    return $menus;
+}
+
+//     register_nav_menus( apply_filters( 'storefront_register_nav_menus', array(
+//                 'primary'   => __( 'Primary Menu', 'storefront' ),
+//                 'secondary' => __( 'Secondary Menu', 'storefront' ),
+//                 'handheld'  => __( 'Handheld Menu', 'storefront' ),
+//             ) ) );
+// }
+
+/* ************** пример использования фильтра (добавление новой локации для меню) *********** */
+
 
 /* *********** передача параметров в шаблон wordpress ************ */
 

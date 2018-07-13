@@ -288,3 +288,25 @@ function loop_columns() {
 // закинут в файл site.ru\themes\storefront\woocommerce\loop\loop-start.php
 $GLOBALS['woocommerce_loop']['columns'] = 5;
 /***** меняет кол-во продуктов-категорий на странице front_page если продукты добавлены шорткодом [product_categories] **********/
+
+
+/******** сслыка на предыдущий и следующий продукт на странице single-product  ************/
+
+echo next_post_link('%link', '&larr; PREVIOUS', TRUE, ' ', 'product_cat');
+ echo previous_post_link('%link', 'NEXT &rarr;', TRUE, ' ', 'product_cat');
+ echo previous_post_link('%link', 'Previous card', TRUE, ' ', 'product_cat');
+ echo next_post_link('%link', 'Next card', TRUE, ' ', 'product_cat');
+
+ /******** сслыка на предыдущий и следующий продукт на странице single-product  ************/
+
+ /******** изменить количество связанных продуктов  ************/
+ // иногда 2 раза подряд выводит на 1 товар меньше (вместо 4-3) надо разобраться почему
+
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args' );
+ function jk_related_products_args( $args ) {
+ 
+$args['posts_per_page'] = 4; // количество "Похожих товаров"
+ $args['columns'] = 4; // количество колонок
+ return $args;
+}
+ /******** изменить количество связанных продуктов  ************/
