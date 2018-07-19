@@ -91,34 +91,34 @@ $str = preg_replace("/[^0-9]/", '', $str);
 
 /* **** as21 разбивает строку на подстроку (будет работаь быстрее чем регулярка) **** */
 	// $mail = 'as_fds35@ya.ru';
-	$mail = $post_validate['user_email'];
-	$user_mail = explode('@', $mail);
+$mail = $post_validate['user_email'];
+$user_mail = explode('@', $mail);
 	$username = $user_mail[0]; // as_fds35
-/* **** as21 разбивает строку на подстроку **** */
+	/* **** as21 разбивает строку на подстроку **** */
 
-/* **** получить текст между тэгами **** */
-$html_crop =  preg_match_all('#<h3 class="r"><(.+?)</h3>#is', $html, $match);
+	/* **** получить текст между тэгами **** */
+	$html_crop =  preg_match_all('#<h3 class="r"><(.+?)</h3>#is', $html, $match);
 
 
 
-/* **** as21 parsing data **** */
+	/* **** as21 parsing data **** */
 
-echo '<h2>demo 1</h2>';
+	echo '<h2>demo 1</h2>';
 
 // on input
-$url = "http://seo-crawler.loc/?utm_source=google&utm_medium=cpc&utm_campaign=friendly&network=g&placement&adposition=1t3&keyword=%2Bmobile%20%2Bfriendly%20%2Bwebsite&gclid=cnmq76wgksscfysjvqodqvsfqw";
+	$url = "http://seo-crawler.loc/?utm_source=google&utm_medium=cpc&utm_campaign=friendly&network=g&placement&adposition=1t3&keyword=%2Bmobile%20%2Bfriendly%20%2Bwebsite&gclid=cnmq76wgksscfysjvqodqvsfqw";
 
-$url_query = explode("&", $url);
-foreach ($url_query as $query) {
-    $subquery = explode("=", $query);
-    print_r($subquery);
-    if ($subquery[1]) {
-        $parse_url[$subquery[0]] = $subquery[1];
-    }
+	$url_query = explode("&", $url);
+	foreach ($url_query as $query) {
+		$subquery = explode("=", $query);
+		print_r($subquery);
+		if ($subquery[1]) {
+			$parse_url[$subquery[0]] = $subquery[1];
+		}
 
-}
-print_r($url_query);
-print_r($parse_url);
+	}
+	print_r($url_query);
+	print_r($parse_url);
 
 /*
 result (on output):
@@ -154,16 +154,16 @@ var_dump(strpos($ep, '?'));
 // if (!false == strpos($ep, '?')) {
 if (strpos($ep, '?') >= 1) {
     // echo 'if yes';
-    $full_url  = explode("?", $ep);
-    $url_query = explode("&", $full_url[1]);
-    foreach ($url_query as $query) {
-        $subquery = explode("=", $query);
-        print_r($subquery);
-        if ($subquery[1]) {
-            $ext_data[$subquery[0]] = $subquery[1];
-        }
+	$full_url  = explode("?", $ep);
+	$url_query = explode("&", $full_url[1]);
+	foreach ($url_query as $query) {
+		$subquery = explode("=", $query);
+		print_r($subquery);
+		if ($subquery[1]) {
+			$ext_data[$subquery[0]] = $subquery[1];
+		}
 
-    }
+	}
 }
 
 // print_r($url_query);
@@ -187,3 +187,16 @@ $next = preg_replace("#>[^<]+#i", '>Next card 2', trim($next_link));
 
 string(14) "#33 Brilliance" => string(10) "Brilliance"
 $full_title = preg_replace('/#(.*)\s/i', '',$full_title );
+
+/* ****  пример #2 возвращает только числа **************/
+
+preg_match('!\d+!',$cart_subtotal,$match_num);
+
+// echo "<br>"; var_dump($match_num[0]);
+
+// echo $int = filter_var($cart_subtotal, FILTER_SANITIZE_NUMBER_INT);
+// echo '<hr>';
+// echo preg_replace('/[^0-9]/', '', $cart_subtotal);
+// echo '<hr>';
+
+/* ****  пример #2 возвращает только числа **************/
