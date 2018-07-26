@@ -321,3 +321,16 @@ as21_debug(0,1,'',$terms)
 var_dump(wc_get_product_cat_ids($product_id));
 
  /******** получить список всех категорий у продукта (или у поста)  ************/
+
+
+ /******** сортировка продуктов на стринцие категории продукта  ************/
+
+// sort products in page product category
+    add_filter( 'woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_catalog_ordering_args' );
+    function custom_woocommerce_get_catalog_ordering_args( $args ) {
+
+        $args['orderby'] = 'date ID';
+        $args['order'] = 'DESC';
+        return $args;
+    }
+ /******** сортировка продуктов на стринцие категории продукта  ************/

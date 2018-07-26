@@ -588,12 +588,25 @@ function as21_check_system_usage()
 /* ***** использование фильтра обьявленный в каком-то плагине *********** */
 $result['showing'] = apply_filters( 'job_manager_get_listings_custom_filter_text', $message, $search_values );
 
-// чтобы вернуть значение 2 переменной,обзяательно указать кол-во параметров в фильтре
+// чтобы вернуть значение 2 переменной и других,обзяательно указать кол-во параметров в фильтре
 add_filter( 'job_manager_get_listings_custom_filter_text',"a21_q",100,2 );
 function a21_q($message, $search_values){
    var_dump($message);
    return $message;
 }
+
+// return apply_filters( "{$adjacent}_post_link", $output, $format, $link, $post, $adjacent );
+add_filter( "next_post_link", 'as21_filter_prev_next_prod_links',100,5 );
+add_filter( "previous_post_link", 'as21_filter_prev_next_prod_links',100,5 );
+function as21_filter_prev_next_prod_links($output, $format, $link, $post, $adjacent){
+    // var_dump($post);
+    // as21_debug(0,1,'as21_nav1',$post);
+    // var_dump(carbon_get_post_meta($post->ID, 'crb_use_as_set'));
+    if( carbon_get_post_meta($post->ID, 'crb_use_as_set') == "yes") return;
+    // if($post->ID == 59) return;
+    return $output;
+}
+
 /* ***** использование фильтра обьявленный в каком-то плагине *********** */
 
 /* ********** hide username in login form ******************** */
@@ -1344,6 +1357,31 @@ function hide_user_count(){
 add_action('admin_head','hide_user_count');
 
 /* ***** простое сркытие администратора от других пользователей в админ панели ************** */
+
+/* ***** когда не знаешь к какому js события зацепиться,универсально использовать это ************** 
+пример: wp плагин carbon fields добавляет новую страницу,по умолчанию все элементы развернуты,для экономии места мы их сворачиваем
+*/
+
+add_action('admin_footer','as21_admin_custom_js',999);
+function as21_admin_custom_js()
+{
+?>
+<script>
+
+    jQuery( document ).ready(function() {
+
+        setTimeout(function() {
+            // console.log('hook event');
+            jQuery(".carbon-row").addClass('collapsed');
+            jQuery(".carbon-row:last-child").removeClass('collapsed');
+                }, (100)); // redirect original product page after go cf7 page
+            });
+
+</script>
+<?php
+}
+/* ***** когда не знаешь к какому js события зацепиться,универсально использовать это ************** */
+
 	 
 /* вывод системных/отладочных данных в форматированном виде */
 function as21_debug ( $show_text = false, $is_arr = false, $title = false, $var, $var_dump = false, $sep = "| "){

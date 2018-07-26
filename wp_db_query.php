@@ -112,7 +112,11 @@ $wpdb->insert(
 	array( '%d','%s', '%s','%d', '%d', '%d' )
 );
 
-
+    $wpdb->insert(
+        $wpdb->posts,
+        array( 'post_author'=>'1', 'post_title'=>$list[0], 'post_date'=>current_time('mysql'),'post_type' => 'stockist','comment_status'=>'closed','ping_status'=>'closed'),
+        array( '%d','%s','%s', '%s', '%s', '%s' )
+    );
 
 ############# work mysql сложные запросы ###################
 SELECT ( 6371 * acos( cos( radians(56.1076798) ) * cos( radians( 56.1443258 ) ) * cos( radians( 47.2471201 ) - radians(47.1779399) ) + sin( radians(56.1076798) ) * sin( radians( 56.1443258) ) ) ) FROM bpw_posts
