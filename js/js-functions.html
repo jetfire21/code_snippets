@@ -11,7 +11,24 @@ title = title[0];
 title = title.substr(1);
 // console.log(title);
 
+// возврашает позицию (может быть и 0, поэтому проверяем на -1)
+if( label.search(/free/i) != -1 ) { 
+    // console.log('free---'+i);
+    $(this).show();
+}
+
 // ************ регулярные выражения на javascript (пример) **********
+
+// ************ reg использование переменной в регулярном выражении **********
+
+        var state - перем где содержатс динам данные (например 'php')
+        var label = 'В этом выражении ищем php соответвие';
+            var re = new RegExp(state);
+              if( re.test(label) ) console.log(i);
+              else console.log('state not found');
+
+// ************ reg использование переменной в регулярном выражении **********
+
 </script>
 
 <!-- /* **** as21 динмаическое добавление данных в метод плагина, например через ajax
@@ -249,3 +266,7 @@ jQuery(".seocrawler-navigation .sf-menu li a").click(function(){
 	console.log("\r\n\r\n");
 });
 /* add anchor to end url: http:/site.ru/#block-prices (support ie >=10) */
+
+/* **** полезно,когда какие-то события не дают выполняться кастомному обработчику (просто удаляем событие) **** */
+  $('body').unbind('update_checkout');
+

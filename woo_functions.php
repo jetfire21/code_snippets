@@ -334,3 +334,20 @@ var_dump(wc_get_product_cat_ids($product_id));
         return $args;
     }
  /******** сортировка продуктов на стринцие категории продукта  ************/
+
+ /******** ограничение доставки только в одну страну,весь список  стран не скрывает,всего лишь по умолчанию выбирает AU
+ /wp-admin/admin.php?page=wc-settings Указать страну в selling locations:  ************/
+
+function woo_override_checkout_fields( $fields ) { 
+
+    $fields['shipping']['shipping_country'] = array(
+        'type'      => 'select',
+        'label'     => __('My New Country List', 'woocommerce'),
+        'options'   => array('AU' => 'Australia')
+    );
+
+    return $fields; 
+} 
+add_filter( 'woocommerce_checkout_fields' , 'woo_override_checkout_fields' );
+
+ /******** ограничение доставки только в одну страну ***********/
