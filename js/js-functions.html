@@ -270,3 +270,20 @@ jQuery(".seocrawler-navigation .sf-menu li a").click(function(){
 /* **** полезно,когда какие-то события не дают выполняться кастомному обработчику (просто удаляем событие) **** */
   $('body').unbind('update_checkout');
 
+/* **** отмена/удаление события в javascript ***** */
+
+/* I had a similar issue, and instead of remove the entire script, i went to see when the event is created, and i found this.
+
+$( document.body ).bind( 'update_checkout', this.update_checkout );
+After reading a little, i found that I will not be able to unbind because of the namespace, so i hooked up on the on event and since i can't prevent default i stoped the propagation of the event.
+
+and these solved my problem.
+*/
+
+jQuery(document.body).on('update_checkout', function(e){
+    //e.preventDefault();
+    //e.stopPropagation();
+    e.stopImmediatePropagation();
+    //console.log(e);
+});
+/* **** отмена/удаление события в javascript ***** */

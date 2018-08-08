@@ -350,4 +350,53 @@ function woo_override_checkout_fields( $fields ) {
 } 
 add_filter( 'woocommerce_checkout_fields' , 'woo_override_checkout_fields' );
 
- /******** ограничение доставки только в одну страну ***********/
+/******** ограничение доставки только в одну страну ***********/
+
+/******** wc вставка html select выбор страны на любой странице  ***********/
+
+<div class="woocommerce-billing-fields__field-wrapper">
+<p class="">Country: &nbsp;<strong>Australia</strong></p>
+<?php
+$key = 'billing_state';
+$args = array('type' => 'state','autocomplete'=>true,'label'=>'Select a state&hellip;');
+woocommerce_form_field( $key, $args, $value = null );
+?>
+<?php
+                // global $checkout;
+                //  // $fields = $checkout->get_checkout_fields( 'billing' );
+                //  $fields = WC()->checkout->get_checkout_fields( 'billing' );
+
+                //  foreach ( $fields as $key => $field ) {
+                //      if ( isset( $field['country_field'], $fields[ $field['country_field'] ] ) ) {
+                //          $field['country'] = $checkout->get_value( $field['country_field'] );
+                //      }
+                //      woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
+                //  }
+?>
+</div>
+
+
+<?php
+            /* method 2 
+            global $woocommerce;
+            $countries_obj   = new WC_Countries();
+            $countries   = $countries_obj->__get('countries');
+            $default_country = $countries_obj->get_base_country();
+            $default_county_states = $countries_obj->get_states( $default_country );
+
+            echo '<div id="my_custom_state_field"><h2>' . __('States') . '</h2>';
+
+            woocommerce_form_field('my_state_field', array(
+                'type'       => 'select',
+                'class'      => array( 'chzn-drop' ),
+                'label'      => __('Select a state'),
+                'placeholder'    => __('Enter something'),
+                'options'    => $default_county_states
+            )
+        );
+            echo '</div>';
+            method 2 */
+
+            
+
+/******** wc вставка html select выбор страны на любой странице  ***********/
