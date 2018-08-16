@@ -350,6 +350,14 @@ function woo_override_checkout_fields( $fields ) {
 } 
 add_filter( 'woocommerce_checkout_fields' , 'woo_override_checkout_fields' );
 
+add_filter( 'woocommerce_checkout_fields' , 'as21_custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function as21_custom_override_checkout_fields( $fields ) {
+     $fields['order']['order_comments']['placeholder'] = 'Notes about your order (e.g., special delivery notes)';
+     return $fields;
+}
+
 /******** ограничение доставки только в одну страну ***********/
 
 /******** wc вставка html select выбор страны на любой странице  ***********/
