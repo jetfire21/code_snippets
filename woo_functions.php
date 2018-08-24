@@ -408,3 +408,26 @@ woocommerce_form_field( $key, $args, $value = null );
             
 
 /******** wc вставка html select выбор страны на любой странице  ***********/
+
+
+/*********** set default state,country in checkout & cart page (установка по умолчанию штат,страна) ************/ 
+
+add_action('woocommerce_add_to_cart' , 'as21_set_default_state_cart_page'); 
+
+function as21_set_default_state_cart_page(){
+    //WC()->customer->set_country('US'); //set country code of default country
+    //WC()->customer->set_shipping_country('US');
+    // WC()->customer->set_country(''); //reset default country
+    WC()->customer->set_shipping_state( 'NSW' );
+}
+
+// work on checkout page
+add_filter( 'default_checkout_billing_state', 'as21_set_default_state_checkout_page' );
+  
+function as21_set_default_state_checkout_page() {
+  return 'NSW'; // state code
+}
+
+/*********** set default state in checkout & cart page ************/ 
+
+

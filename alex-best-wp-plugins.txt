@@ -215,6 +215,8 @@ tcp-zoom
 
 59) Equal Height Columns By MIGHTYminnow, Mickey Kay, Braad Martin - колонки одинаковой высоты
 
+60) Popup Maker — Popup Forms, Optins & More Автор: WP Popup Maker  - вывод контента,любого shortcode в всплывающем окне popup
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery
