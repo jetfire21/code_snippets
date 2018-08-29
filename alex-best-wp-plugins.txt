@@ -217,6 +217,8 @@ tcp-zoom
 
 60) Popup Maker — Popup Forms, Optins & More Автор: WP Popup Maker  - вывод контента,любого shortcode в всплывающем окне popup
 
+61) Autoptimize - merge and minify css,js files
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery
