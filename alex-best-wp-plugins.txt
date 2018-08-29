@@ -219,6 +219,10 @@ tcp-zoom
 
 61) Autoptimize - merge and minify css,js files
 
+62) Simple Image Sizes  By Rahe - Add options in media setting page for images sizes (добавление новых размеров,есть пересоздание только 1 размера по назвиню thumb или типу поста)
+
+63) Force Regenerate Thumbnails - Автор: Pedro Elsner   удаляет старые неиспользуемые размеры изображений c диска и пересоздает заново все thumbs
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery
