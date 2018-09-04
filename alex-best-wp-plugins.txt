@@ -223,6 +223,10 @@ tcp-zoom
 
 63) Force Regenerate Thumbnails - Автор: Pedro Elsner   удаляет старые неиспользуемые размеры изображений c диска и пересоздает заново все thumbs
 
+64) WP Retina 2x By Jordy Meow - https://wordpress.org/plugins/wp-retina-2x/ (добалвение изображения для retina дисплеев iphone)
+65) Image Regenerate & Select Crop By Iulia Cazan - изменение размера изображений с широким функционалом (as regenerate thumbnails advanced)
+66) Kama Thumbnail: - продвинутый плагин
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery
