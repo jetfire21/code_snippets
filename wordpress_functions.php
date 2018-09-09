@@ -784,6 +784,9 @@ https://gist.github.com/r3code/35b9e7f5a7ac8f44c265f07e37eb3c87
 
 /* ************** варианты подключения js и css *********** */
 
+require_once 'custom/custom-functions.php';
+
+
  // подключение js скриптов для всех страниц
 add_action( 'wp_enqueue_scripts', 'css_js_for_theme' );
 function css_js_for_theme(){

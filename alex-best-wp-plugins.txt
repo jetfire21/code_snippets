@@ -227,6 +227,8 @@ tcp-zoom
 65) Image Regenerate & Select Crop By Iulia Cazan - изменение размера изображений с широким функционалом (as regenerate thumbnails advanced)
 66) Kama Thumbnail: - продвинутый плагин
 
+67) Log HTTP Requests Автор: FacetWP, LLC - запись в журнал всех http запросов!
+
 ======== галлереи изображений ======================
 
 1)Gallery – Photo Gallery

@@ -1,0 +1,40 @@
+----------- main install yii-advanced -------------------
+
+загрузка вручную файла composer.phar в папку с доменом cd e:\OSPanel\domains\site-yii.loc\
+php composer.phar global require "fxp/composer-asset-plugin:~1.3"
+затем создаем там подпапку (ex. subdir)
+php composer.phar create-project --prefer-dist yiisoft/yii2-app-advanced d:\OSPanel\domains\site2.loc
+(php composer.phar create-project --prefer-dist yiisoft/yii2-app-advanced e:\OSPanel\domains\site-yii.loc\)
+http://site-yii.loc/subdir/frontend/web/ если там нет index.php выполнить след команду:
+php init в папке домена (http://site-yii.loc/subdir/) выбрать Development
+
+
+
+http://site-yii.loc/subdir/requirements.php - Yii Application Requirement Checker
+Cur. ver. YII: <?php echo Yii::getVersion();?>
+e:\OSPanel\domains\site-yii.loc\subdir\common\config\main-local.php - главный конфигурационный файл (подключение к бд,mail)
+
+if sample code for Basic then for all Advanced replace:
+namespace app\controllers; -> namespace frontend\controllers;
+http://site-yii.loc/subdir/frontend/web/index.php?r=country%2Findex
+----------------------------------------------------
+
+http://ondras.zarovi.cz/sql/demo/ - Онлайн-дизайнер схем баз данных MySQL
+
+================ TMP =========================================
+cd d:\OSPanel\modules\php\PHP-7.2\
+	
+php -r "readfile('https://getcomposer.org/installer');" | php
+
+d:\OSPanel\domains\super-crypto-exchange.loc\
+
+
+composer create-project yiisoft/yii2-app-advanced d:\OSPanel\domains\site.loc 2.0.12
+
+http://localhost/basic/web/index.php
+http://localhost/advanced/web/index.php
+http://site.loc/frontend/web/
+
+d:/OSPanel/domains/site.loc/
+
+php composer.phar global require "fxp/composer-asset-plugin:~1.3"
