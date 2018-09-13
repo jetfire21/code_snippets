@@ -1,0 +1,317 @@
+========= CONFIG ==============
+
+php 7.0 x64
+mariadb-5.5 x64
+apache + php 7 + nginx 1.12
+чпу работает
+
+php 7.2
+nginx 1.12
+mysql 5.6
+на такой конфигурации чпу не работало в yii2
+===========================
+
+http://web/?r=gii
+
+http://hello.yota.ru/sa/?redirurl=http:%2F%2Fya.ru%2F
+https://my.yota.ru/selfcare/devices
+
+rest API:
+http://web/?r=user&Index
+
+
+На Nginx это все делается через nginx.conf. Все правила прописываются там. Если у вас есть .htaccess то вы можете инструкции Apache конвертировать в Nginx например с помощью данного сервиса. Все решаемо.
+http://winginx.com/ru/htaccess - htaccess-конвертер для nginx
+
+Делаю запрос http://yii2.loc/?r=test всё отображается как нужно, если сделать запрос http://yii2.loc/test получаю 500 Internal Server Error.
+
+'rules' => [
+'<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>'
+]
+
+Если strict не включен, прописывать ничего не надо
+=====================
+rest api
+http://dev58.ru/articles/yii2_nastroyka_rest_api
+http://developer.uz/blog/restful-api-in-yii2/
+============================================
+на nginx не удалось настроить чпу,перепробовал множество конфигов!
+а на apache все работает только нужно закинуть .htaccess в 
+http://site-yii.loc/subdir/frontend/web/
+==============
+
+
+http://site-yii.loc/subdir/frontend/web/
+
+e:\OSPanel\userdata\config\Nginx-1.12_server.conf
+
+================= кастомный конфигурационный файл для домена ========================
+
+как .htaccess для Apache
+
+Ну не имеет значения. Если нужно для Apache, берём шаблон конфига для Apache, Если только для Nginx - шаблон для Nginx.
+И всё работает. У меня лично работает. И да, использую только Nginx.
+
+Ещё раз.
+Берём из папки *userdata\config файлик Nginx-1.9_vhost.conf (либо шаблон для другой версии, если вы используете другую версию сервера), копируем его в папку домена (её корень), например, для домена mysite.local нужно положить шаблон непосредственно в корень *domains\mysite.local.
+Далее, открываем файл на редактирование, делаем всё, что нам нужно, сохраняемся, перезапускаем сервер.
+
+================ логические блоки =====================
+регистрация,авторизация
+
+в модели мы валидируем входные данные от пользователя
+
+=============
+в yii 2.0.15 из коробки уже реализованная регистрации и авторизация
+- после закрытия и перезапуска браузера пользователь остается авторизованным
+- галочка запомнить меня
+Yii2 - подтверждение регистрации на сайте по email
+https://klisl.com/yii2-confirmation_of_registration.html
+
+user online| offline
+
+в папке домена webroot (ex. public_html or cd e:\OSPanel\domains\site-yii.loc\subdir) где находится файл yii запускаем команду (yii migrate)
+если возникает такая ошибка Exception 'yii\base\UnknownPropertyException' with message 'Setting unknown property: yii\console\Request::parsers'
+надо в конфигах web закоментить
+(   
+/* 
+'request' => [
+'parsers' => [
+'application/json' => 'yii\web\JsonParser',
+]
+],
+*/
+)
+он автоматически создаст пустую таблицу "user" с заготовленными полями,потом туда попадут такие данные
+INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES (NULL, 'alex', 'jaVvBMRCV-E9hfOoeRKiPMNGKIJ72HDg', '$2y$13$adxXEcKPfMv39G84dpdOa.ISFxdVMXD5oktfDDbOj7SfJtKqx5sPa', NULL, 'alex@ya.ru', '10', '1536691935', '1536691935')
+
+That's exactly what I've meant when I created this issue:
+
+Store authKey in session in switchIdentity method of yii\web\User as well as user id is storing
+In renewAuthStatus method of yii\web\User, after getting identity ($identity = $class::findIdentity($id);) check authKey by $identity->validateAuthKey($authKey), where $authkey is stored in session authKey
+In my project I extended yii\web\User and overrided these methods that way.
+
+https://github.com/yiisoft/yii2/issues/9718
+
+==============================
+e:\OSPanel\domains\site-yii.loc\subdir\frontend\views\layouts\main.php
+
+<h2 style="text-align: center; padding: 20px 0; color: red;">Сайт в разработке!</h2>
+<?php 
+if(!Yii::$app->user->isGuest){
+echo 'Привет, авторизованный пользователь: '.Yii::$app->user->identity->username;
+}
+?>
+
+теперь интернета вообще нет,даже самого медленного,там баланс надо пополнить
+1)
+личный кабинет: my.yota.ru
+login: freerun-2012@yandex.ru
+pass: 4265082109z
+
+2)или номер лицевого счета для оплаты услуг: 6054927683
+
+к примеру скорость 2 mbit/s - 500 руб в месяц стоит
+3.5 mbit/s - 600 р
+
+===================
+
+для чпу ( 'enablePrettyUrl' ) на apache добавить .htaccess (в webroot)
+
+RewriteEngine on
+# If a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Otherwise forward it to index.php
+RewriteRule . index.php
+
+
+=================
+
+CommonController.php
+
+
+<?php
+// Глобальные функции только для отладки (работают во всем приложении)
+namespace frontend\controllers;
+
+use Yii;
+use yii\web\Controller;
+
+class CommonController extends Controller{
+}
+
+function beauty_view($arr){
+echo '<h3>Глоб. функция beauty_view:</h3><pre>'.print_r($arr,true).'</pre>';
+}
+
+example:
+class SiteController extends CommonController
+
+использование в контроллерах:
+beauty_view(Yii::$app);
+
+использование в views:
+\frontend\controllers\beauty_view(Yii::$app);
+\app\controllers\beauty_view(Yii::$app);
+
+===========================
+
+=========== cookie авторизация==============
+
+генерация ключа csrf на форме авторизации уже включена по умолчанию!
+<input type="hidden" name="_csrf-frontend" value="OsqezFNgg4Ukr_FtES0xcivRhYnzr59cPSd5GcSmV1EIr9n-CgjUzxOYmydfSFUEYIuy7sX76BpZYgFD9swwEw==">
+регенерируется после каждого обновления страницы 
+
+csrf защита чтобы я не отправил запрос от твоего имени  CSRF-token защищает от подделки запросов третьим лицом. Т.е. что бы например Я не отправил запрос от вашего имени. А в вашем примере вы получите свой токен и сделаете запрос от своего имен
+
+(auth_key) Generates "remember me" authentication key 
+
+в cookie
+_vdfl2	'cf9debe1100ed97f48c7bdac8077ee9d2b9e714a0552191932ba88c638328235a:2:{i:0;s:6:\"_vdfl2\";i:1;s:46:\"[7,\"P1HpKZsjLtZUQS956J46Bx4lze9GqoBL\",2592000]\";}'
+_csrf-frontend	'625ed4ffa892a4a3a97158a8bd51154e3424eabfa7d5a576ee265feafc9c3cd6a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"PLqyVKhjp2hmg9h9LhjO6faGpZ7z3Siy\";}'
+
+
+(advanced-frontend) xfjls	'3ujphf9q5jjj6cqq8ebur2jp36'
+_csrf-frontend	'e8349cc6283e53af5627c001bbece2117ca46a94619beba8cd10e59776a69e6ea:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"MLqWAsJv-gmbGIZ43WSW2bpoZB6cOHCv\";}'
+
+когда влючаю  'enableCsrfValidation' => true, то почему-то auth_key не попадает в cookie
+_csrf-frontend
+
+
+advanced-frontend	'bd67k2qo3dtmepqhihqqo1m425'
+_identity-frontend	'52a4b1a1da4c3cbd881aaba95b272c1c5298f1041f1a6ad57f6db618239f86faa:2:{i:0;s:18:\"_identity-frontend\";i:1;s:46:\"[2,\"CkIMf3eqvVQjrD5SifZT5h2dGPt-OYzf\",2592000]\";}'
+_csrf-frontend	'002261a2e20600ba8b1d40838ee4c727baca73f364875c8fc835324fac93c924a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"LhNdwMCLq_QlWTXuCylt9NYsHhXlbSTp\";}'
+
+/**
+* Switches to a new identity for the current user.
+*
+* When [[enableSession]] is true, this method may use session and/or cookie to store the user identity information,
+* according to the value of `$duration`. Please refer to [[login()]] for more details.
+*
+* This method is mainly called by [[login()]], [[logout()]] and [[loginByCookie()]]
+* when the current user needs to be associated with the corresponding identity information.
+*
+* @param IdentityInterface|null $identity the identity information to be associated with the current user.
+* If null, it means switching the current user to be a guest.
+* @param int $duration number of seconds that the user can remain in logged-in status.
+* This parameter is used only when `$identity` is not null.
+*/
+public function switchIdentity($identity, $duration = 0)
+
+
+https://p0vidl0.info/yii2-api-guides/guide-ru-security-authentication.html
+
+==================
+
+==================
+https://www.yiiframework.com/doc/guide/2.0/ru/runtime-sessions-cookies
+
+Несмотря на то, что в Yii имеются средства для предотвращения подмены состояний в cookie на стороне клиента, не рекомендуется хранить в состояниях важную информацию. Гораздо более правильным решением будет хранение её в постоянном хранилище на стороне сервера (например, в БД).
+
+Кроме того, для серьёзных приложений рекомендуется улучшить стратегию входа по cookie следующим образом:
+
+При успешном входе после заполнения формы генерируем и храним случайный ключ как в cookie состояния, так и в постоянном хранилище на сервере (т.е. в БД).
+
+При последующих запросах, когда аутентификация производится на основе информации в cookie, мы сравниваем две копии ключа и, перед тем, как аутентифицировать пользователя, проверяем, что они равны.
+
+Если пользователь входит через форму ещё раз, ключ регенерируется.
+
+Данная стратегия исключает возможность повторного использования старого состояния cookie, в котором может находится устаревшая информация.
+
+=========
+
+cookie[advanced-frontend] после каждой авторизации меняется,и это не auth key
+
+CREATE TABLE session
+(
+id CHAR(40) NOT NULL PRIMARY KEY,
+expire INTEGER,
+data BLOB
+)
+
+
+===========
+
+e:\OSPanel\domains\site-yii.loc\subdir\vendor\yiisoft\yii2\web\User.php
+
+====================
+
+// `identity` текущего пользователя. `Null`, если пользователь не аутентифицирован.
+$identity = Yii::$app->user->identity;
+// var_dump($identity);
+beauty_view($identity);
+
+common\models\User Object
+(
+[_attributes:yii\db\BaseActiveRecord:private] => Array
+(
+[id] => 2
+[username] => alex
+[auth_key] => CkIMf3eqvVQjrD5SifZT5h2dGPt-OYzf
+[password_hash] => $2y$13$xxvp6Ciknx6SV3Q67Rqgle582GHSWAQz.oF6Dl5ED55sJCcQ2xsU.
+[password_reset_token] => 
+[email] => alex@ya.ru
+[status] => 10
+[created_at] => 1536863500
+[updated_at] => 1536863500
+)
+
+[_oldAttributes:yii\db\BaseActiveRecord:private] => Array
+(
+[id] => 2
+[username] => alex
+
+============
+
+как пересоздать куку auth_key
+
+Не получается обновить,пересоздать куку auth_key в yii2
+
+почему этот метод switchIdentity() не пересоздает auth_key? а этот метод removeIdentityCookie() не удалет куки? что я делаю не так?
+нужно чтобы в будущем пользователи после закрытия бразуера вновь могли автоматичски авторизоваться по куке,при этом они могли бы удалить все сеансы(сессии) на других устройствах,кроме текущей,как это можно реализовать?
+
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+
+        // `identity` текущего пользователя. `Null`, если пользователь не аутентифицирован.
+        $identity = Yii::$app->user->identity;
+        // var_dump($identity);
+        // beauty_view($identity);
+
+
+        // switchIdentity($identity, $duration = 0)
+        // Yii::$app->user->switchIdentity($identity, 0);
+        // if( (bool)Yii::$app->request->get('delete_all_sessions') === true) Yii::$app->user->logout();
+
+        if( (bool)Yii::$app->request->get('delete_all_sessions') === true) Yii::$app->user->switchIdentity($identity, 0);
+        if( (bool)Yii::$app->request->get('delete_all_sessions') === true) Yii::$app->user->removeIdentityCookie();
+        
+        var_dump(Yii::$app->user->getId);
+
+       // Yii::$app->getResponse()->getCookies()->remove(Yii::createObject(array_merge($this->identityCookie, [
+       //      'class' => 'yii\web\Cookie',
+       //  ])));
+
+
+        // beauty_view(Yii::$app);
+        return $this->render('index');
+    }
+
+
+конфиг
+
+'user' => [
+        'identityClass' => 'app\models\User', // User must implement the IdentityInterface
+        // 'identityClass' => 'common\models\User', // User must implement the IdentityInterface
+        'enableAutoLogin' => true,
+        'enableSession' => true
+        // 'loginUrl' => ['user/login'],
+        // ...
+    ],
+
