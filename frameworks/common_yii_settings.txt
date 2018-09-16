@@ -315,3 +315,151 @@ common\models\User Object
         // ...
     ],
 
+
+
+
+
+php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic simple-rbac.loc
+d:\OSPanel\domains\simple-rbac.loc\
+
+// as21_code
+
+// as21_code
+public function generateAuthKey()
+{
+$this->auth_key = Yii::$app->security->generateRandomString();
+// return 'tmp_alex';
+}
+// ------------------
+
+
+====================================
+password_hack bcrypt yii2
+123456
+$2y$13$Xd9W08OlZ9BdvNdkg5wR9uyFWapQzMKWa.eIXYTbBMk4nUNldpsyW
+
+====================
+в главном контроллере
+
+    public function beforeAction($action)
+    {
+//        /*
+//        var_dump($action);
+        $m_user = new User();
+//        var_dump($m_user);
+//        var_dump($m_user->getId());
+        //         Yii::$app->user->logout();
+//                 var_dump(Yii::$app->user->getId() );
+//                 var_dump(Yii::$app->user->getIdentity( );
+        $auth_key_db = Yii::$app->user->getIdentity()->getAuthKey();
+//        var_dump($auth_key_db );
+//        echo '<hr>cockie';
+//        /        echo '<hr>';
+//        print_r( Yii::$app->request->cookies['_identity'] );
+//        echo $identityCookie_= Yii::$app->request->cookies['_identity']->value;
+        $identityCookie = Yii::$app->request->cookies->getValue('_identity');
+        $identityCookie = explode(",",str_replace('"','',$identityCookie));
+//        var_dump($identityCookie);
+//        var_dump($identityCookie[1]);
+
+        if($identityCookie[1] != $auth_key_db)  Yii::$app->user->logout();
+
+//        $identityCookie = Yii::$app->request->cookies['_identity'];
+//        $identityCookie = Yii::$app->request->cookies['_identity'];
+//        $identityCookie_= Yii::$app->request->cookies->get('_identity');
+//        var_dump( $identityCookie->getValue('_identity'));
+//
+//        echo '<hr>';
+//        var_dump( Yii::$app->request->cookies->getValue('alex_ses' ) );
+//        echo '<hr>';
+//        var_dump( Yii::$app->request->cookies->get('_identity') );
+//        echo '<hr>';
+//        var_dump( Yii::$app->request->cookies['_identity'] );
+////        exit;
+/// */
+        return parent::beforeAction($action);
+    }
+
+
+
+    
+почему то вылетает ошибка
+
+Error: Call to a member function getAuthKey() on null in D:\OSPanel\domains\yii-test.loc\controllers\SiteController.php:157
+Stack trace:
+#0 D:\OSPanel\domains\yii-test.loc\vendor\yiisoft\yii2\base\Controller.php(155): app\controllers\SiteController->beforeAction(Object(yii\base\InlineAction))
+#1 D:\OSPanel\domains\yii-test.loc\vendor\yiisoft\yii2\base\Module.php(528): yii\base\Controller->runAction('contact', Array)
+#2 D:\OSPanel\domains\yii-test.loc\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('site/contact', Array)
+#3 D:\OSPanel\domains\yii-test.loc\vendor\yiisoft\yii2\base\Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\OSPanel\domains\yii-test.loc\web\index.php(12): yii\base\Application->run()
+#5 {main}
+Copy Stacktrace Search Stackoverflow Search Google Exception
+Error
+Call to a member function getAuthKey() on null
+
+=================== Аутентификация с куки и сессиями ========
+
+при каждой аутентификации (ввод логин/пароль) пересоздавать auth_key e:\OSPanel\domains\site-yii.loc\subdir\common\models\LoginForm.php
+но тогда юзер сможеть попасть в лк только через 1 устройство,все остальные не будут авторизованы
+пересоздавать только когда нажато выйти со всех устройств !
+потом еще нужно верифицировать auth_key
+
+все методы из use common\models\User; в контроллере возвращают NULL,по сути не работают
+
+контроллер
+
+      function as21_test(){
+
+
+                // $model = new LoginForm();
+                // beauty_view($model);
+                $model2 = new User();
+                beauty_view( $model2);
+                var_dump($model2->getId() );
+                var_dump($model2->id );
+                var_dump($model2->username );
+                var_dump($model2->getAuthKey());
+                echo '<hr>';
+                var_dump($model2::findByUsername('alex'));
+                // exit;
+
+        //        /*
+//        var_dump($action);
+        // $m_user = new User();
+//        var_dump($m_user);
+//        var_dump($m_user->getId());
+        //         Yii::$app->user->logout();
+//                 var_dump(Yii::$app->user->getId() );
+//                 var_dump(Yii::$app->user->getIdentity( );
+            echo "<hr>";
+        // beauty_view( Yii::$app->user );
+            beauty_view( Yii::$app->user->getIdentity() );
+        // var_dump( Yii::$app->user->identity );
+            echo "<hr>";
+            $auth_key_db = Yii::$app->user->getIdentity()->getAuthKey();
+            var_dump($auth_key_db );
+            echo '<hr>';
+            var_dump(Yii::$app->user->getIdentity()->id );
+            $identity =  Yii::$app->user->getIdentity();
+//        echo '<hr>cockie';
+//        /        echo '<hr>';
+//        print_r( Yii::$app->request->cookies['_identity'] );
+//        echo $identityCookie_= Yii::$app->request->cookies['_identity']->value;
+            // $identityCookie = Yii::$app->request->cookies->getValue('_identity');
+            $identityCookie = Yii::$app->request->cookies->getValue('_identity-frontend');
+            $identityCookie = explode(",",str_replace('"','',$identityCookie));
+       // var_dump($identityCookie);
+            var_dump($identityCookie[1]);
+
+        // if( !empty($identityCookie[1]) && !empty($auth_key_db) && $identityCookie[1] != $auth_key_db)  Yii::$app->user->logout();
+        // else { echo 'кука совпадает!';}
+
+          // $u = $this->getUser();
+            var_dump($identity->getId() );
+            var_dump($identity->getAuthKey() );
+            var_dump($identity->validateAuthKey($identity->getAuthKey()) );
+            $identity->generateAuthKey();
+            $identity->save();
+
+        }
+        as21_test();
