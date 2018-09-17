@@ -463,3 +463,180 @@ Call to a member function getAuthKey() on null
 
         }
         as21_test();
+        
+        ======================
+        
+        
+<?php
+
+//namespace common\models;
+namespace frontend\models;
+
+use Yii;
+use yii\db\ActiveRecord;
+
+
+/**
+* ContactForm is the model behind the contact form.
+*/
+class HistoryAuth extends ActiveRecord
+{
+public static function tableName()
+{
+return '{{%history_auth}}';
+}
+
+public function addHistoryAuth()
+{
+$this->id_user = Yii::$app->user->id;
+$this->ip = Yii::$app->request->remoteIP;
+$this->user_agent = Yii::$app->request->userAgent;
+// return 'tmp_alex';
+}
+
+}
+
+public function login()
+{
+if ($this->validate()) {
+
+Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+
+$m_HistoryAuth = new HistoryAuth();
+
+$m_HistoryAuth->addHistoryAuth();
+$m_HistoryAuth->save();
+//            as21_beauty_view($m_HistoryAuth);
+//            $m_HistoryAuth->addIp();
+
+return (bool) Yii::$app->user->id;
+}
+
+return false;
+}
+
+
+public function actionIndex()
+{
+$reset_session = Yii::$app->request->get('reset_session');
+if ($reset_session == 'all') {
+
+}
+
+============
+
+use frontend\models\HistoryAuth;
+use WhichBrowser;
+
+
+$hash = Yii::$app->getSecurity()->generatePasswordHash('123456');
+// var_dump($hash);
+
+function as21_test()
+{
+
+$m_HistoryAuth = new HistoryAuth();
+//            as21_beauty_view($m_HistoryAuth);
+//            $m_HistoryAuth->addIp();
+//            $m_HistoryAuth->save();
+
+as21_beauty_view( $m_HistoryAuth->find()->all() );
+$table_HistoryAuth = $m_HistoryAuth->find()->all();
+
+//            $table_HistoryAuth->addIp;
+//            $table_HistoryAuth->save();
+//            $rows = ( new \yii\db\Query() )->select(['id', 'ip','user_agent'])->from('history_auth')->all();
+//            as21_beauty_view($rows);
+
+if( Yii::$app->user->isGuest ) return;
+
+// $model = new LoginForm();
+// beauty_view($model);
+//            $model2 = new User();
+//            beauty_view($model2);
+//            var_dump($model2->getId());
+//            var_dump($model2->id);
+//            var_dump($model2->username);
+//            var_dump($model2->getAuthKey());
+//            echo '<hr>';
+//            var_dump($model2::findByUsername('alex'));
+// exit;
+
+//        /*
+//        var_dump($action);
+// $m_user = new User();
+//        var_dump($m_user);
+//        var_dump($m_user->getId());
+//         Yii::$app->user->logout();
+//                 var_dump(Yii::$app->user->getId() );
+//                 var_dump(Yii::$app->user->getIdentity( );
+echo "<hr>";
+// beauty_view( Yii::$app->user );
+//            var_dump(Yii::$app->user->getIdentity());
+echo '<hr>';
+as21_beauty_view(Yii::$app->user->getIdentity());
+// var_dump( Yii::$app->user->identity );
+echo "<hr>";
+$auth_key_db = Yii::$app->user->getIdentity()->getAuthKey();
+var_dump($auth_key_db);
+echo '<hr>';
+var_dump(Yii::$app->user->getIdentity()->id);
+$identity = Yii::$app->user->getIdentity();
+//        echo '<hr>cockie';
+//        /        echo '<hr>';
+//        print_r( Yii::$app->request->cookies['_identity'] );
+//        echo $identityCookie_= Yii::$app->request->cookies['_identity']->value;
+// $identityCookie = Yii::$app->request->cookies->getValue('_identity');
+$identityCookie = Yii::$app->request->cookies->getValue('_identity-frontend');
+$identityCookie = explode(",", str_replace('"', '', $identityCookie));
+// var_dump($identityCookie);
+var_dump($identityCookie[1]);
+
+// if( !empty($identityCookie[1]) && !empty($auth_key_db) && $identityCookie[1] != $auth_key_db)  Yii::$app->user->logout();
+// else { echo 'кука совпадает!';}
+
+// $u = $this->getUser();
+var_dump($identity->getId());
+var_dump($identity->getAuthKey());
+var_dump($identity->validateAuthKey($identity->getAuthKey()));
+
+//            $identity->generateAuthKey();
+//            $identity->save();
+echo '<hr>';
+var_dump($identity->created_at);
+$timestamp = $identity->created_at;
+date_default_timezone_set('UTC');
+echo '<hr>';
+echo date('d M Y H:i:s',$timestamp);
+
+as21_beauty_view(Yii::$app->request->userAgent);
+as21_beauty_view(Yii::$app->request->remoteIP);
+
+
+
+$result = new WhichBrowser\Parser($_SERVER['HTTP_USER_AGENT']);
+as21_beauty_view($result);
+as21_beauty_view($result->browser->name);
+
+echo $result->os->name.' '.$result->os->version->value;
+
+}
+
+//        as21_test();
+
+return $this->render('index', ['reset_session' => $reset_session]);
+}
+
+
+function as21_beauty_view($var){
+
+echo '<h5>Глоб. отл. функция as21_beauty_view:</h5>';
+if( is_array($var) || is_object($var) ) echo '<pre>'.print_r($var,true).'</pre>';
+else var_dump($var);
+echo '<hr>';
+
+}
+
+php 7.2
+whichbrowser/parser
+        
