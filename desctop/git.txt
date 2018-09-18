@@ -19,3 +19,8 @@ ssh-keygen -t rsa2.
 2. Открыть в браузере страницу _https://github.com/settings/ssh. Нажать в ней на кнопку New SSH key. В открывшейся форме ввести имя и ключ из файла id_rsa.pub.
 3. Выполнить клонирования репозитория. 
 git clone git@github.com:jetfire21/code_snippets.git
+
+=========================================
+Простой способ - Подключение к Git по SSH в Windows https://habr.com/post/266667/
+Решение оказалось куда удобнее и проще. Достаточно запустить в локальном репозитории GIT GUI Here через прав кнопку мыши, и в меню перейти в Help -> Show SSH Key:
+Жмём Generate key и копируем ключ в https://github.com/settings/keys
