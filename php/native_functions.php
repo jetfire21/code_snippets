@@ -131,3 +131,14 @@ function as21_wjm_write_file_jobs_count($filename,$text){
 header('Content-Type: text/html; charset=utf-8');
 
 $td =  mb_convert_encoding($td, 'utf-8', 'cp-1251'); // переконвертация кириллица windows-1251 в utf-8
+
+/* **** сортировка многомерного массива по одному из значений **** */
+
+        // custom sort by date_time
+        usort($user_active_orders, function ($a, $b) {
+            return ($b['date_time']-$a['date_time']); // DESC
+//            return ($a['id']-$b['id']); // ASC
+//            return ($b['id'] - $a['id']); // DESC
+        });
+
+/* **** сортировка многомерного массива по одному из значений **** */
