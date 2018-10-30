@@ -1,0 +1,59 @@
+*урок 2
+классическое МVC в Yii2 
+тонкий контроллер,толстая модель
+M - ActiveRecord
+V - views
+c - SiteController extends Controller
+---------------
+другой шаблон проектирования:
+GRASP
+V - view,form,widget
+C - $_POST -> Form -> validate() -> signup() -> redirect() (это всего лишь посредник-контроллер)
+M - cущности (Пользователи,Товары,Категории и т.д.),сервисы
+Модель магазина - 1 модель ядро
+Модели данных из таблицы Users
+Модель формы / Модель ввода (SignupForm extends FormModel) REST API, HTML
+----------
+вместо 1 папки models
+-common
+--entities
+---User.php (namespace common/entities)
+--forms
+---LoginForm.php
+---------------------------
+SiteController.php
+public function actionCheckout(){
+
+	... $user = $this->findUser($user_id);
+	... $cart = $this->findCart($user_id);
+	... $order = new Order($form->name);
+	... Yii::$app->db->transaction(function{
+		$order->save();
+		$user->save(),
+		$cart->clear()
+	});
+}
+
+// в папке services создаем класс,этот метод checkout() больше не придется дублировать при REST API,для него удобно писать тест,
+и можно использовать где угодно (backend,frontend)
+-frontend
+--services
+---OrderService.php
+
+namespace frontend\services\
+
+use common\entities\User
+
+class OrderService{
+	public function checout(){
+
+	... $user = $this->findUser($user_id);
+	... $cart = $this->findCart($user_id);
+	... $order = new Order($form->name);
+	... Yii::$app->db->transaction(function{
+		$order->save();
+		$user->save(),
+		$cart->clear()
+	});
+	}
+}
