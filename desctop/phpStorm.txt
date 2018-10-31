@@ -14,3 +14,7 @@ PhpStorm, продление триал версии (вечный trial)
 удаляем папку в редакторе реестра,можно закинуть в .bat
 5. reg delete "HKEY_CURRENT_USER\SOFTWARE\JavaSoft\Prefs\jetbrains\phpstorm" /f
 pause
+
+=============== snippets ============================================
+oneline logn comment
+/* ***************** $llc$ ******************** */
