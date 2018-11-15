@@ -2,6 +2,12 @@
 
 1) сначала нужно поставить дистрибутив фреймворка
 2) сделать git clone репозитория с проектом
+3) при необходимсоти закоментить 
+common/config/.gitignore,frontend/config/.gitignore,backend/config/.gitignore
+
+main-local.php
+params-local.php
+test-local.php
 
 загрузка вручную файла composer.phar в папку с доменом cd e:\OSPanel\domains\site-yii.loc\
 php composer.phar global require "fxp/composer-asset-plugin:~1.3"
