@@ -1,5 +1,8 @@
 ----------- main install yii-advanced -------------------
 
+1) сначала нужно поставить дистрибутив фреймворка
+2) сделать git clone репозитория с проектом
+
 загрузка вручную файла composer.phar в папку с доменом cd e:\OSPanel\domains\site-yii.loc\
 php composer.phar global require "fxp/composer-asset-plugin:~1.3"
 затем создаем там подпапку (ex. subdir)
