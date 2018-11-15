@@ -2,8 +2,11 @@
 
 1) сначала нужно поставить дистрибутив фреймворка
 2) сделать git clone репозитория с проектом
-3) при необходимсоти закоментить 
-common/config/.gitignore,frontend/config/.gitignore,backend/config/.gitignore
+3) при необходимсоти закоментить,чтобы не было ошибок:  No such file or directory 
+
+common/config/.gitignore
+frontend/config/.gitignore
+backend/config/.gitignore
 
 main-local.php
 params-local.php
