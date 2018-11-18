@@ -1,0 +1,69 @@
+Composer можно пользоваться в 2х вариантах. 
+
+Глобально(установив программу) и Локально(ничего не устонавливая)
+И тот и тот способы работают только из командной строки. (Пуск->Стандартные->Командная строка)
+Для того чтобы что-то скопировать в командную строку ctrl+v не работает! Пользуемся правой кнопкой мышки->вставить
+
+ЛОКАЛЬНО пошагово
+1. Создаем папку, в которой будет проект на компьютере.
+2. В Командной строке пишем команду cd и путь к папке с проектом:
+cd C:\xampp\htdocs\test_composer
+3. Т.к. программа не установлена, нужен загрузочный файл(мини-программа composer), для его загрузки в Командной строке пишем команду:
+php -r "readfile('https://getcomposer.org/installer');" | php 
+теперь в директории появился загрузочный файл
+4. Запускаем команду загрузки фреймворка(у каждого свой), в Командной строке пишем:
+php composer.phar require silex/silex ~1.1 (для фреймворка silex)
+
+В Командной строке, команды запускаются по разному при локальной и глобальной загрузках:
+Локально: php composer.phar require silex/silex ~1.1
+Глобально: composer require silex/silex ~1.1
+php composer.phar меняется на composer
+Еще при локальной загрузке нужно каждый раз закачивать установочный файл(это не сложно и описано в шаге 3):php -r "readfile('https://getcomposer.org/installer');" | php 
+При глобальной загрузке этот файл не нужен.
+
+ГЛОБАЛЬНО пошагово
+1. Скачиваем программу composer https://getcomposer.org/Composer-Setup.exe
+2. Запускаем. При запросе файла php указываем путь к локальному хостингу -> папку php
+3. Теперь делаем все тоже самое что и при локальной загрузке, но пропускаем шаг 3, и изменяем запросы из Командной строки(вместо php composer.phar пишем composer). Пример:
+было так: php composer.phar require silex/silex ~1.1
+стало так: composer require silex/silex ~1.1
+
+========================================================
+
+Fatal error: Declaration of Fxp\Composer\AssetPlugin\Repository\AbstractAssetsRepository::search
+composer.phar require doctrine/doctrine-fixtures-bundle:2.1.*@dev
+
+composer.phar update doctrine/doctrine-fixtures-bundle
+
+"codemix/yii2-localeurls": "^1.7"
+
+composer.phar require codemix/yii2-localeurls
+composer.phar update codemix/yii2-localeurls
+php composer.phar update vendor/*
+
+Fatal error: Declaration of Fxp\Composer\AssetPlugin\Repository\AbstractAssetsRepository::search($query, $mode = 0) must be compatible with Composer\Repository\ComposerRepository::search($query, $mode = 0, $type = NULL) in C:\Users\A\AppData\Roaming\Composer\vendor\fxp\composer-asset-plugin\Repository\AbstractAssetsRepository.php on line 334
+
+  - Updating fxp/composer-asset-plugin (v1.1.4 => v1.4.4): Downloading (100%)
+
+composer self-update
+php composer update
+
+установка без версии
+php composer.phar global require "fxp/composer-asset-plugin"
+php composer.phar global require "fxp/composer-asset-plugin:1.1.3"
+php composer.phar global require "fxp/composer-asset-plugin:~1.1.3"
+
+- версия
+composer global show
+----------------------------------
+Заклинило composer. Попробуйте:
+
+1. Грохнуть composer.
+2. Поставить composer.
+3. composer global require "fxp/composer-asset-plugin"
+4. composer self-update
+
+или 
+
+php composer.phar global require fxp/composer-asset-plugin --no-plugins
+
