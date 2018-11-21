@@ -12,6 +12,12 @@ main-local.php
 params-local.php
 test-local.php
 
+site.ru\backend\web\
+site.ru\frontend\web\
+#/index.php
+/index-test.php
+/robots.txt
+
 php composer.phar update
 загрузка вручную файла composer.phar в папку с доменом cd e:\OSPanel\domains\site-yii.loc\
 php composer.phar global require "fxp/composer-asset-plugin:~1.3"
