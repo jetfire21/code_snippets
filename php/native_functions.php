@@ -4,6 +4,8 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
+  error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+  error_reporting(E_ERROR); // отчет только о критических ошибках
 
 
 $b = '2017-03-08 14:11:10';
